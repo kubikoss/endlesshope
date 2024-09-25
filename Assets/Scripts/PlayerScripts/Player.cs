@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public int hp = 100;
+    [SerializeField]
+    public float hp = 100;
 
     void Start()
     {
@@ -15,6 +16,16 @@ public class Player : MonoBehaviour
     void Update()
     {
         isDead();
+    }
+
+    public void Heal(float healAmount)
+    {
+        hp += healAmount;
+
+        if (hp > 100)
+        {
+            hp = 100;
+        }
     }
 
     public void isDead()
