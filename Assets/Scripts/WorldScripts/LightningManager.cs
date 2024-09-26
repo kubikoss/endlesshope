@@ -10,12 +10,12 @@ public class LightningManager : MonoBehaviour
     private Light DirectionalLight;
     [SerializeField]
     private LightningPreset Preset;
-    [SerializeField, Range(0, 24)]
+    [SerializeField, Range(0, 240)]
     private float TimeOfDay;
 
     private void Update()
     {
-        if (Preset != null)
+        if (Preset == null)
         {
             return;
         }
@@ -23,12 +23,14 @@ public class LightningManager : MonoBehaviour
         if(Application.isPlaying)
         {
             TimeOfDay += Time.deltaTime;
-            TimeOfDay %= 24;
-            UpdateLighting(TimeOfDay / 24f);
+            TimeOfDay %= 240;
+            UpdateLighting(TimeOfDay / 240f);
         }
         else
         {
-            UpdateLighting(TimeOfDay / 24f);
+            TimeOfDay += Time.deltaTime;
+            TimeOfDay %= 240;
+            UpdateLighting(TimeOfDay / 240f);
         }
     }
 
