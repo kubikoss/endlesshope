@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 [ExecuteAlways]
-public class LightningManager : MonoBehaviour
+public class LightingManager : MonoBehaviour
 {
     [SerializeField]
     private Light DirectionalLight;
     [SerializeField]
-    private LightningPreset Preset;
+    private LightingPreset Preset;
     [SerializeField, Range(0, 240)]
     private float TimeOfDay;
 
@@ -55,7 +55,7 @@ public class LightningManager : MonoBehaviour
             DirectionalLight = RenderSettings.sun;
         else
         {
-            Light[] lights = GameObject.FindObjectsOfType<Light>();
+            Light[] lights = GameObject.FindObjectsByType<Light>(FindObjectsSortMode.None);
             foreach (Light light in lights)
             {
                 if (light.type == LightType.Directional)

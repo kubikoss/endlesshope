@@ -7,19 +7,16 @@ public class Enemy : MonoBehaviour
 {
     public float hp = 100;
 
-    void Start()
+    private void Update()
     {
-
+        isDead();
     }
-
-    void Update()
-    {
-
-    }
-
     public void isDead()
     {
-        Destroy(gameObject, 0.2f);
+        if (hp <= 0)
+        {
+            Destroy(gameObject, 0.1f);
+        }
     }
 
     public void TakeDamage(float amount)

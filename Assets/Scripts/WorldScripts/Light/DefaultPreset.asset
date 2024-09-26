@@ -14,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AmbientColor:
     serializedVersion: 2
-    key0: {r: 0.23661795, g: 0.26594287, b: 0.6301887, a: 1}
-    key1: {r: 0.30081883, g: 0.3494126, b: 0.9811321, a: 1}
-    key2: {r: 1, g: 0.7447204, b: 0.514151, a: 0}
-    key3: {r: 1, g: 0.9326477, b: 0.87358487, a: 0}
-    key4: {r: 0.9921569, g: 0.7411765, b: 0.52156866, a: 0}
-    key5: {r: 0.29411766, g: 0.34509805, b: 0.9803922, a: 0}
-    key6: {r: 0.31231752, g: 0.3329334, b: 0.5849056, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 9638
-    ctime2: 19468
-    ctime3: 32613
-    ctime4: 46067
-    ctime5: 56669
-    ctime6: 65535
-    ctime7: 0
+    key0: {r: 0.15917587, g: 0.18318285, b: 0.46226418, a: 1}
+    key1: {r: 0.23829654, g: 0.2660401, b: 0.5943396, a: 1}
+    key2: {r: 0.93725497, g: 0.7019608, b: 0.49411768, a: 0}
+    key3: {r: 0.8980393, g: 0.882353, b: 0.8431373, a: 0}
+    key4: {r: 0.8980393, g: 0.882353, b: 0.8431373, a: 0}
+    key5: {r: 0.9921569, g: 0.7411765, b: 0.52156866, a: 0}
+    key6: {r: 0.2392157, g: 0.26666668, b: 0.59607846, a: 0}
+    key7: {r: 0.15917587, g: 0.18318285, b: 0.46226418, a: 0}
+    ctime0: 6361
+    ctime1: 10794
+    ctime2: 17155
+    ctime3: 24479
+    ctime4: 41634
+    ctime5: 48573
+    ctime6: 54741
+    ctime7: 59945
     atime0: 0
     atime1: 65535
     atime2: 0
@@ -40,7 +40,7 @@ MonoBehaviour:
     atime7: 0
     m_Mode: 0
     m_ColorSpace: -1
-    m_NumColorKeys: 7
+    m_NumColorKeys: 8
     m_NumAlphaKeys: 2
   DirectionalLight:
     serializedVersion: 2

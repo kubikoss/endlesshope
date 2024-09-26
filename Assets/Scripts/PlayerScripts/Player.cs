@@ -8,14 +8,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float hp = 100;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         isDead();
+        Debug.Log(hp);
     }
 
     public void Heal(float healAmount)
@@ -34,6 +30,15 @@ public class Player : MonoBehaviour
         if (hp <= 0)
         {
             SceneManager.LoadScene(activeScene.name);
+        }
+    }
+
+    public void TakeDamage(float amount)
+    {
+        hp -= amount;
+        if (hp <= 0f)
+        {
+            isDead();
         }
     }
 }
