@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         enemyAttack = GetComponent<EnemyAttack>();
         agent.stoppingDistance = attackRadius;
+
     }
 
     void Update()
@@ -32,7 +33,21 @@ public class EnemyMovement : MonoBehaviour
             if (distance <= agent.stoppingDistance)
             {
                 FaceTarget();
-                enemyAttack.AttackPlayer(target.gameObject);
+                RaycastHit hit;
+                Vector3 directionToTarget = (target.position - transform.position).normalized;
+                if (Physics.Raycast(transform.position, directionToTarget, out hit, distance))
+                {
+                    if (hit.transform == target)
+                    {
+
+                        enemyAttack.AttackPlayer(target.gameObject);
+                    }
+                    else
+                    {
+                        Debug.Log("neni to hrac");
+                    }
+                }
+
             }
         }
     }

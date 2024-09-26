@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         isDead();
-        Debug.Log(hp);
+        //Debug.Log(hp);
     }
 
     public void Heal(float healAmount)

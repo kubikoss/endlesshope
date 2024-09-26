@@ -21,7 +21,7 @@ public abstract class Weapon : Item
 
     [SerializeField]
     private int magazineSize;
-    public int MagazineSize
+    public virtual int MagazineSize
     {
         get { return magazineSize; }
         protected set { magazineSize = value; }
@@ -29,7 +29,7 @@ public abstract class Weapon : Item
 
     [SerializeField]
     private float fireRate;
-    public float FireRate
+    public virtual float FireRate
     {
         get { return fireRate; }
         protected set { fireRate = value; }
@@ -45,7 +45,7 @@ public abstract class Weapon : Item
 
     [SerializeField]
     private float reloadSpeed;
-    public float ReloadSpeed
+    public virtual float ReloadSpeed
     {
         get { return reloadSpeed; }
         protected set { reloadSpeed = value; }
