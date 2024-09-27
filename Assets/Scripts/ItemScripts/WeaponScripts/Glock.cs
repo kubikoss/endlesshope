@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Glock : Weapon
 {
-    public Camera playerCamera;
-
     private void Start()
     {
         CurrentAmmo = MagazineSize;
@@ -17,7 +15,7 @@ public class Glock : Weapon
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, Range))
+            if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out hit, Range))
             {
                 if (hit.collider.CompareTag("Enemy"))
                     PlayerAttack.Instance.AttackEnemy(hit.collider.gameObject, this);

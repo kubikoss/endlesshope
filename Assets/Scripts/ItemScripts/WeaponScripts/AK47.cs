@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class AK47 : Weapon
 {
-    public Camera playerCamera;
 
     private void Start()
     {
@@ -21,7 +20,7 @@ public class AK47 : Weapon
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, Range))
+            if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out hit, Range))
             {
                 if (hit.collider.CompareTag("Enemy"))
                     PlayerAttack.Instance.AttackEnemy(hit.collider.gameObject, this);

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class Medkit : Item
+public class Medkit : Healable
 {
     [SerializeField]
     public float healAmount;
@@ -20,8 +20,13 @@ public class Medkit : Item
     {
         if(Input.GetKey(KeyCode.F))
         {
-            HealPlayer();
+            Use();
         }
+    }
+
+    public override void Use()
+    {
+        HealPlayer();
     }
 
     public void HealPlayer()

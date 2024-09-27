@@ -9,13 +9,13 @@ public class Grenade : Weapon
     [SerializeField]
     private float explosionRadius = 5f;
 
-    private Camera playerCamera;
+    //private Camera playerCamera;
     Rigidbody rb;
 
     private void Start()
     {
         CurrentAmmo = 1;
-        playerCamera = Camera.main;
+        //playerCamera = Camera.main;
         
     }
 
@@ -35,7 +35,7 @@ public class Grenade : Weapon
 
         if (CurrentAmmo > 0)
         {
-            rb.AddForce(playerCamera.transform.forward * throwForce, ForceMode.Impulse);
+            rb.AddForce(PlayerCamera.transform.forward * throwForce, ForceMode.Impulse);
             CurrentAmmo--;
             
             StartCoroutine(ExplodeGrenade(this));

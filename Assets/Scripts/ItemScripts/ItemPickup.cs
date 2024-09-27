@@ -28,7 +28,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 PlayerAttack.Instance.EquipWeapon(weaponToEquip);
 
             }*/
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }
