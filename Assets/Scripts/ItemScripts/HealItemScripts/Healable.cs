@@ -4,13 +4,7 @@ using UnityEngine;
 
 public abstract class Healable : Item
 {
-    [SerializeField]
-    private int healAmount;
-    public int HealAmount
-    {
-        get { return healAmount; }
-        protected set { healAmount = value; }
-    }
+    public virtual int HealAmount => ((HealableItem)itemData).healAmount;
 
     public abstract void Use();
 }

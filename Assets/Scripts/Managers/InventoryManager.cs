@@ -10,6 +10,8 @@ public class InventoryManager : MonoBehaviour
     public List<Item> equippableItems = new List<Item>(9);
     public List<Item> fullInventory = new List<Item>();
 
+    public Hands hands;
+
     private void Awake()
     {
         if (Instance == null)
@@ -42,6 +44,15 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+    
+    public void RemoveItem(Item item)
+    {
+        fullInventory.Remove(item);
+        if (equippableItems.Contains(item))
+        {
+            equippableItems.Remove(item);
+        }
+    }
 
     public void EquipItemFromInventory(int slotIndex)
     {
@@ -52,6 +63,21 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void EquipFirstSlot()
+    {
+        for (int i = 0; i < equippableItems.Count; i++)
+        {
+            if (equippableItems[i] != null && !(equippableItems[i] is Hands))
+            {
+                PlayerAttack.Instance.EquipItem(equippableItems[i]);
+                return;
+            }
+        }
+
+        PlayerAttack.Instance.EquipItem(hands);
+    }
+
+
     public void DropItem(Item itemToDrop)
     {
         fullInventory.Remove(itemToDrop);
@@ -59,5 +85,6 @@ public class InventoryManager : MonoBehaviour
         {
             equippableItems.Remove(itemToDrop);
         }
+        itemToDrop.transform.SetParent(null);
     }
 }

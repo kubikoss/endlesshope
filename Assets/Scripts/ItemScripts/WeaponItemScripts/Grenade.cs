@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class Grenade : Weapon
 {
-    [SerializeField]
-    private float throwForce = 10f;
-    [SerializeField]
-    private float explosionRadius = 5f;
+    public int throwForce => ((ThrowableItem)itemData).throwForce;
+    private int explodeRadius => ((ThrowableItem)itemData).explodeRadius;
 
-    //private Camera playerCamera;
     Rigidbody rb;
 
     private void Start()
     {
         CurrentAmmo = 1;
-        //playerCamera = Camera.main;
-        
     }
 
     public override void Shoot()
@@ -48,7 +43,7 @@ public class Grenade : Weapon
     {
         yield return new WaitForSeconds(2f);
 
-        Collider[] explosionColliders = Physics.OverlapSphere(grenade.transform.position, explosionRadius);
+        Collider[] explosionColliders = Physics.OverlapSphere(grenade.transform.position, explodeRadius);
         foreach (var explosionCollider in explosionColliders)
         {
             Enemy enemy = explosionCollider.GetComponent<Enemy>();
@@ -62,11 +57,12 @@ public class Grenade : Weapon
             }
         }
         Destroy(gameObject);
+        InventoryManager.Instance.EquipFirstSlot();
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, explosionRadius);
+        Gizmos.DrawSphere(transform.position, explodeRadius);
     }
 }

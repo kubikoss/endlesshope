@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1279844483634264299
+--- !u!1 &4978581987628349253
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1636467879015230740}
-  - component: {fileID: 1265644434937695761}
-  - component: {fileID: 6184513554481621868}
-  - component: {fileID: 86226805619267875}
-  - component: {fileID: 7811381658071986320}
-  - component: {fileID: 6194343158562288980}
+  - component: {fileID: 2853588527192941945}
+  - component: {fileID: 8993992190083190846}
+  - component: {fileID: 5343330851637750729}
+  - component: {fileID: 379552771012189069}
+  - component: {fileID: 683808520639204476}
+  - component: {fileID: 6484821778630439309}
   m_Layer: 0
   m_Name: Glock
   m_TagString: Untagged
@@ -21,36 +21,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1636467879015230740
+--- !u!4 &2853588527192941945
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279844483634264299}
+  m_GameObject: {fileID: 4978581987628349253}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.068, y: 1.563, z: -2.778}
-  m_LocalScale: {x: 0.3636, y: 0.3636, z: 0.3636}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.149, y: 1.558, z: -2.189}
+  m_LocalScale: {x: 0.15135628, y: 0.15135628, z: 0.15135628}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1265644434937695761
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!33 &8993992190083190846
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279844483634264299}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6184513554481621868
+  m_GameObject: {fileID: 4978581987628349253}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5343330851637750729
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279844483634264299}
+  m_GameObject: {fileID: 4978581987628349253}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e2272fd0489b9834b88850de667738bd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,13 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &86226805619267875
-SphereCollider:
+--- !u!136 &379552771012189069
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279844483634264299}
+  m_GameObject: {fileID: 4978581987628349253}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -106,39 +106,34 @@ SphereCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 2
   m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7811381658071986320
+--- !u!114 &683808520639204476
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279844483634264299}
+  m_GameObject: {fileID: 4978581987628349253}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0339a55441e0cb479ffc0a3c072d166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Glock
-  damage: 25
-  magazineSize: 12
-  fireRate: 0
-  range: 50
-  reloadSpeed: 1.5
-  firingMode: 0
-  playerCamera: {fileID: 0}
---- !u!114 &6194343158562288980
+  itemData: {fileID: 11400000, guid: 7128f2559a3d9c64a88883c6e4ea17d6, type: 2}
+--- !u!114 &6484821778630439309
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279844483634264299}
+  m_GameObject: {fileID: 4978581987628349253}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10692f06919c5304095f2a6ca7da9bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 7811381658071986320}
+  item: {fileID: 683808520639204476}

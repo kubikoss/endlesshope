@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class AK47 : Weapon
 {
-
     private void Start()
     {
         CurrentAmmo = MagazineSize;
@@ -19,7 +18,6 @@ public class AK47 : Weapon
         if (CurrentAmmo > 0)
         {
             RaycastHit hit;
-
             if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out hit, Range))
             {
                 if (hit.collider.CompareTag("Enemy"))

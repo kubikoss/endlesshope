@@ -8,7 +8,8 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
-    public string itemName;
+    public BaseItem itemData;
+    public string itemName => itemData.name;
     private Camera playerCamera;
     public Camera PlayerCamera
     {

@@ -85,7 +85,7 @@ public class PlayerAttack : MonoBehaviour
                     weapon.Reload();
                 }
             }
-            else if(currentItem is Healable healingItem)
+            else if (currentItem is Healable healingItem)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -118,7 +118,7 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G) && !(currentItem is Hands) && currentItem != null)
         {
             InventoryManager.Instance.DropItem(currentItem);
-            EquipItem(hands);
+            InventoryManager.Instance.EquipFirstSlot();
         }
     }
 }
