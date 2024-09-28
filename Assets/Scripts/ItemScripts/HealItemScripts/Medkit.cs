@@ -7,18 +7,19 @@ using UnityEngine;
 
 public class Medkit : Healable
 {
-    [SerializeField]
-    public float healAmount;
-
+    float distance;
     Player player;
 
     private void Start()
     {
-        player = FindObjectOfType<Player>();
+        player = PlayerManager.Instance.player.gameObject.GetComponent<Player>();
     }
+
     private void Update()
     {
-        if(Input.GetKey(KeyCode.F))
+        distance = Vector3.Distance(transform.position, PlayerManager.Instance.player.transform.position);
+
+        if (Input.GetKeyDown(KeyCode.F) && distance <= 2f)
         {
             Use();
         }
@@ -31,7 +32,7 @@ public class Medkit : Healable
 
     public void HealPlayer()
     {
-        player.Heal(healAmount);
+        player.Heal(HealAmount);
         Destroy(gameObject);
     }
     

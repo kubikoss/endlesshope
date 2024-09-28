@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -48,6 +49,15 @@ public class InventoryManager : MonoBehaviour
         {
             Item currentItem = equippableItems[slotIndex];
             PlayerAttack.Instance.EquipItem(currentItem);
+        }
+    }
+
+    public void DropItem(Item itemToDrop)
+    {
+        fullInventory.Remove(itemToDrop);
+        if (equippableItems.Contains(itemToDrop))
+        {
+            equippableItems.Remove(itemToDrop);
         }
     }
 }

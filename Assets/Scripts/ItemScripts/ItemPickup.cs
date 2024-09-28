@@ -5,30 +5,17 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour, IInteractable
 {
     public Item item;
-    //public Transform itemPosition;
 
     public void Interact()
     {
         if (item != null)
         {
             InventoryManager.Instance.AddItem(item);
-            /*Weapon weaponToEquip = item as Weapon;
+            PlayerAttack.Instance.EquipItem(item);
 
-            if (weaponToEquip != null)
-            {
-
-                if (PlayerAttack.Instance.currentWeapon != null)
-                {
-                    PlayerAttack.Instance.currentWeapon.gameObject.SetActive(false);
-                }
-
-                weaponToEquip.transform.SetParent(itemPosition);
-
-                weaponToEquip.gameObject.SetActive(true);
-                PlayerAttack.Instance.EquipWeapon(weaponToEquip);
-
-            }*/
-            //Destroy(gameObject);
+            Transform weaponHolder = GameObject.Find("WeaponHolder").transform;
+            item.transform.SetParent(weaponHolder);
+            item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -27,6 +28,7 @@ public class PlayerAttack : MonoBehaviour
     {
         CurrentItem();
         SwitchItem();
+        DropItem();
     }
 
     public void AttackEnemy(GameObject enemy, Item currentItem)
@@ -51,9 +53,6 @@ public class PlayerAttack : MonoBehaviour
 
         currentItem = itemToEquip;
 
-        Transform weaponHolder = GameObject.Find("WeaponHolder").transform;
-        currentItem.transform.SetParent(weaponHolder);
-        currentItem.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
         currentItem.gameObject.SetActive(true);
     }
 
@@ -88,9 +87,13 @@ public class PlayerAttack : MonoBehaviour
             }
             else if(currentItem is Healable healingItem)
             {
-
+                if (Input.GetMouseButtonDown(0))
+                {
+                    healingItem.Use();
+                }
             }
         }
+
     }
 
     private void SwitchItem()
@@ -107,6 +110,15 @@ public class PlayerAttack : MonoBehaviour
             {
                 InventoryManager.Instance.EquipItemFromInventory(i);
             }
+        }
+    }
+
+    public void DropItem()
+    {
+        if (Input.GetKeyDown(KeyCode.G) && !(currentItem is Hands) && currentItem != null)
+        {
+            InventoryManager.Instance.DropItem(currentItem);
+            EquipItem(hands);
         }
     }
 }

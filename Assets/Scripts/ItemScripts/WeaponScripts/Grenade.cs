@@ -32,6 +32,7 @@ public class Grenade : Weapon
     private void ThrowGrenade()
     {
         rb = gameObject.AddComponent<Rigidbody>();
+        gameObject.GetComponent<Collider>().isTrigger = false;
 
         if (CurrentAmmo > 0)
         {
@@ -63,9 +64,9 @@ public class Grenade : Weapon
         Destroy(gameObject);
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, explosionRadius);
     }
 }

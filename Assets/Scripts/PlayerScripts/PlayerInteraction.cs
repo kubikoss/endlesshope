@@ -22,10 +22,6 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     interactable.Interact();
                 }
-                else
-                {
-                    Debug.Log("nic tu neni pico");
-                }
             }
         }
     }

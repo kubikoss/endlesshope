@@ -5,11 +5,11 @@ using UnityEngine;
 public abstract class Healable : Item
 {
     [SerializeField]
-    private int healAmmount;
-    public int HealAmmount
+    private int healAmount;
+    public int HealAmount
     {
-        get { return healAmmount; }
-        protected set { healAmmount = value; }
+        get { return healAmount; }
+        protected set { healAmount = value; }
     }
 
     public abstract void Use();
