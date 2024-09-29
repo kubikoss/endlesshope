@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf215add4f5065408f0c825cd05a782, type: 3}
-  m_Name: Grenade
+  m_Script: {fileID: 11500000, guid: 23fc4e6051d691e4f97a10c0f9fcafd2, type: 3}
+  m_Name: AK47
   m_EditorClassIdentifier: 
-  itemName: Grenade
-  damage: 100
-  fireRate: 1
-  magazineSize: 1
-  range: 10
-  reloadSpeed: 1
-  firingMode: 0
-  throwForce: 10
-  explodeRadius: 3
+  itemName: AK47
+  damage: 35
+  fireRate: 10
+  magazineSize: 30
+  range: 100
+  reloadSpeed: 2
+  firingMode: 1
+  canShoot: 1

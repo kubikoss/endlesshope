@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fc4e6051d691e4f97a10c0f9fcafd2, type: 3}
-  m_Name: Hands
+  m_Script: {fileID: 11500000, guid: 4712d5cafea12ff42855e57c0b696649, type: 3}
+  m_Name: RawBeef
   m_EditorClassIdentifier: 
-  itemName: Hands
-  damage: 15
-  fireRate: 1
-  magazineSize: 1
-  range: 2
-  reloadSpeed: 0.3
-  firingMode: 2
+  itemName: RawBeef
+  foodStat: 15
+  isEatable: 0

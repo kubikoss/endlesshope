@@ -33,11 +33,11 @@ public class Grenade : Weapon
         {
             rb.AddForce(PlayerCamera.transform.forward * throwForce, ForceMode.Impulse);
             CurrentAmmo--;
-            
+            InventoryManager.Instance.RemoveItem(this);
+
             StartCoroutine(ExplodeGrenade(this));
         }
     }
-
 
     private IEnumerator ExplodeGrenade(Grenade grenade)
     {
@@ -56,8 +56,8 @@ public class Grenade : Weapon
                 Debug.Log(explosionCollider.name);
             }
         }
-        Destroy(gameObject);
         InventoryManager.Instance.EquipFirstSlot();
+        Destroy(gameObject);
     }
 
     private void OnDrawGizmosSelected()

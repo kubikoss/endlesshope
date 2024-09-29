@@ -80,7 +80,7 @@ public class PlayerAttack : MonoBehaviour
                     }
                 }
 
-                if (Input.GetKeyDown(KeyCode.R) && weapon != null && !(weapon is Hands))
+                if (Input.GetKeyDown(KeyCode.R) && weapon != null && !(weapon is Hands) && !(weapon is Grenade))
                 {
                     weapon.Reload();
                 }
@@ -90,6 +90,13 @@ public class PlayerAttack : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     healingItem.Use();
+                }
+            }
+            else if(currentItem is Food foodItem)
+            {
+                if(Input.GetMouseButtonDown(0))
+                {
+                    foodItem.Eat();
                 }
             }
         }

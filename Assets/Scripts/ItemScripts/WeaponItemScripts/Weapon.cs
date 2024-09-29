@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 public enum FiringMode
 {
     SemiAutomatic,
@@ -16,9 +14,7 @@ public abstract class Weapon : Item
     public virtual float FireRate => ((WeaponItem)itemData).fireRate;
     public virtual int Range => ((WeaponItem)itemData).range;
     public virtual float ReloadSpeed => ((WeaponItem)itemData).reloadSpeed;
-
     public FiringMode FiringMode => ((WeaponItem)itemData).firingMode;
-
     private int currentAmmo;
     public int CurrentAmmo
     {

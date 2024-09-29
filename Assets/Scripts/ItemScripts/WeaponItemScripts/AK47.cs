@@ -1,30 +1,48 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class AK47 : Weapon
 {
+    public float baseSpread = 0.02f;
+    public float movingSpread = 0.1f;
+    public float maxSpread = 0.2f;
+    public PlayerMovement playerMovement;
+
     private void Start()
     {
         CurrentAmmo = MagazineSize;
+        if (playerMovement == null)
+            playerMovement = GetComponentInParent<PlayerMovement>();
     }
 
     public override void Shoot()
     {
-        if (CurrentAmmo > 0)
+        var weaponItem = (WeaponItem)itemData;
+
+        if (CurrentAmmo > 0 && weaponItem.canShoot)
         {
             RaycastHit hit;
-            if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out hit, Range))
+
+            float playerSpeed = new Vector3(playerMovement.rb.velocity.x, 0f, playerMovement.rb.velocity.z).magnitude;
+            float currentSpread = Mathf.Lerp(baseSpread, movingSpread, playerSpeed / playerMovement.moveSpeed);
+
+            Vector3 spread = new Vector3(Random.Range(-currentSpread, currentSpread), Random.Range(-currentSpread, currentSpread), 0f);
+
+            Vector3 shootDirection = PlayerCamera.transform.forward + spread;
+
+            if (Physics.Raycast(PlayerCamera.transform.position, shootDirection, out hit, Range))
             {
+
                 if (hit.collider.CompareTag("Enemy"))
                     PlayerAttack.Instance.AttackEnemy(hit.collider.gameObject, this);
                 else
-                    Debug.Log(hit.collider);
+                    Debug.Log(hit.collider);    
+                    Debug.DrawRay(PlayerCamera.transform.position, shootDirection * Range, Color.green, 2.0f);
             }
+            else
+                Debug.DrawRay(PlayerCamera.transform.position, shootDirection * Range, Color.red, 2.0f);
+            
             CurrentAmmo--;
             Debug.Log(CurrentAmmo);
         }
@@ -33,7 +51,19 @@ public class AK47 : Weapon
     public override void Reload()
     {
         if (CurrentAmmo < MagazineSize)
-            CurrentAmmo = MagazineSize;
+        {
+            StartCoroutine(ReloadCoroutine());
+        }
+    }
+
+    private IEnumerator ReloadCoroutine()
+    {
+        var weaponItem = (WeaponItem)itemData;
+        weaponItem.canShoot = false;
+
+        yield return new WaitForSeconds(ReloadSpeed);
+
+        CurrentAmmo = MagazineSize;
+        weaponItem.canShoot = true;
     }
 }
-

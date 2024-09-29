@@ -11,7 +11,14 @@ public class ItemPickup : MonoBehaviour, IInteractable
         if (item != null)
         {
             InventoryManager.Instance.AddItem(item);
-            PlayerAttack.Instance.EquipItem(item);
+            if(InventoryManager.Instance.equippableItems.Count < 9)
+            {
+                PlayerAttack.Instance.EquipItem(item);
+            }
+            else
+            {
+                item.gameObject.SetActive(false);
+            }
 
             Transform weaponHolder = GameObject.Find("WeaponHolder").transform;
             item.transform.SetParent(weaponHolder);

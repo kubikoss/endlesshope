@@ -11,7 +11,9 @@ public class Glock : Weapon
 
     public override void Shoot()
     {
-        if (CurrentAmmo > 0)
+        var weaponItem = (WeaponItem)itemData;
+
+        if (CurrentAmmo > 0 && weaponItem.canShoot)
         {
             RaycastHit hit;
 
@@ -30,6 +32,20 @@ public class Glock : Weapon
     public override void Reload()
     {
         if (CurrentAmmo < MagazineSize)
-            CurrentAmmo = MagazineSize;
+        {
+            StartCoroutine(ReloadCoroutine());
+        }
+    }
+
+    private IEnumerator ReloadCoroutine()
+    {
+        var weaponItem = (WeaponItem)itemData;
+        weaponItem.canShoot = false;
+
+        yield return new WaitForSeconds(ReloadSpeed);
+
+        CurrentAmmo = MagazineSize;
+
+        weaponItem.canShoot = true;
     }
 }

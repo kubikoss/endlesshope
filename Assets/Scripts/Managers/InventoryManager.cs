@@ -17,11 +17,6 @@ public class InventoryManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            //Destroy(gameObject);
         }
     }
 
@@ -77,14 +72,10 @@ public class InventoryManager : MonoBehaviour
         PlayerAttack.Instance.EquipItem(hands);
     }
 
-
     public void DropItem(Item itemToDrop)
     {
-        fullInventory.Remove(itemToDrop);
-        if (equippableItems.Contains(itemToDrop))
-        {
-            equippableItems.Remove(itemToDrop);
-        }
+        RemoveItem(itemToDrop);
         itemToDrop.transform.SetParent(null);
+        itemToDrop.gameObject.SetActive(true);
     }
 }

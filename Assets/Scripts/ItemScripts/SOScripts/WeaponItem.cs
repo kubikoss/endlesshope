@@ -11,4 +11,5 @@ public class WeaponItem : BaseItem
     public int range;
     public float reloadSpeed;
     public FiringMode firingMode;
+    public bool canShoot = true;
 }

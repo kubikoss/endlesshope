@@ -9,13 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23fc4e6051d691e4f97a10c0f9fcafd2, type: 3}
-  m_Name: Glock
+  m_Script: {fileID: 11500000, guid: bcf215add4f5065408f0c825cd05a782, type: 3}
+  m_Name: Grenade
   m_EditorClassIdentifier: 
-  itemName: Glock
-  damage: 25
+  itemName: Grenade
+  damage: 100
   fireRate: 1
-  magazineSize: 12
-  range: 50
-  reloadSpeed: 1.5
+  magazineSize: 1
+  range: 10
+  reloadSpeed: 0
   firingMode: 0
+  canShoot: 1
+  throwForce: 10
+  explodeRadius: 3

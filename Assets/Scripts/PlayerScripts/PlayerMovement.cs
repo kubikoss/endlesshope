@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     float verticalInput;
 
     Vector3 moveDirection;
-    Rigidbody rb;
+    public Rigidbody rb;
 
     private void Start()
     {

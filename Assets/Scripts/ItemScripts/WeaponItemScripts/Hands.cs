@@ -8,7 +8,6 @@ public class Hands : Weapon
     private void Start()
     {
         CurrentAmmo = 1;
-        //FiringMode = FiringMode.Meelee;
     }
 
     public override void Shoot()

@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23fc4e6051d691e4f97a10c0f9fcafd2, type: 3}
-  m_Name: AK47
+  m_Name: Hands
   m_EditorClassIdentifier: 
-  itemName: AK47
-  damage: 35
-  fireRate: 10
-  magazineSize: 30
-  range: 100
-  reloadSpeed: 2
-  firingMode: 1
+  itemName: Hands
+  damage: 15
+  fireRate: 1
+  magazineSize: 1
+  range: 2
+  reloadSpeed: 0
+  firingMode: 2
+  canShoot: 1
