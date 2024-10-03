@@ -100,7 +100,6 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
-
     }
 
     private void SwitchItem()
