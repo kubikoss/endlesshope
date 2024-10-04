@@ -20,5 +20,5 @@ MonoBehaviour:
   reloadSpeed: 0
   firingMode: 0
   canShoot: 1
-  throwForce: 10
+  throwForce: 12
   explodeRadius: 3

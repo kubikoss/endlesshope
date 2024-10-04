@@ -293,7 +293,6 @@ GameObject:
   - component: {fileID: 2463159393213650636}
   - component: {fileID: 2236463496995469951}
   - component: {fileID: 6215602810016997664}
-  - component: {fileID: 2322926086825045901}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -432,6 +431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+  hungerTime: 0
 --- !u!114 &2463159393213650636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +452,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  rb: {fileID: 0}
 --- !u!114 &2236463496995469951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,17 +481,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionRange: 2
   playerCamera: {fileID: 6561667098233389763}
---- !u!114 &2322926086825045901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5351048830153275687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e37a5cda8c02bbb4a8585485abe434ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equippableItems: []
-  fullInventory: []

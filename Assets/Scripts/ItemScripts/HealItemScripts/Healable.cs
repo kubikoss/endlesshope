@@ -2,9 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Healable : Item
+public class Healable : Item
 {
-    public virtual int HealAmount => ((HealableItem)itemData).healAmount;
+    public int HealAmount => ((HealableItem)itemData).healAmount;
 
-    public abstract void Use();
+    Player player;
+
+    private void Start()
+    {
+        player = PlayerManager.Instance.player.gameObject.GetComponent<Player>();
+    }
+
+    public void Use()
+    {
+        HealPlayer();
+    }
+
+    public void HealPlayer()
+    {
+        player.Heal(HealAmount);
+        InventoryManager.Instance.RemoveItem(this);
+        InventoryManager.Instance.EquipFirstSlot();
+        Destroy(gameObject);
+    }
 }

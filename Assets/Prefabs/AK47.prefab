@@ -103,7 +103,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -124,6 +124,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 34256b03db9b18e4ba986186b803b0b1, type: 2}
+  baseSpread: 0.02
+  movingSpread: 0.1
+  maxSpread: 0.2
+  playerMovement: {fileID: 0}
 --- !u!114 &6973393626850095940
 MonoBehaviour:
   m_ObjectHideFlags: 0

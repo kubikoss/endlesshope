@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AK47
   m_EditorClassIdentifier: 
   itemName: AK47
+  itemIcon: {fileID: 0}
   damage: 35
   fireRate: 10
   magazineSize: 30

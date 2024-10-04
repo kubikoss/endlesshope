@@ -6,9 +6,8 @@ using static UnityEditor.Progress;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
+    public List<Item> fullInventory = new List<Item>(20);
 
-    public List<Item> equippableItems = new List<Item>(9);
-    public List<Item> fullInventory = new List<Item>();
 
     public Hands hands;
 
@@ -25,46 +24,30 @@ public class InventoryManager : MonoBehaviour
         if(fullInventory.Count < 20)
         {
             fullInventory.Add(item);
-
-            if (item is Hands)
-            {
-                if (!equippableItems.Contains(item))
-                {
-                    equippableItems.Insert(0, item);
-                }
-            }
-            else if (equippableItems.Count < 9)
-            {
-                equippableItems.Add(item);
-            }
         }
     }
     
     public void RemoveItem(Item item)
     {
         fullInventory.Remove(item);
-        if (equippableItems.Contains(item))
-        {
-            equippableItems.Remove(item);
-        }
     }
 
     public void EquipItemFromInventory(int slotIndex)
     {
-        if (slotIndex >= 0 && slotIndex < equippableItems.Count)
+        if (slotIndex >= 0 && slotIndex < fullInventory.Count)
         {
-            Item currentItem = equippableItems[slotIndex];
+            Item currentItem = fullInventory[slotIndex];
             PlayerAttack.Instance.EquipItem(currentItem);
         }
     }
 
     public void EquipFirstSlot()
     {
-        for (int i = 0; i < equippableItems.Count; i++)
+        for (int i = 0; i < fullInventory.Count; i++)
         {
-            if (equippableItems[i] != null && !(equippableItems[i] is Hands))
+            if (fullInventory[i] != null && !(fullInventory[i] is Hands))
             {
-                PlayerAttack.Instance.EquipItem(equippableItems[i]);
+                PlayerAttack.Instance.EquipItem(fullInventory[i]);
                 return;
             }
         }

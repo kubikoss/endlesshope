@@ -9,7 +9,8 @@ using UnityEngine;
 public abstract class Item : MonoBehaviour
 {
     public BaseItem itemData;
-    public string itemName => itemData.name;
+    public string ItemName => itemData.name;
+    public Sprite ItemIcon => itemData.itemIcon;
     private Camera playerCamera;
     public Camera PlayerCamera
     {

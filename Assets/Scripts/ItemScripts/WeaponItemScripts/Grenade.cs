@@ -26,14 +26,18 @@ public class Grenade : Weapon
 
     private void ThrowGrenade()
     {
-        rb = gameObject.AddComponent<Rigidbody>();
-        gameObject.GetComponent<Collider>().isTrigger = false;
-
         if (CurrentAmmo > 0)
         {
-            rb.AddForce(PlayerCamera.transform.forward * throwForce, ForceMode.Impulse);
             CurrentAmmo--;
+
+            transform.SetParent(null);
+
+            rb = gameObject.AddComponent<Rigidbody>();
+            gameObject.GetComponent<Collider>().isTrigger = false;
+            rb.AddForce(PlayerCamera.transform.forward * throwForce, ForceMode.Impulse);
+
             InventoryManager.Instance.RemoveItem(this);
+            //InventoryManager.Instance.EquipFirstSlot();
 
             StartCoroutine(ExplodeGrenade(this));
         }
@@ -47,9 +51,14 @@ public class Grenade : Weapon
         foreach (var explosionCollider in explosionColliders)
         {
             Enemy enemy = explosionCollider.GetComponent<Enemy>();
+            Player player = explosionCollider.GetComponent<Player>();
             if (enemy != null)
             {
                 enemy.TakeDamage(Damage);
+            }
+            else if (player != null)
+            {
+                player.TakeDamage(Damage / Random.Range(3,5));
             }
             else
             {
