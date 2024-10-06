@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Bread
   m_EditorClassIdentifier: 
   itemName: Bread
+  ID: 6
+  itemIcon: {fileID: 602703515024233923, guid: 1b39c0fe73f0433468e25eb21cfde7c2, type: 3}
+  isStackable: 1
   foodStat: 20
   isEatable: 1

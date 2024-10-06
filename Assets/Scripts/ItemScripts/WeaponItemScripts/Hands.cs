@@ -29,8 +29,6 @@ public class Hands : Weapon
         {
             if (hit.collider.CompareTag("Enemy"))
                 PlayerAttack.Instance.AttackEnemy(hit.collider.gameObject, this);
-            else
-                Debug.Log(hit.collider);
         }
         CurrentAmmo--;
         Debug.Log(CurrentAmmo);

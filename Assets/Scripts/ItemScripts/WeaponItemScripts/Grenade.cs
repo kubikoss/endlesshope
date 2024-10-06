@@ -6,12 +6,15 @@ public class Grenade : Weapon
 {
     public int throwForce => ((ThrowableItem)itemData).throwForce;
     private int explodeRadius => ((ThrowableItem)itemData).explodeRadius;
+    public bool IsBeingThrown { get; private set; }
 
     Rigidbody rb;
+    InventoryItem inventoryItem;
 
     private void Start()
     {
         CurrentAmmo = 1;
+        IsBeingThrown = false;
     }
 
     public override void Shoot()
@@ -24,11 +27,12 @@ public class Grenade : Weapon
 
     }
 
-    private void ThrowGrenade()
+    private bool ThrowGrenade()
     {
         if (CurrentAmmo > 0)
         {
             CurrentAmmo--;
+            IsBeingThrown = true;
 
             transform.SetParent(null);
 
@@ -37,10 +41,15 @@ public class Grenade : Weapon
             rb.AddForce(PlayerCamera.transform.forward * throwForce, ForceMode.Impulse);
 
             InventoryManager.Instance.RemoveItem(this);
-            //InventoryManager.Instance.EquipFirstSlot();
+            InventoryManager.Instance.EquipFirstSlot();
+            InventoryManager.Instance.ChangeSelectedSlot(0);
 
             StartCoroutine(ExplodeGrenade(this));
+
+            return true;
         }
+
+        return false;
     }
 
     private IEnumerator ExplodeGrenade(Grenade grenade)
@@ -65,7 +74,6 @@ public class Grenade : Weapon
                 Debug.Log(explosionCollider.name);
             }
         }
-        InventoryManager.Instance.EquipFirstSlot();
         Destroy(gameObject);
     }
 

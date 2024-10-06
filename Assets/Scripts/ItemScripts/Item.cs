@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Item : MonoBehaviour
 {
     public BaseItem itemData;
     public string ItemName => itemData.name;
+    public int ID => itemData.ID;
     public Sprite ItemIcon => itemData.itemIcon;
     private Camera playerCamera;
     public Camera PlayerCamera
@@ -17,7 +19,7 @@ public abstract class Item : MonoBehaviour
         get { return playerCamera; }
         set { playerCamera = value; }
     }
-
+    public bool IsStackable => itemData.isStackable;
     private void Awake()
     {
         playerCamera = Camera.main;

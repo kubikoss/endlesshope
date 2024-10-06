@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: RawBeef
   m_EditorClassIdentifier: 
   itemName: RawBeef
+  ID: 7
+  itemIcon: {fileID: 3355423005436571770, guid: 1b39c0fe73f0433468e25eb21cfde7c2, type: 3}
+  isStackable: 1
   foodStat: 15
   isEatable: 0

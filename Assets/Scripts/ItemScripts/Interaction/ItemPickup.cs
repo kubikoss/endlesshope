@@ -5,24 +5,30 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour, IInteractable
 {
     public Item item;
-
+    [HideInInspector] public InventoryItem inventoryItem;
     public void Interact()
     {
-        if (item != null)
+        if(!InventoryManager.Instance.isInventoryOpened)
         {
-            InventoryManager.Instance.AddItem(item);
-            if(InventoryManager.Instance.fullInventory.Count < 9)
+            if (item != null)
             {
-                PlayerAttack.Instance.EquipItem(item);
-            }
-            else
-            {
-                item.gameObject.SetActive(false);
-            }
+                bool canAdd = InventoryManager.Instance.AddItem(item);
+                if (canAdd)
+                {
+                    Transform itemHolder = GameObject.Find("ItemHolder").transform;
+                    item.transform.SetParent(itemHolder);
+                    item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
 
-            Transform weaponHolder = GameObject.Find("InventoryPlaceholder").transform;
-            item.transform.SetParent(weaponHolder);
-            item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
+                    if (InventoryManager.Instance.GetHotbarCount() < 10)
+                    {
+                        PlayerAttack.Instance.EquipItem(item);
+                    }
+                    else
+                    {
+                        item.gameObject.SetActive(false);
+                    }
+                }
+            }
         }
     }
 }

@@ -8,7 +8,6 @@ public class ChestInteraction : MonoBehaviour, IInteractable
     public int maxItemsCount = 3;
     private bool isOpened = false;
 
-    // Public references for item prefabs
     public GameObject item1;
     public GameObject item2;
     public GameObject item3;

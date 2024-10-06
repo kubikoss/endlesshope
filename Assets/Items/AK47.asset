@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: AK47
   m_EditorClassIdentifier: 
   itemName: AK47
-  itemIcon: {fileID: 0}
+  ID: 3
+  itemIcon: {fileID: 21300000, guid: b3a67fc6bd9f6405ba5785b99c7d830a, type: 3}
   damage: 35
   fireRate: 10
   magazineSize: 30

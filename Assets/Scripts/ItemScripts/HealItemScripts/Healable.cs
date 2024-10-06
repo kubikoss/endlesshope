@@ -23,6 +23,27 @@ public class Healable : Item
         player.Heal(HealAmount);
         InventoryManager.Instance.RemoveItem(this);
         InventoryManager.Instance.EquipFirstSlot();
+
         Destroy(gameObject);
+
+        //UpdateInventoryItem();
     }
+
+    /*private void UpdateInventoryItem()
+    {
+        InventoryItem inventoryItem = InventoryManager.Instance.GetInventoryItem(this);
+        if (inventoryItem != null)
+        {
+            inventoryItem.count--;
+            inventoryItem.UpdateCount();
+            Debug.Log(inventoryItem.count);
+
+            if (inventoryItem.count == 1)
+            {
+                InventoryManager.Instance.RemoveItem(this);
+                InventoryManager.Instance.EquipFirstSlot();
+                Destroy(inventoryItem.gameObject);
+            }
+        }
+    }*/
 }

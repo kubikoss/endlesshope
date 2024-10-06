@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Glock
   m_EditorClassIdentifier: 
   itemName: Glock
+  ID: 2
+  itemIcon: {fileID: -8025435653959805260, guid: 1b39c0fe73f0433468e25eb21cfde7c2, type: 3}
+  isStackable: 0
   damage: 25
   fireRate: 1
   magazineSize: 12

@@ -15,18 +15,17 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-    }
-    private void Start()
-    {
+
         if (currentItem == null)
-        {
             currentItem = hands;
-        }
     }
 
     private void Update()
     {
-        CurrentItem();
+        if (!InventoryManager.Instance.isInventoryOpened)
+        {
+            CurrentItem();
+        }
         SwitchItem();
         DropItem();
     }
@@ -48,12 +47,18 @@ public class PlayerAttack : MonoBehaviour
     {
         if (currentItem != null)
         {
-            currentItem.gameObject.SetActive(false);
+            if (!(currentItem is Grenade grenade) || !grenade.IsBeingThrown)
+            {
+                currentItem.gameObject.SetActive(false);
+            }
         }
 
         currentItem = itemToEquip;
 
-        currentItem.gameObject.SetActive(true);
+        if (currentItem != null)
+        {
+            currentItem.gameObject.SetActive(true);
+        }
     }
 
     private void CurrentItem()
@@ -100,20 +105,13 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
-
     }
 
     private void SwitchItem()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            EquipItem(hands);
-            return;
-        }
-
         for (int i = 0; i < 9; i++)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha2 + i))
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
             {
                 InventoryManager.Instance.EquipItemFromInventory(i);
             }
@@ -124,8 +122,13 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.G) && !(currentItem is Hands) && currentItem != null)
         {
-            InventoryManager.Instance.DropItem(currentItem);
-            InventoryManager.Instance.EquipFirstSlot();
+            Item droppedItem = InventoryManager.Instance.DropItem(currentItem);
+            if (droppedItem != null)
+            {
+                currentItem.gameObject.SetActive(true); 
+                currentItem = null;
+                InventoryManager.Instance.EquipFirstSlot(); 
+            }
         }
     }
 }
