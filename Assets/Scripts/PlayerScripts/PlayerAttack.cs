@@ -114,6 +114,7 @@ public class PlayerAttack : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1 + i))
             {
                 InventoryManager.Instance.EquipItemFromInventory(i);
+                InventoryManager.Instance.ChangeSelectedSlot(i);
             }
         }
     }

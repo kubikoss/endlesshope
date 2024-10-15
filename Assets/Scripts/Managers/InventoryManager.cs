@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
+
+    public List<ItemHolder> Items = new List<ItemHolder>(36);
+    public int selectedIndex;
+
 
     public List<InventorySlot> inventorySlots;
 
@@ -42,7 +45,7 @@ public class InventoryManager : MonoBehaviour
     public bool AddItem(Item item)
     {
         //stacking item
-        for (int i = 0; i < inventorySlots.Count; i++)
+        /*for (int i = 0; i < inventorySlots.Count; i++)
         {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
@@ -55,7 +58,7 @@ public class InventoryManager : MonoBehaviour
                     return true;
                 }
             }
-        }
+        }*/
 
         //empty slot
         for (int i = 0; i < inventorySlots.Count; i++)
@@ -185,7 +188,7 @@ public class InventoryManager : MonoBehaviour
         selectedSlot = newSlot;
     }
 
-    /*public InventoryItem GetInventoryItem(Item item)
+    public InventoryItem GetInventoryItem(Item item)
     {
         for (int i = 0; i < inventorySlots.Count; i++)
         {
@@ -197,5 +200,5 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return null;
-    }*/
+    }
 }

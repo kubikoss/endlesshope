@@ -27,7 +27,7 @@ public class Food : Item
             inventoryItem.UpdateCount();
             Debug.Log(inventoryItem.count);
 
-            if (inventoryItem.count !>= 1)
+            if (inventoryItem.count < 1)
             {
                 InventoryManager.Instance.RemoveItem(this);
                 InventoryManager.Instance.EquipFirstSlot();
