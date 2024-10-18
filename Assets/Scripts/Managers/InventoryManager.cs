@@ -7,16 +7,14 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
 
-    public List<ItemHolder> Items = new List<ItemHolder>(36);
-    public int selectedIndex;
-
-
     public List<InventorySlot> inventorySlots;
 
     public GameObject inventoryItemPrefab;
     public GameObject fullInventory;
     public PlayerCam playerCam;
+
     public Hands hands;
+    //public Item currentItem;
 
     public bool isInventoryOpened { get; private set; }
     public int maxStackedItems = 5;
@@ -28,7 +26,6 @@ public class InventoryManager : MonoBehaviour
         {
             Instance = this;
         }
-
         AddItem(hands);
     }
 
@@ -39,7 +36,9 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
+        SwitchItem();
         OpenInventory();
+        HandleDropitem();
     }
 
     public bool AddItem(Item item)
@@ -74,6 +73,28 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
+    public void HandleDropitem()
+    {
+        if (Input.GetKeyDown(KeyCode.G) && !(PlayerAttack.Instance.currentItem is Hands) && PlayerAttack.Instance.currentItem != null)
+        {
+            DropItem(PlayerAttack.Instance.currentItem);
+            
+            EquipFirstSlot();
+        }
+    }
+
+    private void SwitchItem()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            {
+                EquipItemFromInventory(i);
+                ChangeSelectedSlot(i);
+            }
+        }
+    }
+
     public void RemoveItem(Item itemToRemove)
     {
         for (int i = 0; i < inventorySlots.Count; i++)
@@ -89,7 +110,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public Item DropItem(Item itemToDrop)
+    private void DropItem(Item itemToDrop)
     {
         for (int i = 0; i < inventorySlots.Count; i++)
         {
@@ -101,14 +122,12 @@ public class InventoryManager : MonoBehaviour
                 RemoveItem(itemToDrop);
                 itemToDrop.gameObject.SetActive(true);
 
-
-                return itemToDrop;
+                return;
             }
         }
-        return null;
     }
 
-    public void EquipItemFromInventory(int slotIndex)
+    private void EquipItemFromInventory(int slotIndex)
     {
         if (slotIndex >= 0 && slotIndex < inventorySlots.Count)
         {
@@ -123,7 +142,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void SpawnToInventory(Item item, InventorySlot slot)
+    private void SpawnToInventory(Item item, InventorySlot slot)
     {
         GameObject newItem = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
@@ -145,23 +164,24 @@ public class InventoryManager : MonoBehaviour
                 ChangeSelectedSlot(i);
                 return;
             }
-           
         }
 
         PlayerAttack.Instance.EquipItem(hands);
     }
 
-    public int GetHotbarCount()
+    public void ChangeSelectedSlot(int newSlot)
     {
-        int count = 0;
-        for (int i = 0; i < inventorySlots.Count; i++)
+        if (selectedSlot >= 0)
         {
-            if (inventorySlots[i].GetComponentInChildren<InventoryItem>() != null)
+            inventorySlots[selectedSlot].Deselect();
+            if (inventorySlots[newSlot].GetComponentInChildren<InventoryItem>() == null)
             {
-                count++;
+                PlayerAttack.Instance.EquipItem(hands);
             }
         }
-        return count;
+        
+        inventorySlots[newSlot].Select();
+        selectedSlot = newSlot;
     }
 
     private void OpenInventory()
@@ -178,14 +198,17 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void ChangeSelectedSlot(int newSlot)
+    public int GetHotbarCount()
     {
-        if (selectedSlot >= 0)
+        int count = 0;
+        for (int i = 0; i < inventorySlots.Count; i++)
         {
-            inventorySlots[selectedSlot].Deselect();
+            if (inventorySlots[i].GetComponentInChildren<InventoryItem>() != null)
+            {
+                count++;
+            }
         }
-        inventorySlots[newSlot].Select();
-        selectedSlot = newSlot;
+        return count;
     }
 
     public InventoryItem GetInventoryItem(Item item)

@@ -11,9 +11,7 @@ public class BaseItem : ScriptableObject
     public int ID;
     public Sprite itemIcon;
     public bool isStackable = false;
-    public int maxStackSize;
 
     [Header("Prefab")]
-    public GameObject HandPrefab;
-    public GameObject WorldPrefab;
+    public GameObject handItem;
 }

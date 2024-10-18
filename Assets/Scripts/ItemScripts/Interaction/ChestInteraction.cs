@@ -30,6 +30,11 @@ public class ChestInteraction : MonoBehaviour, IInteractable
         Interact();
     }
 
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        Interact();
+    }*/
     public void Interact()
     {
         if (!isOpened && Input.GetKeyDown(KeyCode.E))

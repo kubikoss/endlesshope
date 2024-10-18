@@ -26,8 +26,8 @@ public class PlayerAttack : MonoBehaviour
         {
             CurrentItem();
         }
-        SwitchItem();
-        DropItem();
+        //SwitchItem();
+        //DropItem();
     }
 
     public void AttackEnemy(GameObject enemy, Item currentItem)
@@ -107,7 +107,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void SwitchItem()
+    /*private void SwitchItem()
     {
         for (int i = 0; i < 9; i++)
         {
@@ -117,9 +117,9 @@ public class PlayerAttack : MonoBehaviour
                 InventoryManager.Instance.ChangeSelectedSlot(i);
             }
         }
-    }
+    }*/
 
-    public void DropItem()
+    /*public void DropItem()
     {
         if (Input.GetKeyDown(KeyCode.G) && !(currentItem is Hands) && currentItem != null)
         {
@@ -131,5 +131,5 @@ public class PlayerAttack : MonoBehaviour
                 InventoryManager.Instance.EquipFirstSlot(); 
             }
         }
-    }
+    }*/
 }

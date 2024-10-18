@@ -39,7 +39,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         {
             InventoryItem itemInSlot = transform.GetChild(0).GetComponent<InventoryItem>();
             if (draggedItem.item.ID != 1 && itemInSlot.item.ID != 1)
-            { 
+            {
                 //swap parents
                 Transform originalParent = draggedItem.parentAfterDrag;
                 draggedItem.parentAfterDrag = itemInSlot.transform.parent;

@@ -21,6 +21,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
                     if (InventoryManager.Instance.GetHotbarCount() < 10)
                     {
+                        
                         PlayerAttack.Instance.EquipItem(item);
                     }
                     else

@@ -20,6 +20,8 @@ public abstract class Item : MonoBehaviour
         set { playerCamera = value; }
     }
     public bool IsStackable => itemData.isStackable;
+
+    public GameObject HandItem => itemData.handItem;
     private void Awake()
     {
         playerCamera = Camera.main;
