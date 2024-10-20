@@ -44,7 +44,7 @@ public class InventoryManager : MonoBehaviour
     public bool AddItem(Item item)
     {
         //stacking item
-        /*for (int i = 0; i < inventorySlots.Count; i++)
+        for (int i = 0; i < inventorySlots.Count; i++)
         {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
@@ -54,10 +54,11 @@ public class InventoryManager : MonoBehaviour
                 {
                     itemInSlot.count++;
                     itemInSlot.UpdateCount();
+                    Destroy(item.gameObject);
                     return true;
                 }
             }
-        }*/
+        }
 
         //empty slot
         for (int i = 0; i < inventorySlots.Count; i++)

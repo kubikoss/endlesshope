@@ -40,6 +40,7 @@ public class Grenade : Weapon
             gameObject.GetComponent<Collider>().isTrigger = false;
             rb.AddForce(PlayerCamera.transform.forward * throwForce, ForceMode.Impulse);
 
+            //UpdateInventoryItem();
             InventoryManager.Instance.RemoveItem(this);
             InventoryManager.Instance.EquipFirstSlot();
             InventoryManager.Instance.ChangeSelectedSlot(0);

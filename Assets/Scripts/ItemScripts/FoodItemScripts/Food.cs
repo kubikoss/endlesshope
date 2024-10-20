@@ -10,12 +10,12 @@ public class Food : Item
     public void Eat()
     {
         Player.Instance.UpdateHunger(this);
-        InventoryManager.Instance.RemoveItem(this);
-        InventoryManager.Instance.EquipFirstSlot();
+        /*InventoryManager.Instance.RemoveItem(this);
+        InventoryManager.Instance.EquipFirstSlot();*/
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
 
-        //UpdateInventoryItem();
+        UpdateInventoryItem();
     }
 
     /*private void UpdateInventoryItem()

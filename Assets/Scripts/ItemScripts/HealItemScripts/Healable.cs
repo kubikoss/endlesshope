@@ -21,12 +21,12 @@ public class Healable : Item
     public void HealPlayer()
     {
         player.Heal(HealAmount);
-        InventoryManager.Instance.RemoveItem(this);
+        /*InventoryManager.Instance.RemoveItem(this);
         InventoryManager.Instance.EquipFirstSlot();
 
-        Destroy(gameObject);
+        Destroy(gameObject);*/
 
-        //UpdateInventoryItem();
+        UpdateInventoryItem();
     }
 
     /*private void UpdateInventoryItem()

@@ -26,4 +26,22 @@ public abstract class Item : MonoBehaviour
     {
         playerCamera = Camera.main;
     }
+
+    public void UpdateInventoryItem()
+    {
+        InventoryItem inventoryItem = InventoryManager.Instance.GetInventoryItem(this);
+        if (inventoryItem != null)
+        {
+            inventoryItem.count--;
+            inventoryItem.UpdateCount();
+            Debug.Log(inventoryItem.count);
+
+            if (inventoryItem.count < 1)
+            {
+                InventoryManager.Instance.RemoveItem(this);
+                InventoryManager.Instance.EquipFirstSlot();
+                Destroy(inventoryItem.gameObject);
+            }
+        }
+    }
 }

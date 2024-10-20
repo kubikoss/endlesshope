@@ -74,7 +74,7 @@ public class Player : MonoBehaviour
             {
                 TakeDamage(foodItem.foodStat);
             }
-            InventoryManager.Instance.EquipFirstSlot();
+            //InventoryManager.Instance.EquipFirstSlot();
         }
     }
 
