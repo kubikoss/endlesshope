@@ -78,7 +78,4 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             }
         }
     }
-    //TODO
-    // stack system
-    // ~ crafting
 }

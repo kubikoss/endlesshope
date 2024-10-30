@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance { get; private set; }
 
     public List<InventorySlot> inventorySlots;
+    public List<Item> items = new List<Item>();
 
     public GameObject inventoryItemPrefab;
     public GameObject fullInventory;
@@ -38,13 +40,12 @@ public class InventoryManager : MonoBehaviour
     {
         SwitchItem();
         OpenInventory();
-        HandleDropitem();
     }
 
     public bool AddItem(Item item)
     {
         //stacking item
-        for (int i = 0; i < inventorySlots.Count; i++)
+        /*for (int i = 0; i < inventorySlots.Count; i++)
         {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
@@ -58,7 +59,7 @@ public class InventoryManager : MonoBehaviour
                     return true;
                 }
             }
-        }
+        }*/
 
         //empty slot
         for (int i = 0; i < inventorySlots.Count; i++)
@@ -68,6 +69,7 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot == null)
             {
                 SpawnToInventory(item, slot);
+                items.Add(item);
                 return true;
             }
         }
@@ -88,7 +90,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < 9; i++)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i) && !isInventoryOpened)
             {
                 EquipItemFromInventory(i);
                 ChangeSelectedSlot(i);
@@ -106,12 +108,13 @@ public class InventoryManager : MonoBehaviour
             {
                 itemInSlot.RemoveItemFromInventory();
                 itemToRemove.transform.SetParent(null);
+                items.Remove(itemToRemove);
                 break;
             }
         }
     }
 
-    private void DropItem(Item itemToDrop)
+    public Item DropItem(Item itemToDrop)
     {
         for (int i = 0; i < inventorySlots.Count; i++)
         {
@@ -123,9 +126,10 @@ public class InventoryManager : MonoBehaviour
                 RemoveItem(itemToDrop);
                 itemToDrop.gameObject.SetActive(true);
 
-                return;
+                return itemToDrop;
             }
         }
+        return null;
     }
 
     private void EquipItemFromInventory(int slotIndex)
@@ -180,7 +184,6 @@ public class InventoryManager : MonoBehaviour
                 PlayerAttack.Instance.EquipItem(hands);
             }
         }
-        
         inventorySlots[newSlot].Select();
         selectedSlot = newSlot;
     }
@@ -199,17 +202,22 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public int GetHotbarCount()
+    public bool GetHotbarCount()
     {
         int count = 0;
-        for (int i = 0; i < inventorySlots.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
-            if (inventorySlots[i].GetComponentInChildren<InventoryItem>() != null)
+            /*if (inventorySlots[i].GetComponentInChildren<InventoryItem>() != null)
             {
                 count++;
-            }
+            }*/
+            count++;
         }
-        return count;
+        if (items.Count < 10)
+        {
+            return true;
+        }
+        return false;
     }
 
     public InventoryItem GetInventoryItem(Item item)
@@ -226,3 +234,8 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 }
+
+// TODO
+// inventory rework
+// ~ stack system
+// crafting system 

@@ -19,7 +19,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
                     item.transform.SetParent(itemHolder);
                     item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
 
-                    if (InventoryManager.Instance.GetHotbarCount() < 10)
+                    if (InventoryManager.Instance.GetHotbarCount())
                     {
                         
                         PlayerAttack.Instance.EquipItem(item);
