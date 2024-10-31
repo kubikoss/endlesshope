@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.64888847, g: 0.6467789, b: 0.54078805, a: 1}
+  m_FogColor: {r: 0.56719184, g: 0.51347804, b: 0.36422455, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.23
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.8980393, g: 0.882353, b: 0.8431373, a: 1}
+  m_AmbientSkyColor: {r: 0.9452733, g: 0.811502, b: 0.6817545, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -249,6 +249,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 33ab25251d48cd24e8620a607279fca4, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 919132149155446097, guid: 33ab25251d48cd24e8620a607279fca4, type: 3}
       propertyPath: m_Name
       value: glock
@@ -3776,7 +3780,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.90078926, g: 0.90078926, b: 0.90078926, a: 1}
+  m_Color: {r: 0.5567317, g: 0.5567317, b: 0.5567317, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -3835,7 +3839,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785411812}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.043160956, y: -0.8654639, z: 0.49333167, w: 0.075718336}
+  m_LocalRotation: {x: 0.085530564, y: -0.19148527, z: 0.97761816, w: 0.016752802}
   m_LocalPosition: {x: 0, y: -12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7448,6 +7452,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 02a41c323ef1191419b5080ebbc44847, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 919132149155446097, guid: 02a41c323ef1191419b5080ebbc44847, type: 3}
       propertyPath: m_Name
       value: grenade
       objectReference: {fileID: 0}
@@ -8314,7 +8322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionalLight: {fileID: 785411813}
   Preset: {fileID: 11400000, guid: 5b5e53563250fa147a7f97943cb1b515, type: 2}
-  TimeOfDay: 99.57867
+  TimeOfDay: 165.22375
 --- !u!4 &1813419963
 Transform:
   m_ObjectHideFlags: 0
@@ -10118,6 +10126,10 @@ PrefabInstance:
     - target: {fileID: 5351048830153275687, guid: 2d57bdb5e4908074f912f80078258ab0, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561667098233389763, guid: 2d57bdb5e4908074f912f80078258ab0, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 7574625976508586866, guid: 2d57bdb5e4908074f912f80078258ab0, type: 3}
       propertyPath: sprite
