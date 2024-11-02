@@ -45,7 +45,6 @@ public class Glock : Weapon
         yield return new WaitForSeconds(ReloadSpeed);
 
         CurrentAmmo = MagazineSize;
-
         weaponItem.canShoot = true;
     }
 }

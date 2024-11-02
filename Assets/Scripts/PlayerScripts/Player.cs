@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Player : MonoBehaviour
     public float hungerTime;
     private float currentHungerTime;
 
+    [SerializeField]
+    public TextMeshProUGUI playerHealthText;
+
     private void Awake()
     {
         if (Instance == null)
@@ -22,6 +26,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentHungerTime = hungerTime;
+        playerHealthText.text = "HP: " + hp.ToString();
     }
 
     void Update()
@@ -39,6 +44,7 @@ public class Player : MonoBehaviour
         {
             hp = 100;
         }
+        playerHealthText.text = "HP: " + hp.ToString();
     }
 
     public void isDead()
@@ -57,6 +63,7 @@ public class Player : MonoBehaviour
         {
             isDead();
         }
+        playerHealthText.text = "HP: " + hp.ToString();
     }
 
     public void UpdateHunger(Food food)

@@ -12,21 +12,31 @@ public class ItemPickup : MonoBehaviour, IInteractable
         {
             if (item != null)
             {
-                bool canAdd = InventoryManager.Instance.AddItem(item);
-                if (canAdd)
+                int canAdd = InventoryManager.Instance.AddItem(item);
+                if (canAdd > 0)
                 {
-                    Transform itemHolder = GameObject.Find("ItemHolder").transform;
-                    item.transform.SetParent(itemHolder);
-                    item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
+                    if(canAdd == 1)
+                    {
+                        Transform itemHolder = GameObject.Find("ItemHolder").transform;
+                        item.transform.SetParent(itemHolder);
+                        item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
 
-                    if (InventoryManager.Instance.GetHotbarCount())
-                    {
-                        
-                        PlayerAttack.Instance.EquipItem(item);
+                        if (InventoryManager.Instance.GetHotbarCount() < 10)
+                        {
+                            PlayerAttack.Instance.EquipItem(item);
+                            
+                        }
+                        else
+                        {
+                            item.gameObject.SetActive(false);
+                        }
                     }
-                    else
+                    else if(canAdd == 2)
                     {
-                        item.gameObject.SetActive(false);
+                        Item temp = PlayerAttack.Instance.currentItem;
+                        Destroy(item.gameObject);
+                        PlayerAttack.Instance.currentItem = null;
+                        PlayerAttack.Instance.EquipItem(temp);
                     }
                 }
             }

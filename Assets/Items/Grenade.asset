@@ -16,6 +16,7 @@ MonoBehaviour:
   ID: 4
   itemIcon: {fileID: -5244482664123065748, guid: 1b39c0fe73f0433468e25eb21cfde7c2, type: 3}
   isStackable: 1
+  handItem: {fileID: 0}
   damage: 100
   fireRate: 1
   magazineSize: 1
@@ -23,5 +24,6 @@ MonoBehaviour:
   reloadSpeed: 0
   firingMode: 0
   canShoot: 1
+  allAmmo: 1
   throwForce: 12
   explodeRadius: 3

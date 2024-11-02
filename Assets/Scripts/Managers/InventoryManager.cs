@@ -21,6 +21,7 @@ public class InventoryManager : MonoBehaviour
     public bool isInventoryOpened { get; private set; }
     public int maxStackedItems = 5;
     int selectedSlot = -1;
+    int count = 0;
 
     private void Awake()
     {
@@ -42,10 +43,10 @@ public class InventoryManager : MonoBehaviour
         OpenInventory();
     }
 
-    public bool AddItem(Item item)
+    public int AddItem(Item item)
     {
         //stacking item
-        /*for (int i = 0; i < inventorySlots.Count; i++)
+        for (int i = 0; i < inventorySlots.Count; i++)
         {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
@@ -56,10 +57,10 @@ public class InventoryManager : MonoBehaviour
                     itemInSlot.count++;
                     itemInSlot.UpdateCount();
                     Destroy(item.gameObject);
-                    return true;
+                    return 2;
                 }
             }
-        }*/
+        }
 
         //empty slot
         for (int i = 0; i < inventorySlots.Count; i++)
@@ -70,20 +71,10 @@ public class InventoryManager : MonoBehaviour
             {
                 SpawnToInventory(item, slot);
                 items.Add(item);
-                return true;
+                return 1;
             }
         }
-        return false;
-    }
-
-    public void HandleDropitem()
-    {
-        if (Input.GetKeyDown(KeyCode.G) && !(PlayerAttack.Instance.currentItem is Hands) && PlayerAttack.Instance.currentItem != null)
-        {
-            DropItem(PlayerAttack.Instance.currentItem);
-            
-            EquipFirstSlot();
-        }
+        return -1;
     }
 
     private void SwitchItem()
@@ -122,11 +113,21 @@ public class InventoryManager : MonoBehaviour
 
             if (itemInSlot != null && itemInSlot.item == itemToDrop)
             {
-                itemToDrop.transform.localPosition = new Vector3(0, 0, 0);
-                RemoveItem(itemToDrop);
-                itemToDrop.gameObject.SetActive(true);
-
-                return itemToDrop;
+                if (itemInSlot.count == 1)
+                {
+                    itemToDrop.transform.localPosition = new Vector3(0, 0, 0);
+                    RemoveItem(itemToDrop);
+                    itemToDrop.gameObject.SetActive(true);
+                    return itemToDrop;
+                }
+                else if (itemInSlot.count > 1)
+                {
+                    Item newItem = Instantiate(itemInSlot.item, new Vector3(0, 0, 0), Quaternion.identity);
+                    newItem.transform.SetParent(null);
+                    itemInSlot.count--;
+                    itemInSlot.UpdateCount();
+                    return newItem;
+                }
             }
         }
         return null;
@@ -155,6 +156,14 @@ public class InventoryManager : MonoBehaviour
 
         int invSlot = inventorySlots.IndexOf(slot);
         ChangeSelectedSlot(invSlot);
+        /*if(GetHotbarCount() < 10)
+        {
+            ChangeSelectedSlot(invSlot);
+        }
+        else
+        {
+            ChangeSelectedSlot(8);
+        }*/
     }
 
     public void EquipFirstSlot()
@@ -170,7 +179,6 @@ public class InventoryManager : MonoBehaviour
                 return;
             }
         }
-
         PlayerAttack.Instance.EquipItem(hands);
     }
 
@@ -202,22 +210,22 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public bool GetHotbarCount()
+    public int GetHotbarCount()
     {
-        int count = 0;
-        for (int i = 0; i < items.Count; i++)
+        count = 0;
+        for (int i = 0; i < 10; i++)
         {
-            /*if (inventorySlots[i].GetComponentInChildren<InventoryItem>() != null)
+            if (inventorySlots[i].GetComponentInChildren<InventoryItem>() != null)
             {
                 count++;
-            }*/
-            count++;
+                Debug.Log(count);
+            }
+            if (count > 9)
+            {
+                return 10;
+            }
         }
-        if (items.Count < 10)
-        {
-            return true;
-        }
-        return false;
+        return count;
     }
 
     public InventoryItem GetInventoryItem(Item item)
@@ -236,6 +244,7 @@ public class InventoryManager : MonoBehaviour
 }
 
 // TODO
-// inventory rework
-// ~ stack system
-// crafting system 
+// inventory rework (80%):
+// item pickup - check if can equip new item) + change selected slot to max 9th slot
+// ~ stack system (70%, drop position + player drop item method - current item fix)
+// crafting system (0%)

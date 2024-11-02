@@ -6,6 +6,4 @@ public class ItemHolder : MonoBehaviour
 {
     public Item itemRef;
     public int quantity;
-
-
 }
