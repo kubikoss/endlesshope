@@ -13,15 +13,13 @@ public class InventoryManager : MonoBehaviour
 
     public GameObject inventoryItemPrefab;
     public GameObject fullInventory;
-    public PlayerCam playerCam;
-
     public Hands hands;
-    //public Item currentItem;
+    public PlayerCam playerCam;
 
     public bool isInventoryOpened { get; private set; }
     public int maxStackedItems = 5;
+    public int hotbarCount = 0;
     int selectedSlot = -1;
-    int count = 0;
 
     private void Awake()
     {
@@ -43,50 +41,60 @@ public class InventoryManager : MonoBehaviour
         OpenInventory();
     }
 
+    #region add/remove from inventory
     public int AddItem(Item item)
     {
-        //stacking item
+        // Stacking item
         for (int i = 0; i < inventorySlots.Count; i++)
         {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
             if (itemInSlot != null && itemInSlot.item.ID == item.ID && itemInSlot.count < maxStackedItems)
             {
-                if(itemInSlot.item.IsStackable && item.IsStackable)
+                if (itemInSlot.item.IsStackable && item.IsStackable)
                 {
                     itemInSlot.count++;
                     itemInSlot.UpdateCount();
                     Destroy(item.gameObject);
-                    return 2;
+                    return 2; // Item stacked
                 }
             }
         }
 
-        //empty slot
+        // Empty slot in hotbar
+        for (int i = 0; i < 9; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+            if (itemInSlot == null)
+            {
+                if (hotbarCount < 9) // Limit
+                {
+                    hotbarCount++;
+                    SpawnToInventory(item, slot);
+                    items.Add(item);
+                    return 1; // Item equipped
+                }
+            }
+        }
+
+        // No empty slot in hotbar
         for (int i = 0; i < inventorySlots.Count; i++)
         {
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
             if (itemInSlot == null)
             {
                 SpawnToInventory(item, slot);
                 items.Add(item);
-                return 1;
+                return 3; // Item put in inventory, but not equipped
             }
         }
-        return -1;
-    }
 
-    private void SwitchItem()
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1 + i) && !isInventoryOpened)
-            {
-                EquipItemFromInventory(i);
-                ChangeSelectedSlot(i);
-            }
-        }
+        return -1; // Full inventory
     }
 
     public void RemoveItem(Item itemToRemove)
@@ -118,6 +126,7 @@ public class InventoryManager : MonoBehaviour
                     itemToDrop.transform.localPosition = new Vector3(0, 0, 0);
                     RemoveItem(itemToDrop);
                     itemToDrop.gameObject.SetActive(true);
+                    hotbarCount--;
                     return itemToDrop;
                 }
                 else if (itemInSlot.count > 1)
@@ -131,6 +140,29 @@ public class InventoryManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private void SpawnToInventory(Item item, InventorySlot slot)
+    {
+        GameObject newItem = Instantiate(inventoryItemPrefab, slot.transform);
+        InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
+        inventoryItem.DisplayItemInInventory(item);
+
+        int invSlot = inventorySlots.IndexOf(slot);
+        ChangeSelectedSlot(invSlot);
+    }
+    #endregion
+    #region item equipping/switching
+    private void SwitchItem()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i) && !isInventoryOpened)
+            {
+                EquipItemFromInventory(i);
+                ChangeSelectedSlot(i);
+            }
+        }
     }
 
     private void EquipItemFromInventory(int slotIndex)
@@ -148,24 +180,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void SpawnToInventory(Item item, InventorySlot slot)
-    {
-        GameObject newItem = Instantiate(inventoryItemPrefab, slot.transform);
-        InventoryItem inventoryItem = newItem.GetComponent<InventoryItem>();
-        inventoryItem.DisplayItemInInventory(item);
-
-        int invSlot = inventorySlots.IndexOf(slot);
-        ChangeSelectedSlot(invSlot);
-        /*if(GetHotbarCount() < 10)
-        {
-            ChangeSelectedSlot(invSlot);
-        }
-        else
-        {
-            ChangeSelectedSlot(8);
-        }*/
-    }
-
     public void EquipFirstSlot()
     {
         for (int i = 0; i < inventorySlots.Count; i++)
@@ -181,7 +195,8 @@ public class InventoryManager : MonoBehaviour
         }
         PlayerAttack.Instance.EquipItem(hands);
     }
-
+    #endregion
+    #region ui/get method
     public void ChangeSelectedSlot(int newSlot)
     {
         if (selectedSlot >= 0)
@@ -210,24 +225,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public int GetHotbarCount()
-    {
-        count = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            if (inventorySlots[i].GetComponentInChildren<InventoryItem>() != null)
-            {
-                count++;
-                Debug.Log(count);
-            }
-            if (count > 9)
-            {
-                return 10;
-            }
-        }
-        return count;
-    }
-
     public InventoryItem GetInventoryItem(Item item)
     {
         for (int i = 0; i < inventorySlots.Count; i++)
@@ -241,10 +238,11 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
     }
+    #endregion
 }
 
 // TODO
-// inventory rework (80%):
-// item pickup - check if can equip new item) + change selected slot to max 9th slot
-// ~ stack system (70%, drop position + player drop item method - current item fix)
+// inventory rework (90%):
+// moving item from hotbar - decrease count + current slot selected -> moved item = currentitem
+// ~ stack system (70%) - drop position + player drop item method - current item fix + (grenade stack when throwing fix, food/healable use -> count-- in hotbar)
 // crafting system (0%)

@@ -6,13 +6,6 @@ public class Healable : Item
 {
     public int HealAmount => ((HealableItem)itemData).healAmount;
 
-    Player player;
-
-    private void Start()
-    {
-        player = PlayerManager.Instance.player.gameObject.GetComponent<Player>();
-    }
-
     public void Use()
     {
         HealPlayer();
@@ -20,7 +13,8 @@ public class Healable : Item
 
     public void HealPlayer()
     {
-        player.Heal(HealAmount);
+        Player.Instance.Heal(HealAmount);
+        InventoryManager.Instance.hotbarCount--;
         /*InventoryManager.Instance.RemoveItem(this);
         InventoryManager.Instance.EquipFirstSlot();
 

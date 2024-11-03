@@ -10,6 +10,7 @@ public class Food : Item
     public void Eat()
     {
         Player.Instance.UpdateHunger(this);
+        InventoryManager.Instance.hotbarCount--;
         /*InventoryManager.Instance.RemoveItem(this);
         InventoryManager.Instance.EquipFirstSlot();*/
 
