@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
@@ -199,13 +200,20 @@ public class InventoryManager : MonoBehaviour
     #region ui/get method
     public void ChangeSelectedSlot(int newSlot)
     {
-        if (selectedSlot >= 0)
+        int hotbarSlots = 9;
+
+        if (newSlot < 0 || newSlot >= hotbarSlots)
+            return;
+
+        if (selectedSlot >= 0 && selectedSlot < hotbarSlots)
         {
             inventorySlots[selectedSlot].Deselect();
-            if (inventorySlots[newSlot].GetComponentInChildren<InventoryItem>() == null)
-            {
-                PlayerAttack.Instance.EquipItem(hands);
-            }
+        }
+
+        InventoryItem itemInSlot = inventorySlots[newSlot].GetComponentInChildren<InventoryItem>();
+        if(itemInSlot == null)
+        {
+            PlayerAttack.Instance.EquipItem(hands);
         }
         inventorySlots[newSlot].Select();
         selectedSlot = newSlot;
