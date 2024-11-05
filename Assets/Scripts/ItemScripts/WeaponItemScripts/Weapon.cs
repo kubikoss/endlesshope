@@ -1,12 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum FiringMode
-{
-    SemiAutomatic,
-    Automatic,
-    Meelee
-}
+
 public abstract class Weapon : Item
 {
     public virtual int Damage => ((WeaponItem)itemData).damage;
@@ -24,4 +19,11 @@ public abstract class Weapon : Item
 
     public abstract void Shoot();
     public abstract void Reload();
+}
+
+public enum FiringMode
+{
+    SemiAutomatic,
+    Automatic,
+    Meelee
 }

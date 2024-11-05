@@ -2,27 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteAlways]
 public class PlayerInteraction : MonoBehaviour
 {
     public float interactionRange = 2f;
     public Camera playerCamera;
 
+    public float pickupCooldown = 0.2f;
+    private bool canPickup = true;
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E) && canPickup)
         {
-            RaycastHit hit;
+            StartCoroutine(PickupItem()); 
+        }
+    }
 
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionRange))
+    private IEnumerator PickupItem()
+    {
+        canPickup = false;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionRange))
+        {
+            IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+
+            if (interactable != null)
             {
-                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
-
-                if (interactable != null)
-                {
-                    interactable.Interact();
-                }
+                interactable.Interact();
             }
         }
+
+        yield return new WaitForSeconds(pickupCooldown);
+        canPickup = true;
     }
 }

@@ -19,6 +19,7 @@ public abstract class Item : MonoBehaviour
         get { return playerCamera; }
         set { playerCamera = value; }
     }
+    public int MaxStackCount => itemData.maxStackCount;
     public bool IsStackable => itemData.isStackable;
     private void Awake()
     {
@@ -36,6 +37,7 @@ public abstract class Item : MonoBehaviour
 
             if (inventoryItem.count < 1)
             {
+                InventoryManager.Instance.hotbarCount--;
                 InventoryManager.Instance.RemoveItem(this);
                 InventoryManager.Instance.EquipFirstSlot();
                 Destroy(inventoryItem.gameObject);

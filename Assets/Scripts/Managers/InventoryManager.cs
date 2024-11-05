@@ -10,7 +10,6 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance { get; private set; }
 
     public List<InventorySlot> inventorySlots;
-    public List<Item> items = new List<Item>();
 
     public GameObject inventoryItemPrefab;
     public GameObject fullInventory;
@@ -18,7 +17,6 @@ public class InventoryManager : MonoBehaviour
     public PlayerCam playerCam;
 
     public bool isInventoryOpened { get; private set; }
-    public int maxStackedItems = 5;
     public int hotbarCount = 0;
     int selectedSlot = -1;
 
@@ -51,7 +49,7 @@ public class InventoryManager : MonoBehaviour
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
 
-            if (itemInSlot != null && itemInSlot.item.ID == item.ID && itemInSlot.count < maxStackedItems)
+            if (itemInSlot != null && itemInSlot.item.ID == item.ID && itemInSlot.count < item.MaxStackCount)
             {
                 if (itemInSlot.item.IsStackable && item.IsStackable)
                 {
@@ -75,7 +73,6 @@ public class InventoryManager : MonoBehaviour
                 {
                     hotbarCount++;
                     SpawnToInventory(item, slot);
-                    items.Add(item);
                     return 1; // Item equipped
                 }
             }
@@ -90,7 +87,6 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot == null)
             {
                 SpawnToInventory(item, slot);
-                items.Add(item);
                 return 3; // Item put in inventory, but not equipped
             }
         }
@@ -108,7 +104,6 @@ public class InventoryManager : MonoBehaviour
             {
                 itemInSlot.RemoveItemFromInventory();
                 itemToRemove.transform.SetParent(null);
-                items.Remove(itemToRemove);
                 break;
             }
         }
@@ -219,6 +214,21 @@ public class InventoryManager : MonoBehaviour
         selectedSlot = newSlot;
     }
 
+    public void UpdateHotbar()
+    {
+        int temp = 0;
+        for (int i = 0; i < 9; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            if (slot.GetComponentInChildren<InventoryItem>() != null)
+            {
+                temp++;
+            }
+
+        }
+        hotbarCount = temp;
+    }
+
     private void OpenInventory()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -250,7 +260,7 @@ public class InventoryManager : MonoBehaviour
 }
 
 // TODO
-// inventory rework (90%):
-// moving item from hotbar - decrease count + current slot selected -> moved item = currentitem
-// ~ stack system (70%) - drop position + player drop item method - current item fix + (grenade stack when throwing fix, food/healable use -> count-- in hotbar)
+// inventory rework (95%):
+// current slot selected -> moved item = currentitem (1 -> tab -> move item -> tab -> 2 -> drop item)
+// ~ stack system (80%) - drop position + player drop item method - current item fix + (grenade stack when throwing fix)
 // crafting system (0%)

@@ -33,6 +33,7 @@ public class Grenade : Weapon
         {
             CurrentAmmo--;
             IsBeingThrown = true;
+            InventoryManager.Instance.hotbarCount--;
 
             transform.SetParent(null);
 
