@@ -15,7 +15,7 @@ public class Food : Item
 
         //Destroy(gameObject);
 
-        UpdateInventoryItem();
+        UpdateInventoryItemCountOnUse();
     }
 
     /*private void UpdateInventoryItem()

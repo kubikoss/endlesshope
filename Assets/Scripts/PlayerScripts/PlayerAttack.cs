@@ -26,8 +26,6 @@ public class PlayerAttack : MonoBehaviour
         {
             CurrentItem();
         }
-        //SwitchItem();
-        DropItem();
     }
 
     public void AttackEnemy(GameObject enemy, Item currentItem)
@@ -103,32 +101,6 @@ public class PlayerAttack : MonoBehaviour
                 {
                     foodItem.Eat();
                 }
-            }
-        }
-    }
-
-    /*private void SwitchItem()
-    {
-        for (int i = 0; i < 9; i++)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1 + i))
-            {
-                InventoryManager.Instance.EquipItemFromInventory(i);
-                InventoryManager.Instance.ChangeSelectedSlot(i);
-            }
-        }
-    }*/
-
-    public void DropItem()
-    {
-        if (Input.GetKeyDown(KeyCode.G) && !(currentItem is Hands) && currentItem != null)
-        {
-            Item droppedItem = InventoryManager.Instance.DropItem(currentItem);
-            if (droppedItem != null)
-            {
-                currentItem.gameObject.SetActive(true); 
-                currentItem = null;
-                InventoryManager.Instance.EquipFirstSlot(); 
             }
         }
     }

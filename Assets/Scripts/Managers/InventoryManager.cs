@@ -14,6 +14,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryItemPrefab;
     public GameObject fullInventory;
     public Hands hands;
+    public Player player;
     public PlayerCam playerCam;
 
     public bool isInventoryOpened { get; private set; }
@@ -37,6 +38,7 @@ public class InventoryManager : MonoBehaviour
     private void Update()
     {
         SwitchItem();
+        DropItem(PlayerAttack.Instance.currentItem);
         OpenInventory();
     }
 
@@ -94,7 +96,7 @@ public class InventoryManager : MonoBehaviour
         return -1; // Full inventory
     }
 
-    public void RemoveItem(Item itemToRemove)
+    /*public void RemoveItem(Item itemToRemove)
     {
         for (int i = 0; i < inventorySlots.Count; i++)
         {
@@ -107,35 +109,44 @@ public class InventoryManager : MonoBehaviour
                 break;
             }
         }
-    }
+    }*/
 
-    public Item DropItem(Item itemToDrop)
+    public void DropItem(Item itemToDrop)
     {
-        for (int i = 0; i < inventorySlots.Count; i++)
+        if (Input.GetKeyDown(KeyCode.G) && !(itemToDrop is Hands) && itemToDrop != null)
         {
-            InventoryItem itemInSlot = inventorySlots[i].GetComponentInChildren<InventoryItem>();
-
-            if (itemInSlot != null && itemInSlot.item == itemToDrop)
+            for (int i = 0; i < inventorySlots.Count; i++)
             {
-                if (itemInSlot.count == 1)
+                InventoryItem itemInSlot = inventorySlots[i].GetComponentInChildren<InventoryItem>();
+
+                if (itemInSlot != null && itemInSlot.item == itemToDrop)
                 {
-                    itemToDrop.transform.localPosition = new Vector3(0, 0, 0);
-                    RemoveItem(itemToDrop);
-                    itemToDrop.gameObject.SetActive(true);
-                    hotbarCount--;
-                    return itemToDrop;
-                }
-                else if (itemInSlot.count > 1)
-                {
-                    Item newItem = Instantiate(itemInSlot.item, new Vector3(0, 0, 0), Quaternion.identity);
-                    newItem.transform.SetParent(null);
-                    itemInSlot.count--;
-                    itemInSlot.UpdateCount();
-                    return newItem;
+                    if(itemInSlot.count == 1)
+                    {
+                        itemInSlot.RemoveItemFromInventory();
+                        itemToDrop.transform.SetParent(null);
+
+                        PlayerAttack.Instance.currentItem = null;
+                        EquipFirstSlot();
+
+                        hotbarCount--;
+                    }
+                    else if(itemInSlot.count > 1)
+                    {
+                        Item notDropping = itemToDrop;
+                        Item newItem = Instantiate(itemToDrop, player.transform.position, Quaternion.identity);
+                        newItem.transform.SetParent(null);
+
+                        PlayerAttack.Instance.currentItem = null;
+
+                        PlayerAttack.Instance.EquipItem(notDropping);
+
+                        itemInSlot.count--;
+                        itemInSlot.UpdateCount();
+                    }
                 }
             }
         }
-        return null;
     }
 
     private void SpawnToInventory(Item item, InventorySlot slot)
@@ -262,5 +273,5 @@ public class InventoryManager : MonoBehaviour
 // TODO
 // inventory rework (95%):
 // current slot selected -> moved item = currentitem (1 -> tab -> move item -> tab -> 2 -> drop item)
-// ~ stack system (80%) - drop position + player drop item method - current item fix + (grenade stack when throwing fix)
+// ~ stack system (95%) - current item fix (stacking 2nd slot, currently on 3rd slot) + grenade stack when throwing fix) 
 // crafting system (0%)

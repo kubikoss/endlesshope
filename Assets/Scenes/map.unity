@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.5600258, g: 0.49933365, b: 0.34274024, a: 1}
+  m_FogColor: {r: 0.27846774, g: 0.22551912, b: 0.17843705, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.23
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.9516758, g: 0.8018982, b: 0.6598792, a: 1}
+  m_AmbientSkyColor: {r: 0.35699338, g: 0.34089118, b: 0.58442336, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -4457,7 +4457,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.5358816, g: 0.5358816, b: 0.5358816, a: 1}
+  m_Color: {r: 0.24232593, g: 0.24232593, b: 0.24232593, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -4516,7 +4516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785411812}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08588772, y: -0.1693163, z: 0.98170054, w: 0.014813268}
+  m_LocalRotation: {x: 0.08502252, y: 0.21905948, z: 0.9718112, w: -0.019165235}
   m_LocalPosition: {x: 0, y: -12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9845,6 +9845,7 @@ MonoBehaviour:
   inventoryItemPrefab: {fileID: 2737135749641779043, guid: 47d9df1281363af4987b89ce09a562fc, type: 3}
   fullInventory: {fileID: 1600748124}
   hands: {fileID: 3156603568109948366}
+  player: {fileID: 6989057086445027443}
   playerCam: {fileID: 1277138121}
   hotbarCount: 0
 --- !u!1001 &1760265181
@@ -10017,7 +10018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionalLight: {fileID: 785411813}
   Preset: {fileID: 11400000, guid: 5b5e53563250fa147a7f97943cb1b515, type: 2}
-  TimeOfDay: 166.95245
+  TimeOfDay: 196.93726
 --- !u!4 &1813419963
 Transform:
   m_ObjectHideFlags: 0
@@ -12353,6 +12354,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7794ae4a4d7a9dd4680d4f57572680e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6989057086445027443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2592286183257093592, guid: 2d57bdb5e4908074f912f80078258ab0, type: 3}
+  m_PrefabInstance: {fileID: 4814620719362152124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617633641599545243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0737113189c62994f8b067aca7f7f989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7537075229841944983

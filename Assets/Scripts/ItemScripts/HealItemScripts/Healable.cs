@@ -19,7 +19,7 @@ public class Healable : Item
 
         Destroy(gameObject);*/
 
-        UpdateInventoryItem();
+        UpdateInventoryItemCountOnUse();
     }
 
     /*private void UpdateInventoryItem()

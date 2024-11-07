@@ -33,7 +33,6 @@ public class Grenade : Weapon
         {
             CurrentAmmo--;
             IsBeingThrown = true;
-            InventoryManager.Instance.hotbarCount--;
 
             transform.SetParent(null);
 
@@ -41,8 +40,7 @@ public class Grenade : Weapon
             gameObject.GetComponent<Collider>().isTrigger = false;
             rb.AddForce(PlayerCamera.transform.forward * throwForce, ForceMode.Impulse);
 
-            //UpdateInventoryItem();
-            InventoryManager.Instance.RemoveItem(this);
+            UpdateInventoryItemCountOnUse();
             InventoryManager.Instance.EquipFirstSlot();
             InventoryManager.Instance.ChangeSelectedSlot(0);
 
@@ -56,7 +54,7 @@ public class Grenade : Weapon
 
     private IEnumerator ExplodeGrenade(Grenade grenade)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
 
         Collider[] explosionColliders = Physics.OverlapSphere(grenade.transform.position, explodeRadius);
         foreach (var explosionCollider in explosionColliders)
