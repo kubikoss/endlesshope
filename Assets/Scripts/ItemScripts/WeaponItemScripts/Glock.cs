@@ -9,6 +9,11 @@ public class Glock : Weapon
         CurrentAmmo = MagazineSize;
     }
 
+    private void Update()
+    {
+        UpdateAmmoDisplay(CurrentAmmo);
+    }
+
     public override void Shoot()
     {
         var weaponItem = (WeaponItem)itemData;

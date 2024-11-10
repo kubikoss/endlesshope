@@ -24,9 +24,8 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
-        {
             Instance = this;
-        }
+
         AddItem(hands);
     }
 
@@ -274,4 +273,5 @@ public class InventoryManager : MonoBehaviour
 // inventory rework (95%):
 // current slot selected -> moved item = currentitem (1 -> tab -> move item -> tab -> 2 -> drop item)
 // ~ stack system (95%) - current item fix (stacking 2nd slot, currently on 3rd slot) + grenade stack when throwing fix) 
-// crafting system (0%)
+// crafting system (30%):
+// game object "not in scene" - maybe rework whole code

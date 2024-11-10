@@ -18,6 +18,11 @@ public class AK47 : Weapon
             playerMovement = GetComponentInParent<PlayerMovement>();
     }
 
+    private void Update()
+    {
+        UpdateAmmoDisplay(CurrentAmmo);
+    }
+
     public override void Shoot()
     {
         var weaponItem = (WeaponItem)itemData;
@@ -38,12 +43,7 @@ public class AK47 : Weapon
 
                 if (hit.collider.CompareTag("Enemy"))
                     PlayerAttack.Instance.AttackEnemy(hit.collider.gameObject, this);
-                else
-                    Debug.Log(hit.collider);    
-                    Debug.DrawRay(PlayerCamera.transform.position, shootDirection * Range, Color.green, 2.0f);
             }
-            else
-                Debug.DrawRay(PlayerCamera.transform.position, shootDirection * Range, Color.red, 2.0f);
             
             CurrentAmmo--;
             Debug.Log(CurrentAmmo);

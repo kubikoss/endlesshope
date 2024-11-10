@@ -23,6 +23,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
                     if (canAdd == 1) 
                     {
                         PlayerAttack.Instance.EquipItem(item);
+                        
                     }
                     else if (canAdd == 2) 
                     {

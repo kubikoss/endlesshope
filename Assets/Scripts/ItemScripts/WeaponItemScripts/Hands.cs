@@ -10,6 +10,11 @@ public class Hands : Weapon
         CurrentAmmo = 1;
     }
 
+    private void Update()
+    {
+        UpdateAmmoDisplay(CurrentAmmo);
+    }
+
     public override void Shoot()
     {
         MeeleeAttack();
@@ -22,7 +27,6 @@ public class Hands : Weapon
 
     private void MeeleeAttack()
     {
-        CurrentAmmo = 1;
         RaycastHit hit;
 
         if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out hit, Range))
@@ -32,5 +36,6 @@ public class Hands : Weapon
         }
         CurrentAmmo--;
         Debug.Log(CurrentAmmo);
+        CurrentAmmo = 1;
     }
 }
