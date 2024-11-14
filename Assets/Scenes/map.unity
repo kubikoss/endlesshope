@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.45750397, g: 0.36786762, b: 0.20631975, a: 1}
+  m_FogColor: {r: 0.6590675, g: 0.67042613, b: 0.5800024, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.23
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.8500768, g: 0.6516364, b: 0.5356287, a: 1}
+  m_AmbientSkyColor: {r: 0.8980393, g: 0.882353, b: 0.8431373, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 19585268}
+  itemHolder: {fileID: 0}
 --- !u!114 &19585268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,6 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 81789711}
+  itemHolder: {fileID: 0}
 --- !u!114 &81789711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,6 +946,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1223,6 +1229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 183756356}
+  itemHolder: {fileID: 0}
 --- !u!114 &183756356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1422,6 +1429,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1903,6 +1914,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -2114,6 +2129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 306631462}
+  itemHolder: {fileID: 0}
 --- !u!1001 &310007362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2129,6 +2145,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2325,6 +2345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 318342993}
+  itemHolder: {fileID: 0}
 --- !u!1001 &328200433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2340,6 +2361,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2406,6 +2431,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2484,6 +2513,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -2544,6 +2577,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4199,6 +4236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -4366,6 +4407,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4648,6 +4693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -4878,6 +4927,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5149,7 +5202,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.3526429, g: 0.3526429, b: 0.3526429, a: 1}
+  m_Color: {r: 0.93760973, g: 0.93760973, b: 0.93760973, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -5208,7 +5261,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785411812}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.087121464, y: 0.027964279, z: 0.99580216, w: -0.002446559}
+  m_LocalRotation: {x: 0.046475533, y: -0.8427407, z: 0.5312174, w: 0.07373031}
   m_LocalPosition: {x: 0, y: -17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5365,6 +5418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 802149174}
+  itemHolder: {fileID: 0}
 --- !u!43 &803085280
 Mesh:
   m_ObjectHideFlags: 0
@@ -5562,6 +5616,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -5622,6 +5680,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5909,6 +5971,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6517,6 +6583,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -6577,6 +6647,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6643,6 +6717,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6816,6 +6894,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7237,6 +7319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1180203422}
+  itemHolder: {fileID: 0}
 --- !u!114 &1181752154 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 222768629525314687, guid: 59cac3017ba0e574f8eb665fd8457b27, type: 3}
@@ -7624,6 +7707,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -7873,6 +7960,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -7933,6 +8024,10 @@ PrefabInstance:
     - target: {fileID: 2792591796485672181, guid: e6f4c79f52394aa46b6f4343b4d7c4bd, type: 3}
       propertyPath: m_Name
       value: RawBeef
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792591796485672181, guid: e6f4c79f52394aa46b6f4343b4d7c4bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4042883110758215198, guid: e6f4c79f52394aa46b6f4343b4d7c4bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9077,6 +9172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1474171549}
+  itemHolder: {fileID: 0}
 --- !u!135 &1474171551
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9347,6 +9443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -9510,6 +9610,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9717,6 +9821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1570239287}
+  itemHolder: {fileID: 0}
 --- !u!114 &1573008621 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 222768629525314687, guid: 59cac3017ba0e574f8eb665fd8457b27, type: 3}
@@ -9728,6 +9833,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59290695201f8fc468b8124da8fa2579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1597994012 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4455782808536057523, guid: 2d57bdb5e4908074f912f80078258ab0, type: 3}
+  m_PrefabInstance: {fileID: 4814620719362152124}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1600748124
 GameObject:
   m_ObjectHideFlags: 0
@@ -10077,6 +10187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1638734696}
+  itemHolder: {fileID: 0}
 --- !u!114 &1638734696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10106,6 +10217,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10302,6 +10417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1654880563}
+  itemHolder: {fileID: 0}
 --- !u!1001 &1657583014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10770,6 +10886,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -10933,7 +11053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionalLight: {fileID: 785411813}
   Preset: {fileID: 11400000, guid: 5b5e53563250fa147a7f97943cb1b515, type: 2}
-  TimeOfDay: 182.14474
+  TimeOfDay: 102.966774
 --- !u!114 &1746633246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10941,7 +11061,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746633241}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 525a65251f5fb0d49b0cac3ee1ac8790, type: 3}
   m_Name: 
@@ -10976,6 +11096,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11331,6 +11455,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.18
@@ -11481,6 +11609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -11542,6 +11674,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -11602,6 +11738,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11734,6 +11874,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AK47 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6973393626850095940, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
+      propertyPath: itemHolder
+      value: 
+      objectReference: {fileID: 1597994012}
     - target: {fileID: 8878523245363765910, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
       propertyPath: ammoText
       value: 
@@ -11779,6 +11923,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12013,6 +12161,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.94
@@ -12099,6 +12251,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12424,6 +12580,10 @@ PrefabInstance:
     - target: {fileID: 2792591796485672181, guid: e6f4c79f52394aa46b6f4343b4d7c4bd, type: 3}
       propertyPath: m_Name
       value: RawBeef
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792591796485672181, guid: e6f4c79f52394aa46b6f4343b4d7c4bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4042883110758215198, guid: e6f4c79f52394aa46b6f4343b4d7c4bd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12832,6 +12992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 2102341384}
+  itemHolder: {fileID: 0}
 --- !u!114 &2102341384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13340,6 +13501,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RawBeef
       objectReference: {fileID: 0}
+    - target: {fileID: 2792591796485672181, guid: e6f4c79f52394aa46b6f4343b4d7c4bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4042883110758215198, guid: e6f4c79f52394aa46b6f4343b4d7c4bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.39
@@ -13400,6 +13565,10 @@ PrefabInstance:
     - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_Name
       value: Bread
+      objectReference: {fileID: 0}
+    - target: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5857104386754353003, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13470,6 +13639,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1523576258612179559, guid: 2d57bdb5e4908074f912f80078258ab0, type: 3}
+      propertyPath: itemHolder
+      value: 
+      objectReference: {fileID: 1597994012}
     - target: {fileID: 2079417002488632174, guid: 2d57bdb5e4908074f912f80078258ab0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3
@@ -13512,7 +13685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2236463496995469951, guid: 2d57bdb5e4908074f912f80078258ab0, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2236463496995469951, guid: 2d57bdb5e4908074f912f80078258ab0, type: 3}
       propertyPath: turnGameObject

@@ -17,5 +17,5 @@ MonoBehaviour:
   itemIcon: {fileID: 4060682636331337571, guid: 1b39c0fe73f0433468e25eb21cfde7c2, type: 3}
   maxStackCount: 3
   isStackable: 1
-  itemPrefab: {fileID: 4264034220665513600, guid: 70c384c3e7d98844eaf654ad4aae1fee, type: 3}
+  itemWorld: {fileID: 4264034220665513600, guid: 70c384c3e7d98844eaf654ad4aae1fee, type: 3}
   healAmount: 50

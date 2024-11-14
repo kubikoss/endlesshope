@@ -17,6 +17,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: b3a67fc6bd9f6405ba5785b99c7d830a, type: 3}
   maxStackCount: 1
   isStackable: 0
+  itemWorld: {fileID: 5332758825078760378, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
   damage: 35
   fireRate: 10
   magazineSize: 30

@@ -69,10 +69,6 @@ public class Grenade : Weapon
             {
                 player.TakeDamage(Damage / Random.Range(3,5));
             }
-            else
-            {
-                Debug.Log(explosionCollider.name);
-            }
         }
         Destroy(gameObject);
     }

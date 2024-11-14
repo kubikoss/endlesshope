@@ -53,7 +53,6 @@ public class CraftingManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("nigga");
                     didCraft = false;
                 }
             }
