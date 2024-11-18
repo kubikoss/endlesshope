@@ -11,4 +11,5 @@ public class BaseItem : ScriptableObject
     public Sprite itemIcon;
     public int maxStackCount;
     public bool isStackable = false;
+    public GameObject itemWorld;
 }

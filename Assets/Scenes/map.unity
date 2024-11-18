@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.6590675, g: 0.67042613, b: 0.5800024, a: 1}
+  m_FogColor: {r: 0.6121065, g: 0.6021309, b: 0.49888146, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.23
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.8980393, g: 0.882353, b: 0.8431373, a: 1}
+  m_AmbientSkyColor: {r: 0.90514416, g: 0.8716957, b: 0.8188623, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -310,7 +310,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 19585268}
-  itemHolder: {fileID: 0}
 --- !u!114 &19585268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,7 +672,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 81789711}
-  itemHolder: {fileID: 0}
 --- !u!114 &81789711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,7 +1227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 183756356}
-  itemHolder: {fileID: 0}
 --- !u!114 &183756356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2129,7 +2126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 306631462}
-  itemHolder: {fileID: 0}
 --- !u!1001 &310007362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2345,7 +2341,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 318342993}
-  itemHolder: {fileID: 0}
 --- !u!1001 &328200433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5202,7 +5197,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.93760973, g: 0.93760973, b: 0.93760973, a: 1}
+  m_Color: {r: 0.68741405, g: 0.68741405, b: 0.68741405, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -5261,7 +5256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785411812}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.046475533, y: -0.8427407, z: 0.5312174, w: 0.07373031}
+  m_LocalRotation: {x: 0.08230372, y: -0.32775182, z: 0.94073516, w: 0.02867459}
   m_LocalPosition: {x: 0, y: -17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5418,7 +5413,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 802149174}
-  itemHolder: {fileID: 0}
 --- !u!43 &803085280
 Mesh:
   m_ObjectHideFlags: 0
@@ -7319,7 +7313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1180203422}
-  itemHolder: {fileID: 0}
 --- !u!114 &1181752154 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 222768629525314687, guid: 59cac3017ba0e574f8eb665fd8457b27, type: 3}
@@ -8401,6 +8394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AK47 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5332758825078760378, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8878523245363765910, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
       propertyPath: ammoText
       value: 
@@ -9172,7 +9169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1474171549}
-  itemHolder: {fileID: 0}
 --- !u!135 &1474171551
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9396,6 +9392,10 @@ PrefabInstance:
     - target: {fileID: 5332758825078760378, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
       propertyPath: m_Name
       value: AK47 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332758825078760378, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8878523245363765910, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
       propertyPath: ammoText
@@ -9821,7 +9821,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1570239287}
-  itemHolder: {fileID: 0}
 --- !u!114 &1573008621 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 222768629525314687, guid: 59cac3017ba0e574f8eb665fd8457b27, type: 3}
@@ -9938,6 +9937,10 @@ PrefabInstance:
     - target: {fileID: 5332758825078760378, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
       propertyPath: m_Name
       value: AK47
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332758825078760378, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8878523245363765910, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
       propertyPath: ammoText
@@ -10187,7 +10190,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1638734696}
-  itemHolder: {fileID: 0}
 --- !u!114 &1638734696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10417,7 +10419,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1654880563}
-  itemHolder: {fileID: 0}
 --- !u!1001 &1657583014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11053,7 +11054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionalLight: {fileID: 785411813}
   Preset: {fileID: 11400000, guid: 5b5e53563250fa147a7f97943cb1b515, type: 2}
-  TimeOfDay: 102.966774
+  TimeOfDay: 154.38892
 --- !u!114 &1746633246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11873,6 +11874,10 @@ PrefabInstance:
     - target: {fileID: 5332758825078760378, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
       propertyPath: m_Name
       value: AK47 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332758825078760378, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6973393626850095940, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
       propertyPath: itemHolder
@@ -12992,7 +12997,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 2102341384}
-  itemHolder: {fileID: 0}
 --- !u!114 &2102341384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13070,6 +13074,10 @@ PrefabInstance:
     - target: {fileID: 5332758825078760378, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
       propertyPath: m_Name
       value: AK47 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332758825078760378, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8878523245363765910, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
       propertyPath: ammoText
@@ -13643,6 +13651,10 @@ PrefabInstance:
       propertyPath: itemHolder
       value: 
       objectReference: {fileID: 1597994012}
+    - target: {fileID: 1573789484096151141, guid: 2d57bdb5e4908074f912f80078258ab0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2079417002488632174, guid: 2d57bdb5e4908074f912f80078258ab0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3

@@ -17,6 +17,6 @@ MonoBehaviour:
   itemIcon: {fileID: 3355423005436571770, guid: 1b39c0fe73f0433468e25eb21cfde7c2, type: 3}
   maxStackCount: 10
   isStackable: 1
-  ItemWorld: {fileID: 2792591796485672181, guid: e6f4c79f52394aa46b6f4343b4d7c4bd, type: 3}
+  itemWorld: {fileID: 2792591796485672181, guid: e6f4c79f52394aa46b6f4343b4d7c4bd, type: 3}
   foodStat: 15
   isEatable: 0

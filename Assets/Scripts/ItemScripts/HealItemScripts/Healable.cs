@@ -16,6 +16,5 @@ public class Healable : Item
         Player.Instance.Heal(HealAmount);
 
         UpdateInventoryItemCountOnUse();
-        Destroy(gameObject);
     }
 }

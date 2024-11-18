@@ -21,6 +21,7 @@ public abstract class Item : MonoBehaviour
     }
     public int MaxStackCount => itemData.maxStackCount;
     public bool IsStackable => itemData.isStackable;
+    public GameObject ItemWorld => itemData.itemWorld;
     private void Awake()
     {
         playerCamera = Camera.main;

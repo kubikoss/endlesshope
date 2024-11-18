@@ -12,6 +12,5 @@ public class Food : Item
         Player.Instance.UpdateHunger(this);
 
         UpdateInventoryItemCountOnUse();
-        Destroy(gameObject);
     }
 }
