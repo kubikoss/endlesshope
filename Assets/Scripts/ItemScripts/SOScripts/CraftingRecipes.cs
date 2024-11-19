@@ -8,4 +8,5 @@ public class CraftingRecipes : ScriptableObject
     public string recipeName;
     public Item[] requiredItems;
     public Item resultItem;
+    public GameObject resultItemWorld;
 }

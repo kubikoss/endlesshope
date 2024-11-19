@@ -33,27 +33,20 @@ public class CraftingManager : MonoBehaviour
         {
             OpenCraftingMenu();
         }
-        CheckCraftingSlotsForRecipes();
     }
 
-    private void CheckCraftingSlotsForRecipes()
+    public void CheckCraftingSlotsForRecipes()
     {
         string recipe = GetCraftingPattern();
-        bool didCraft = false;
         if(!string.IsNullOrEmpty(recipe))
         {
             foreach(CraftingRecipes craftingRecipe in allRecipes)
             {
-                if(recipe == GetPatternFromRecipes(craftingRecipe) && didCraft == false)
+                if(recipe == GetPatternFromRecipes(craftingRecipe))
                 {
-                    Debug.Log("ok");
                     SpawnCraftingItem(craftingRecipe.resultItem);
-                    didCraft = true;
+                    ClearCraftingSlots();
                     return;
-                }
-                else
-                {
-                    didCraft = false;
                 }
             }
         }
@@ -65,10 +58,16 @@ public class CraftingManager : MonoBehaviour
 
     private void SpawnCraftingItem(Item item)
     {
-        GameObject newItem = Instantiate(inventoryItemPrefab);
-        InventoryItem outputItem = newItem.GetComponent<InventoryItem>();
+        GameObject inventoryObject = Instantiate(inventoryItemPrefab);
+        InventoryItem outputItem = inventoryObject.GetComponent<InventoryItem>();
         outputItem.DisplayItemInInventory(item);
         Debug.Log(outputItem.item);
+        
+        GameObject blud = Instantiate(item.ItemWorld, PlayerAttack.Instance.transform.position, Quaternion.identity);
+        Transform itemHolder = GameObject.Find("ItemHolder").transform;
+        blud.transform.SetParent(itemHolder);
+        blud.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
+        InventoryManager.Instance.AddItem(item);
 
         outputItem.transform.SetParent(outputSlot.transform);
         outputItem.transform.position = outputSlot.transform.position;
@@ -112,14 +111,17 @@ public class CraftingManager : MonoBehaviour
         return pattern.Trim();
     }
 
-    /*private void ClearCraftingSlots()
+    private void ClearCraftingSlots()
     {
         foreach(InventorySlot slot in craftingSlots)
         {
-            InventoryItem item = slot.GetComponentInChildren<InventoryItem>();
-            Destroy(item.gameObject);
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if(itemInSlot != null)
+            {
+                Destroy(itemInSlot.gameObject);
+            }
         }
-    }*/
+    }
 
     private void ClearOutputSlot()
     {
@@ -134,6 +136,7 @@ public class CraftingManager : MonoBehaviour
         bool isCraftingPanelOpened = !craftingPanel.activeSelf;
         craftingPanel.SetActive(isCraftingPanelOpened);
         InventoryManager.Instance.fullInventory.SetActive(isCraftingPanelOpened);
+        PlayerAttack.Instance.GetComponent<PlayerAttack>().enabled = !isCraftingPanelOpened;
 
         Cursor.lockState = isCraftingPanelOpened ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isCraftingPanelOpened;
