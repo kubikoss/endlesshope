@@ -8,6 +8,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 {
     public Image image;
     public Color selectedColor, notSelectedColor;
+    public bool isOutputSlot = false;
 
     private void Awake()
     {
@@ -27,6 +28,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     {
         InventoryItem draggedItem = eventData.pointerDrag.GetComponent<InventoryItem>();
 
+        if (isOutputSlot || (draggedItem != null && draggedItem.isOutputItem))
+        {
+            return;
+        }
+
         if (transform.childCount == 0)
         {
             draggedItem.parentAfterDrag = transform;
@@ -38,6 +44,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         else if (transform.childCount == 1)
         {
             InventoryItem itemInSlot = transform.GetChild(0).GetComponent<InventoryItem>();
+
             if (draggedItem.item.ID != 1 && itemInSlot.item.ID != 1)
             {
                 // Swap parents

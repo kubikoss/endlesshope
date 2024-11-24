@@ -60,14 +60,14 @@ public class CraftingManager : MonoBehaviour
     {
         GameObject inventoryObject = Instantiate(inventoryItemPrefab);
         InventoryItem outputItem = inventoryObject.GetComponent<InventoryItem>();
-        outputItem.DisplayItemInInventory(item);
+        outputItem.DisplayItemInInventory(item, true);
         Debug.Log(outputItem.item);
         
-        GameObject blud = Instantiate(item.ItemWorld, PlayerAttack.Instance.transform.position, Quaternion.identity);
+        /*GameObject blud = Instantiate(outputItem.item.ItemWorld, PlayerAttack.Instance.transform.position, Quaternion.identity);
         Transform itemHolder = GameObject.Find("ItemHolder").transform;
         blud.transform.SetParent(itemHolder);
         blud.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
-        InventoryManager.Instance.AddItem(item);
+        blud.gameObject.SetActive(true);*/
 
         outputItem.transform.SetParent(outputSlot.transform);
         outputItem.transform.position = outputSlot.transform.position;

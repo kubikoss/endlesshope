@@ -13,11 +13,13 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public Item item;
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
+    [HideInInspector] public bool isOutputItem = false;
 
-    public void DisplayItemInInventory(Item newItem)
+    public void DisplayItemInInventory(Item newItem, bool isOutput = false)
     {
         item = newItem;
         image.sprite = newItem.ItemIcon;
+        isOutputItem = isOutput;
         UpdateCount();
     }
 
@@ -37,7 +39,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (item.ID == 1)
+        if (isOutputItem || item.ID == 1)
         {
             return;
         }
@@ -48,7 +50,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (item.ID == 1)
+        if (isOutputItem || item.ID == 1)
         {
             return;
         }
@@ -57,7 +59,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (item.ID == 1)
+        if (isOutputItem || item.ID == 1)
         {
             return;
         }

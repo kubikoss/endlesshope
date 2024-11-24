@@ -42,6 +42,7 @@ public abstract class Item : MonoBehaviour
                 inventoryItem.RemoveItemFromInventory();
                 InventoryManager.Instance.EquipFirstSlot();
                 Destroy(inventoryItem.gameObject);
+                Destroy(gameObject);
             }
         }
     }
