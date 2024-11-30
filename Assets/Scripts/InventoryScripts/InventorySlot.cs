@@ -36,7 +36,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
         if (transform.childCount == 0)
         {
             draggedItem.parentAfterDrag = transform;
-            if (PlayerAttack.Instance.currentItem == draggedItem.item)
+            if (InventoryManager.Instance.currentItem == draggedItem.item)
             {
                 InventoryManager.Instance.EquipFirstSlot();
             }
@@ -67,21 +67,21 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     private void SwapEquippedItem(InventoryItem draggedItem, InventoryItem itemInSlot)
     {
-        if (PlayerAttack.Instance.currentItem != null)
+        if (InventoryManager.Instance.currentItem != null)
         {
-            if (PlayerAttack.Instance.currentItem == draggedItem.item)
+            if (InventoryManager.Instance.currentItem == draggedItem.item)
             {
-                PlayerAttack.Instance.currentItem.gameObject.SetActive(false);
-                PlayerAttack.Instance.currentItem = itemInSlot.item;
-                PlayerAttack.Instance.currentItem.gameObject.SetActive(true);
-                PlayerAttack.Instance.EquipItem(itemInSlot.item);
+                InventoryManager.Instance.currentItem.gameObject.SetActive(false);
+                InventoryManager.Instance.currentItem = itemInSlot.item;
+                InventoryManager.Instance.currentItem.gameObject.SetActive(true);
+                InventoryManager.Instance.EquipItem(itemInSlot.item);
             }
-            else if (PlayerAttack.Instance.currentItem == itemInSlot.item)
+            else if (InventoryManager.Instance.currentItem == itemInSlot.item)
             {
-                PlayerAttack.Instance.currentItem.gameObject.SetActive(false);
-                PlayerAttack.Instance.currentItem = draggedItem.item;
-                PlayerAttack.Instance.currentItem.gameObject.SetActive(true);
-                PlayerAttack.Instance.EquipItem(draggedItem.item);
+                InventoryManager.Instance.currentItem.gameObject.SetActive(false);
+                InventoryManager.Instance.currentItem = draggedItem.item;
+                InventoryManager.Instance.currentItem.gameObject.SetActive(true);
+                InventoryManager.Instance.EquipItem(draggedItem.item);
             }
         }
     }

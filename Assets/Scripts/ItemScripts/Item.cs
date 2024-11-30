@@ -22,6 +22,7 @@ public abstract class Item : MonoBehaviour
     public int MaxStackCount => itemData.maxStackCount;
     public bool IsStackable => itemData.isStackable;
     public GameObject ItemWorld => itemData.itemWorld;
+
     private void Awake()
     {
         playerCamera = Camera.main;
@@ -34,8 +35,6 @@ public abstract class Item : MonoBehaviour
         {
             inventoryItem.count--;
             inventoryItem.UpdateCount();
-            Debug.Log(inventoryItem.count);
-
             if (inventoryItem.count < 1)
             {
                 InventoryManager.Instance.hotbarCount--;

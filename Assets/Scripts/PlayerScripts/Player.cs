@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     {
         isDead();
         UpdateHungerTimer();
-        //Debug.Log(currentHungerTime);
     }
 
     public void Heal(float healAmount)
@@ -81,7 +80,6 @@ public class Player : MonoBehaviour
             {
                 TakeDamage(foodItem.foodStat);
             }
-            //InventoryManager.Instance.EquipFirstSlot();
         }
     }
 

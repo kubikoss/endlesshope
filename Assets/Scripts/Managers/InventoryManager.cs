@@ -9,22 +9,31 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
 
+    [Header("Inventory")]
     public List<InventorySlot> inventorySlots;
-
     public GameObject inventoryItemPrefab;
     public GameObject fullInventory;
+
+    [Header("Item")]
+    public Item currentItem;
     public Hands hands;
+
+    [Header("Player")]
     public Player player;
     public PlayerCam playerCam;
 
     public bool isInventoryOpened { get; private set; }
-    public int hotbarCount = 0;
+    [HideInInspector] public int hotbarCount = 0;
     int selectedSlot = -1;
+
+    private float fireTimer = 0f;
 
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
+        if (currentItem == null)
+            currentItem = hands;
 
         AddItem(hands);
     }
@@ -37,8 +46,13 @@ public class InventoryManager : MonoBehaviour
     private void Update()
     {
         SwitchItem();
-        DropItem(PlayerAttack.Instance.currentItem);
+        DropItem(currentItem);
         OpenInventory();
+
+        if(!isInventoryOpened)
+        {
+            HandleCurrentItem();
+        }
     }
 
     #region add/remove from inventory
@@ -125,7 +139,7 @@ public class InventoryManager : MonoBehaviour
                         itemInSlot.RemoveItemFromInventory();
                         itemToDrop.transform.SetParent(null);
 
-                        PlayerAttack.Instance.currentItem = null;
+                        currentItem = null;
                         EquipFirstSlot();
 
                         hotbarCount--;
@@ -136,9 +150,9 @@ public class InventoryManager : MonoBehaviour
                         Item newItem = Instantiate(itemToDrop, player.transform.position, Quaternion.identity);
                         newItem.transform.SetParent(null);
 
-                        PlayerAttack.Instance.currentItem = null;
+                        currentItem = null;
 
-                        PlayerAttack.Instance.EquipItem(notDropping);
+                        EquipItem(notDropping);
 
                         itemInSlot.count--;
                         itemInSlot.UpdateCount();
@@ -159,6 +173,70 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
     #region item equipping/switching
+    public void EquipItem(Item itemToEquip)
+    {
+        if (currentItem != null)
+        {
+            if (!(currentItem is Grenade grenade) || !grenade.IsBeingThrown)
+            {
+                currentItem.gameObject.SetActive(false);
+            }
+        }
+
+        currentItem = itemToEquip;
+
+        if (currentItem != null)
+        {
+            currentItem.gameObject.SetActive(true);
+        }
+    }
+
+    private void HandleCurrentItem()
+    {
+        if (currentItem != null)
+        {
+            if (currentItem is Weapon weapon)
+            {
+                fireTimer += Time.deltaTime;
+
+                if (weapon.FiringMode == FiringMode.Automatic)
+                {
+                    if (Input.GetMouseButton(0) && fireTimer >= (1f / weapon.FireRate))
+                    {
+                        weapon.Shoot();
+                        fireTimer = 0f;
+                    }
+                }
+                else if (weapon.FiringMode == FiringMode.SemiAutomatic || weapon.FiringMode == FiringMode.Meelee)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        weapon.Shoot();
+                    }
+                }
+
+                if (Input.GetKeyDown(KeyCode.R) && weapon != null && !(weapon is Hands) && !(weapon is Grenade))
+                {
+                    weapon.Reload();
+                }
+            }
+            else if (currentItem is Healable healingItem)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    healingItem.Use();
+                }
+            }
+            else if (currentItem is Food foodItem)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    foodItem.Eat();
+                }
+            }
+        }
+    }
+
     private void SwitchItem()
     {
         for (int i = 0; i < 9; i++)
@@ -180,7 +258,7 @@ public class InventoryManager : MonoBehaviour
 
             if (itemInSlot != null)
             {
-                PlayerAttack.Instance.EquipItem(itemInSlot.item);
+                EquipItem(itemInSlot.item);
                 ChangeSelectedSlot(slotIndex);
             }
         }
@@ -194,12 +272,12 @@ public class InventoryManager : MonoBehaviour
 
             if (itemInSlot != null)
             {
-                PlayerAttack.Instance.EquipItem(itemInSlot.item);
+                EquipItem(itemInSlot.item);
                 ChangeSelectedSlot(i);
                 return;
             }
         }
-        PlayerAttack.Instance.EquipItem(hands);
+        EquipItem(hands);
     }
     #endregion
     #region ui/get method
@@ -218,7 +296,7 @@ public class InventoryManager : MonoBehaviour
         InventoryItem itemInSlot = inventorySlots[newSlot].GetComponentInChildren<InventoryItem>();
         if(itemInSlot == null)
         {
-            PlayerAttack.Instance.EquipItem(hands);
+            EquipItem(hands);
         }
         inventorySlots[newSlot].Select();
         selectedSlot = newSlot;
@@ -272,6 +350,7 @@ public class InventoryManager : MonoBehaviour
 // TODO
 // inventory rework (95%):
 // current slot selected -> moved item = currentitem (1 -> tab -> move item -> tab -> 2 -> drop item)
+//                       -> moved item -> tab -> E -> drop item
 // ~ stack system (95%) - current item fix (stacking 2nd slot, currently on 3rd slot) + grenade stack when throwing fix) 
-// crafting system (30%):
-// game object "not in scene" - maybe rework whole code
+// crafting system (70%):
+// game object spawning in scene -> item.interact();, finish code

@@ -13,7 +13,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public Item item;
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
-    [HideInInspector] public bool isOutputItem = false;
+    public bool isOutputItem = false;
 
     public void DisplayItemInInventory(Item newItem, bool isOutput = false)
     {

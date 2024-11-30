@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour, IInteractable
 {
-    public Item item; 
+    public Item item;
 
     public void Interact()
     {
@@ -16,20 +16,17 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
                 if (canAdd > 0)
                 {
-                    Transform itemHolder = GameObject.Find("ItemHolder").transform;
-                    item.transform.SetParent(itemHolder);
-                    item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f); 
-
+                    SetItemPosition();
                     if (canAdd == 1) 
                     {
-                        PlayerAttack.Instance.EquipItem(item);
+                        InventoryManager.Instance.EquipItem(item);
                     }
                     else if (canAdd == 2) 
                     {
-                        Item stackedItem = PlayerAttack.Instance.currentItem;
-                        Destroy(item.gameObject); 
-                        PlayerAttack.Instance.currentItem = null;
-                        PlayerAttack.Instance.EquipItem(stackedItem);
+                        Item stackedItem = InventoryManager.Instance.currentItem;
+                        Destroy(item.gameObject);
+                        InventoryManager.Instance.currentItem = null;
+                        InventoryManager.Instance.EquipItem(stackedItem);
                     }
                     else if (canAdd == 3)
                     {
@@ -38,6 +35,13 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 }
             }
         }
+    }
+
+    private void SetItemPosition()
+    {
+        Transform itemHolder = GameObject.Find("ItemHolder").transform;
+        item.transform.SetParent(itemHolder);
+        item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
     }
 }
 // TO DO

@@ -7,12 +7,18 @@ public class CraftingManager : MonoBehaviour
 {
     public static CraftingManager Instance { get; private set; }
 
-    public GameObject craftingPanel;
-    public InventorySlot outputSlot;
-    public GameObject inventoryItemPrefab;
-
+    [Header("Crafting")]
     public List<InventorySlot> craftingSlots;
     public List<CraftingRecipes> allRecipes;
+    public GameObject inventoryItemPrefab;
+
+    [Header("Output")]
+    public InventorySlot outputSlot;
+    public InventoryItem outputItem;
+    
+    [Header("Crafting Panel")]
+    public GameObject craftingPanel;
+    public bool isCraftingPanelOpened;
 
     private void Awake()
     {
@@ -35,6 +41,19 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
+    public void SpawnItem(InventorySlot invSlot)
+    {
+        if (invSlot != null)
+        {
+            InventoryItem invItem = invSlot.GetComponentInChildren<InventoryItem>();
+            GameObject itemInWorld = Instantiate(invItem.item.ItemWorld, PlayerAttack.Instance.transform.position, Quaternion.identity);
+            itemInWorld.GetComponent<ItemPickup>().Interact();
+            ClearCraftingSlots();
+            ClearOutputSlot();
+            Debug.Log(invItem.item.name);
+        }
+    }
+
     public void CheckCraftingSlotsForRecipes()
     {
         string recipe = GetCraftingPattern();
@@ -45,29 +64,18 @@ public class CraftingManager : MonoBehaviour
                 if(recipe == GetPatternFromRecipes(craftingRecipe))
                 {
                     SpawnCraftingItem(craftingRecipe.resultItem);
-                    ClearCraftingSlots();
                     return;
                 }
             }
-        }
-        else
-        {
-            ClearOutputSlot();
         }
     }
 
     private void SpawnCraftingItem(Item item)
     {
         GameObject inventoryObject = Instantiate(inventoryItemPrefab);
-        InventoryItem outputItem = inventoryObject.GetComponent<InventoryItem>();
+        outputItem = inventoryObject.GetComponent<InventoryItem>();
         outputItem.DisplayItemInInventory(item, true);
         Debug.Log(outputItem.item);
-        
-        /*GameObject blud = Instantiate(outputItem.item.ItemWorld, PlayerAttack.Instance.transform.position, Quaternion.identity);
-        Transform itemHolder = GameObject.Find("ItemHolder").transform;
-        blud.transform.SetParent(itemHolder);
-        blud.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
-        blud.gameObject.SetActive(true);*/
 
         outputItem.transform.SetParent(outputSlot.transform);
         outputItem.transform.position = outputSlot.transform.position;
@@ -89,7 +97,6 @@ public class CraftingManager : MonoBehaviour
             }
             pattern += " ";
         }
-
         return pattern.Trim();
     }
 
@@ -131,12 +138,11 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
-    private void OpenCraftingMenu()
+    public void OpenCraftingMenu()
     {
-        bool isCraftingPanelOpened = !craftingPanel.activeSelf;
+        isCraftingPanelOpened = !craftingPanel.activeSelf;
         craftingPanel.SetActive(isCraftingPanelOpened);
         InventoryManager.Instance.fullInventory.SetActive(isCraftingPanelOpened);
-        PlayerAttack.Instance.GetComponent<PlayerAttack>().enabled = !isCraftingPanelOpened;
 
         Cursor.lockState = isCraftingPanelOpened ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible = isCraftingPanelOpened;
