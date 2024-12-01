@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, whatIsGround);
 
-        MyInput();
+        MovementControl();
         SpeedControl();
 
         if (grounded)
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }
 
-    private void MyInput()
+    private void MovementControl()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");

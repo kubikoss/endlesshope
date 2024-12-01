@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
         if (Instance == null)
             Instance = this;
     }
+
     private void Start()
     {
         currentHungerTime = hungerTime;

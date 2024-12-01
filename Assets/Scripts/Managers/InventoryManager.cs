@@ -346,7 +346,6 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-
 // TODO
 // inventory rework (95%):
 // current slot selected -> moved item = currentitem (1 -> tab -> move item -> tab -> 2 -> drop item)
