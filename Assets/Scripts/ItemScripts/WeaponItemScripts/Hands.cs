@@ -12,7 +12,7 @@ public class Hands : Weapon
 
     private void Update()
     {
-        UpdateAmmoDisplay(CurrentAmmo);
+        UpdateAmmoDisplay();
     }
 
     public override void Shoot()

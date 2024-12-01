@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.039215688, g: 0.03529412, b: 0.14117648, a: 1}
+  m_FogColor: {r: 0.63216794, g: 0.60793495, b: 0.476373, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.23
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.15917587, g: 0.18318285, b: 0.46226418, a: 1}
+  m_AmbientSkyColor: {r: 0.8980393, g: 0.882353, b: 0.8431373, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -324,7 +324,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 19585268}
-  itemPosition: {fileID: 0}
 --- !u!114 &19585268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,7 +880,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 81789711}
-  itemPosition: {fileID: 0}
 --- !u!114 &81789711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1525,7 +1523,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 183756356}
-  itemPosition: {fileID: 0}
 --- !u!114 &183756356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2795,7 +2792,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 306631462}
-  itemPosition: {fileID: 0}
 --- !u!1001 &310007362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3037,7 +3033,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 318342993}
-  itemPosition: {fileID: 0}
 --- !u!1001 &328200433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6744,7 +6739,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.1408489, g: 0.1408489, b: 0.1408489, a: 1}
+  m_Color: {r: 0.8403065, g: 0.8403065, b: 0.8403065, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -6803,7 +6798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785411812}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.042836927, y: -0.8675646, z: -0.489628, w: 0.07590212}
+  m_LocalRotation: {x: 0.03753519, y: -0.8990763, z: 0.4290289, w: 0.078659035}
   m_LocalPosition: {x: 0, y: -17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6986,7 +6981,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 802149174}
-  itemPosition: {fileID: 0}
 --- !u!43 &803085280
 Mesh:
   m_ObjectHideFlags: 0
@@ -9704,7 +9698,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1180203422}
-  itemPosition: {fileID: 0}
 --- !u!114 &1181752154 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 222768629525314687, guid: 59cac3017ba0e574f8eb665fd8457b27, type: 3}
@@ -11996,7 +11989,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1474171549}
-  itemPosition: {fileID: 0}
 --- !u!135 &1474171551
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12991,7 +12983,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1570239287}
-  itemPosition: {fileID: 0}
 --- !u!114 &1573008621 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 222768629525314687, guid: 59cac3017ba0e574f8eb665fd8457b27, type: 3}
@@ -13474,7 +13465,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1638734696}
-  itemPosition: {fileID: 0}
 --- !u!114 &1638734696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13730,7 +13720,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 1654880563}
-  itemPosition: {fileID: 0}
 --- !u!1001 &1657583014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14615,14 +14604,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746633241}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d711543df165a74d951f2926160e509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DirectionalLight: {fileID: 785411813}
   Preset: {fileID: 11400000, guid: 5b5e53563250fa147a7f97943cb1b515, type: 2}
-  TimeOfDay: 20.74786
+  TimeOfDay: 94.01326
 --- !u!114 &1746633246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17030,7 +17019,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 2102341384}
-  itemPosition: {fileID: 0}
 --- !u!114 &2102341384
 MonoBehaviour:
   m_ObjectHideFlags: 0

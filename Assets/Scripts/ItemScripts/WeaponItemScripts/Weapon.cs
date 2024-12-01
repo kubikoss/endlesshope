@@ -19,16 +19,26 @@ public abstract class Weapon : Item
         protected set { currentAmmo = value; }
     }
 
+    private void Start()
+    {
+        ammoText.gameObject.SetActive(true);
+    }
+
     public abstract void Shoot();
     public abstract void Reload();
 
-    protected void UpdateAmmoDisplay(int currentAmmo)
+    public void UpdateAmmoDisplay()
     {
-        if(ammoText != null)
+        if(ammoText != null && InventoryManager.Instance.currentItem is Weapon)
         {
-            ammoText.text = $"{currentAmmo}/{MagazineSize}";
-            if(ammoText.gameObject.activeSelf == false)
+            if (ammoText.gameObject.activeSelf == false)
                 ammoText.gameObject.gameObject.SetActive(true);
+
+            ammoText.text = $"{CurrentAmmo}/{MagazineSize}";
+        }
+        else if(!(InventoryManager.Instance.currentItem is Weapon))
+        {
+            ammoText.gameObject.gameObject.SetActive(false);
         }
     }
 }

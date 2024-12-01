@@ -14,7 +14,6 @@ public class Healable : Item
     public void HealPlayer()
     {
         Player.Instance.Heal(HealAmount);
-
         UpdateInventoryItemCountOnUse();
     }
 }

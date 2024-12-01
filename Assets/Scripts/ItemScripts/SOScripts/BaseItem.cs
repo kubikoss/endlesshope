@@ -9,7 +9,7 @@ public class BaseItem : ScriptableObject
     public string itemName;
     public int ID;
     public Sprite itemIcon;
-    public int maxStackCount;
     public bool isStackable = false;
+    public int maxStackCount;
     public GameObject itemWorld;
 }

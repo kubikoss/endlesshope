@@ -11,7 +11,7 @@ public class Glock : Weapon
 
     private void Update()
     {
-        UpdateAmmoDisplay(CurrentAmmo);
+        UpdateAmmoDisplay();
     }
 
     public override void Shoot()

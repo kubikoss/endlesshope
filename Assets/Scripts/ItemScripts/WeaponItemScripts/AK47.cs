@@ -20,7 +20,7 @@ public class AK47 : Weapon
 
     private void Update()
     {
-        UpdateAmmoDisplay(CurrentAmmo);
+        UpdateAmmoDisplay();
     }
 
     public override void Shoot()

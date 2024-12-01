@@ -40,15 +40,12 @@ public class Grenade : Weapon
             gameObject.GetComponent<Collider>().isTrigger = false;
             rb.AddForce(PlayerCamera.transform.forward * throwForce, ForceMode.Impulse);
 
-            UpdateInventoryItemCountOnUse();
+            InventoryItem invItem = InventoryManager.Instance.GetInventoryItem(this);
+            invItem.RemoveItemFromInventory();
             InventoryManager.Instance.EquipFirstSlot();
-            InventoryManager.Instance.ChangeSelectedSlot(0);
-
             StartCoroutine(ExplodeGrenade(this));
-
             return true;
         }
-
         return false;
     }
 

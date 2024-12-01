@@ -10,7 +10,6 @@ public class Food : Item
     public void Eat()
     {
         Player.Instance.UpdateHunger(this);
-
         UpdateInventoryItemCountOnUse();
     }
 }
