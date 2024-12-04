@@ -20,6 +20,8 @@ public class CraftingManager : MonoBehaviour
     public GameObject craftingPanel;
     public bool isCraftingPanelOpened;
 
+    public bool isCrafted;
+
     private void Awake()
     {
         if (Instance == null)
@@ -45,12 +47,14 @@ public class CraftingManager : MonoBehaviour
     {
         if (invSlot != null)
         {
+            isCrafted = true;
             InventoryItem invItem = invSlot.GetComponentInChildren<InventoryItem>();
-            GameObject itemInWorld = Instantiate(invItem.item.ItemWorld, PlayerAttack.Instance.transform.position, Quaternion.identity);
+            GameObject itemInWorld = Instantiate(invItem.item.ItemWorld, PlayerManager.Instance.player.transform.position, Quaternion.identity);
             itemInWorld.GetComponent<ItemPickup>().Interact();
             ClearCraftingSlots();
             ClearOutputSlot();
             Debug.Log(invItem.item.name);
+            isCrafted = false;
         }
     }
 
@@ -66,19 +70,26 @@ public class CraftingManager : MonoBehaviour
                     SpawnCraftingItem(craftingRecipe.resultItem);
                     return;
                 }
+                else
+                {
+                    ClearOutputSlot();
+                }
             }
         }
     }
 
     private void SpawnCraftingItem(Item item)
     {
-        GameObject inventoryObject = Instantiate(inventoryItemPrefab);
-        outputItem = inventoryObject.GetComponent<InventoryItem>();
-        outputItem.DisplayItemInInventory(item, true);
-        Debug.Log(outputItem.item);
+        if(outputSlot.transform.childCount == 0)
+        {
+            GameObject inventoryObject = Instantiate(inventoryItemPrefab);
+            outputItem = inventoryObject.GetComponent<InventoryItem>();
+            outputItem.DisplayItemInInventory(item, true);
+            Debug.Log(outputItem.item);
 
-        outputItem.transform.SetParent(outputSlot.transform);
-        outputItem.transform.position = outputSlot.transform.position;
+            outputItem.transform.SetParent(outputSlot.transform);
+            outputItem.transform.position = outputSlot.transform.position;
+        }
     }
 
     private string GetCraftingPattern()
@@ -150,3 +161,6 @@ public class CraftingManager : MonoBehaviour
         InventoryManager.Instance.playerCam.enabled = !isCraftingPanelOpened;
     }
 }
+//TODO
+// inventory item count > 1 -> can craft
+// inventory & crafting panel opening fix

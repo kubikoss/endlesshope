@@ -8,30 +8,42 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!InventoryManager.Instance.isInventoryOpened)
+        if(CraftingManager.Instance.isCrafted)
         {
-            if (item != null)
+            PickupItem();
+        }
+        else
+        {
+            if (!InventoryManager.Instance.isInventoryOpened || !CraftingManager.Instance.isCraftingPanelOpened)
             {
-                int canAdd = InventoryManager.Instance.AddItem(item);
+                PickupItem();
+            }
+        }
+    }
 
-                if (canAdd > 0)
+    private void PickupItem()
+    {
+        if (item != null)
+        {
+            int canAdd = InventoryManager.Instance.AddItem(item);
+
+            if (canAdd > 0)
+            {
+                SetItemPosition();
+                if (canAdd == 1)
                 {
-                    SetItemPosition();
-                    if (canAdd == 1) 
-                    {
-                        InventoryManager.Instance.EquipItem(item);
-                    }
-                    else if (canAdd == 2) 
-                    {
-                        Item stackedItem = InventoryManager.Instance.currentItem;
-                        Destroy(item.gameObject);
-                        InventoryManager.Instance.currentItem = null;
-                        InventoryManager.Instance.EquipItem(stackedItem);
-                    }
-                    else if (canAdd == 3)
-                    {
-                        item.gameObject.SetActive(false);
-                    }
+                    InventoryManager.Instance.EquipItem(item);
+                }
+                else if (canAdd == 2)
+                {
+                    Item stackedItem = InventoryManager.Instance.currentItem;
+                    Destroy(item.gameObject);
+                    InventoryManager.Instance.currentItem = null;
+                    InventoryManager.Instance.EquipItem(stackedItem);
+                }
+                else if (canAdd == 3)
+                {
+                    item.gameObject.SetActive(false);
                 }
             }
         }

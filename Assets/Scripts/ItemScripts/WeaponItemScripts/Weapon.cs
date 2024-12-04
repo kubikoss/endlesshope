@@ -36,10 +36,10 @@ public abstract class Weapon : Item
 
             ammoText.text = $"{CurrentAmmo}/{MagazineSize}";
         }
-        else if(!(InventoryManager.Instance.currentItem is Weapon))
+        /*else if(!(InventoryManager.Instance.currentItem is Weapon))
         {
             ammoText.gameObject.gameObject.SetActive(false);
-        }
+        }*/
     }
 }
 

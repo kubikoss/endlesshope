@@ -22,7 +22,7 @@ public class InventoryManager : MonoBehaviour
     public Player player;
     public PlayerCam playerCam;
 
-    public bool isInventoryOpened { get; private set; }
+    public bool isInventoryOpened;
     [HideInInspector] public int hotbarCount = 0;
     int selectedSlot = -1;
 
@@ -49,7 +49,7 @@ public class InventoryManager : MonoBehaviour
         DropItem(currentItem);
         OpenInventory();
 
-        if(!isInventoryOpened)
+        if(!isInventoryOpened || !CraftingManager.Instance.isCraftingPanelOpened)
         {
             HandleCurrentItem();
         }
@@ -109,21 +109,6 @@ public class InventoryManager : MonoBehaviour
         return -1; // Full inventory
     }
 
-    /*public void RemoveItem(Item itemToRemove)
-    {
-        for (int i = 0; i < inventorySlots.Count; i++)
-        {
-            InventoryItem itemInSlot = inventorySlots[i].GetComponentInChildren<InventoryItem>();
-
-            if (itemInSlot != null && itemInSlot.item == itemToRemove)
-            {
-                itemInSlot.RemoveItemFromInventory();
-                itemToRemove.transform.SetParent(null);
-                break;
-            }
-        }
-    }*/
-
     public void DropItem(Item itemToDrop)
     {
         if (Input.GetKeyDown(KeyCode.G) && !(itemToDrop is Hands) && itemToDrop != null)
@@ -149,6 +134,7 @@ public class InventoryManager : MonoBehaviour
                         Item notDropping = itemToDrop;
                         Item newItem = Instantiate(itemToDrop, player.transform.position, Quaternion.identity);
                         newItem.transform.SetParent(null);
+                        newItem.name = itemToDrop.name;
 
                         currentItem = null;
 
@@ -241,7 +227,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < 9; i++)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1 + i) && !isInventoryOpened)
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i) && (!isInventoryOpened || !CraftingManager.Instance.isCraftingPanelOpened))
             {
                 EquipItemFromInventory(i);
                 ChangeSelectedSlot(i);
@@ -319,7 +305,7 @@ public class InventoryManager : MonoBehaviour
 
     private void OpenInventory()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab) && !isInventoryOpened)
         {
             isInventoryOpened = !isInventoryOpened;
             fullInventory.SetActive(isInventoryOpened);
@@ -350,6 +336,6 @@ public class InventoryManager : MonoBehaviour
 // inventory rework (95%):
 // current slot selected -> moved item = currentitem (1 -> tab -> move item -> tab -> 2 -> drop item)
 //                       -> moved item -> tab -> E -> drop item
-// ~ stack system (95%) - current item fix (stacking 2nd slot, currently on 3rd slot) + grenade stack when throwing fix) 
-// crafting system (70%):
-// game object spawning in scene -> item.interact();, finish code
+// stack system (95%(85%)) - current item fix (stacking 2nd slot, currently on 3rd slot)
+// ~shift + e dont stack an item, shift left mouse "split" inventory item, same item on same item = stack
+// crafting system (90%):
