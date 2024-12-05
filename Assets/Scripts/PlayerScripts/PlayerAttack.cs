@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour
     {
         Enemy enemyHealth = enemy.GetComponent<Enemy>();
 
-        if (enemyHealth != null)
+        if (enemyHealth != null && !InventoryManager.Instance.isInventoryOpened)
         {
             if (currentItem is Weapon weapon)
             {

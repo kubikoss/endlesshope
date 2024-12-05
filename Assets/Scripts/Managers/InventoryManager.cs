@@ -48,11 +48,7 @@ public class InventoryManager : MonoBehaviour
         SwitchItem();
         DropItem(currentItem);
         OpenInventory();
-
-        if(!isInventoryOpened || !CraftingManager.Instance.isCraftingPanelOpened)
-        {
-            HandleCurrentItem();
-        }
+        HandleCurrentItem();
     }
 
     #region add/remove from inventory
@@ -179,7 +175,7 @@ public class InventoryManager : MonoBehaviour
 
     private void HandleCurrentItem()
     {
-        if (currentItem != null)
+        if (currentItem != null && !isInventoryOpened)
         {
             if (currentItem is Weapon weapon)
             {
@@ -305,7 +301,7 @@ public class InventoryManager : MonoBehaviour
 
     private void OpenInventory()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && !isInventoryOpened)
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             isInventoryOpened = !isInventoryOpened;
             fullInventory.SetActive(isInventoryOpened);
@@ -336,6 +332,7 @@ public class InventoryManager : MonoBehaviour
 // inventory rework (95%):
 // current slot selected -> moved item = currentitem (1 -> tab -> move item -> tab -> 2 -> drop item)
 //                       -> moved item -> tab -> E -> drop item
+//                       -> can use item only when panels are not active
 // stack system (95%(85%)) - current item fix (stacking 2nd slot, currently on 3rd slot)
-// ~shift + e dont stack an item, shift left mouse "split" inventory item, same item on same item = stack
+// ~shift left mouse "split" inventory item, same item on same item = stack
 // crafting system (90%):

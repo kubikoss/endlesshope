@@ -53,13 +53,31 @@ public class CraftingManager : MonoBehaviour
             itemInWorld.GetComponent<ItemPickup>().Interact();
             ClearCraftingSlots();
             ClearOutputSlot();
-            Debug.Log(invItem.item.name);
             isCrafted = false;
         }
     }
 
     public void CheckCraftingSlotsForRecipes()
     {
+        // item count check
+        int itemCount = 0;
+        foreach (InventorySlot slot in craftingSlots)
+        {
+            if (slot != null)
+            {
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                if (itemInSlot != null)
+                {
+                    itemCount = itemInSlot.count;
+                    if (itemCount != 1)
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+
+        // recipe pattern check
         string recipe = GetCraftingPattern();
         if(!string.IsNullOrEmpty(recipe))
         {
@@ -85,7 +103,6 @@ public class CraftingManager : MonoBehaviour
             GameObject inventoryObject = Instantiate(inventoryItemPrefab);
             outputItem = inventoryObject.GetComponent<InventoryItem>();
             outputItem.DisplayItemInInventory(item, true);
-            Debug.Log(outputItem.item);
 
             outputItem.transform.SetParent(outputSlot.transform);
             outputItem.transform.position = outputSlot.transform.position;
@@ -162,5 +179,4 @@ public class CraftingManager : MonoBehaviour
     }
 }
 //TODO
-// inventory item count > 1 -> can craft
 // inventory & crafting panel opening fix
