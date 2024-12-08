@@ -20,7 +20,7 @@ public class CraftingManager : MonoBehaviour
     public GameObject craftingPanel;
     public bool isCraftingPanelOpened;
 
-    public bool isCrafted;
+    [HideInInspector] public bool isCrafted;
 
     private void Awake()
     {
@@ -50,6 +50,7 @@ public class CraftingManager : MonoBehaviour
             isCrafted = true;
             InventoryItem invItem = invSlot.GetComponentInChildren<InventoryItem>();
             GameObject itemInWorld = Instantiate(invItem.item.ItemWorld, PlayerManager.Instance.player.transform.position, Quaternion.identity);
+            itemInWorld.name = invItem.item.name;
             itemInWorld.GetComponent<ItemPickup>().Interact();
             ClearCraftingSlots();
             ClearOutputSlot();
@@ -154,6 +155,7 @@ public class CraftingManager : MonoBehaviour
             if(itemInSlot != null)
             {
                 Destroy(itemInSlot.gameObject);
+                Destroy(itemInSlot.item.gameObject);
             }
         }
     }
@@ -176,6 +178,33 @@ public class CraftingManager : MonoBehaviour
         Cursor.visible = isCraftingPanelOpened;
 
         InventoryManager.Instance.playerCam.enabled = !isCraftingPanelOpened;
+
+        if(!isCraftingPanelOpened)
+        {
+            PutItemsBackInInventory();
+        }
+    }
+
+    private void PutItemsBackInInventory()
+    {
+        foreach (InventorySlot slot in craftingSlots)
+        {
+            if (slot.transform.childCount == 0) continue;
+
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null)
+            {
+                int currentStackCount = itemInSlot.count;
+                for(int i = 0; i < currentStackCount; i++)
+                {
+                    GameObject itemBack = Instantiate(itemInSlot.item.ItemWorld, transform.position, Quaternion.identity);
+                    itemBack.name = itemInSlot.item.name;
+                    itemBack.GetComponent<ItemPickup>().Interact();
+                }
+                Destroy(itemInSlot.gameObject);
+                Destroy(itemInSlot.item.gameObject);
+            }
+        }
     }
 }
 //TODO

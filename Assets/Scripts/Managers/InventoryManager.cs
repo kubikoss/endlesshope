@@ -336,3 +336,5 @@ public class InventoryManager : MonoBehaviour
 // stack system (95%(85%)) - current item fix (stacking 2nd slot, currently on 3rd slot)
 // ~shift left mouse "split" inventory item, same item on same item = stack
 // crafting system (90%):
+// shopping system (50%):
+// money, items to sell, ui
