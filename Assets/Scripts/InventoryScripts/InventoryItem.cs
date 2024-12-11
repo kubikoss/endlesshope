@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public Image image;
     public TextMeshProUGUI countText;
@@ -13,7 +14,79 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Item item;
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
+    [HideInInspector] public bool isSplitting = false;
+    public GameObject imageBackGround;
     public bool isOutputItem = false;
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (isOutputItem || item.ID == 1)
+        {
+            return;
+        }
+        image.raycastTarget = false;
+        parentAfterDrag = transform.parent;
+        transform.SetParent(transform.root);
+        InventoryManager.Instance.isDragging = true;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (isOutputItem || item.ID == 1)
+        {
+            return;
+        }
+        transform.position = Input.mousePosition;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (isOutputItem || item.ID == 1)
+        {
+            return;
+        }
+        image.raycastTarget = true;
+        InventoryManager.Instance.isDragging = false;
+
+        if (!IsMouseInInventory())
+        {
+            if(count > 1)
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    Item itemToWorld = InventoryManager.Instance.InstantiateItem(true, false, item);
+                }
+            }
+            else if(count == 1)
+            {
+                Item itemToWorld = InventoryManager.Instance.InstantiateItem(true, false, item);
+            }
+            Destroy(item.gameObject);
+            RemoveItemFromInventory();
+            InventoryManager.Instance.EquipFirstSlot();
+        }
+        else
+        {
+            transform.SetParent(parentAfterDrag);
+            InventoryManager.Instance.UpdateHotbar();
+            CraftingManager.Instance.CheckCraftingSlotsForRecipes();
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        /*if (Input.GetKey(KeyCode.LeftShift))
+        {
+            if (item != null && count > 1)
+            {
+                GameObject splitItem = Instantiate(item.ItemWorld, PlayerManager.Instance.player.transform.position, Quaternion.identity);
+                splitItem.GetComponent<ItemPickup>().SetItemPosition();
+                InventoryManager.Instance.AddItem(splitItem.GetComponent<Item>());
+                count--;
+                UpdateCount();
+            }
+        }*/
+    }
 
     public void DisplayItemInInventory(Item newItem, bool isOutput = false)
     {
@@ -37,36 +110,25 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         countText.gameObject.SetActive(textActive);
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    private bool IsMouseInInventory()
     {
-        if (isOutputItem || item.ID == 1)
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
         {
-            return;
-        }
-        image.raycastTarget = false;
-        parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
-    }
+            position = Input.mousePosition
+        };
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (isOutputItem || item.ID == 1)
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        foreach (RaycastResult result in results)
         {
-            return;
+            if (result.gameObject.CompareTag("InventorySlot") || result.gameObject.CompareTag("Inventory") || result.gameObject.CompareTag("Crafting"))
+            {
+                return true;
+            }
         }
-        transform.position = Input.mousePosition;
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        if (isOutputItem || item.ID == 1)
-        {
-            return;
-        }
-        image.raycastTarget = true;
-        transform.SetParent(parentAfterDrag);
-
-        InventoryManager.Instance.UpdateHotbar();
-        CraftingManager.Instance.CheckCraftingSlotsForRecipes();
+        return false;
     }
 }
+//TODO
+// edit splitting item

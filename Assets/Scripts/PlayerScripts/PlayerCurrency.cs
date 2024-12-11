@@ -8,7 +8,7 @@ public class PlayerCurrency : MonoBehaviour
     public static PlayerCurrency Instance { get; private set; }
 
     [SerializeField]
-    public InventoryItem currencyItem;
+    public InventoryItem currencyInventoryItem;
     [SerializeField]
     public MoneyItem moneyItem;
 
@@ -70,7 +70,7 @@ public class PlayerCurrency : MonoBehaviour
 
     private void UpdateInventoryCurrency()
     {
-        currencyItem.count = currentCurrency;
+        currencyInventoryItem.count = currentCurrency;
     }
 }
 //TODO

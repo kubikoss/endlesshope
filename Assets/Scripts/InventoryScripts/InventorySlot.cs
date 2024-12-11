@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
@@ -24,6 +25,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
     {
         image.color = notSelectedColor;
     }
+
     public void OnDrop(PointerEventData eventData)
     {
         InventoryItem draggedItem = eventData.pointerDrag.GetComponent<InventoryItem>();
@@ -47,22 +49,62 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
             if (draggedItem.item.ID != 1 && itemInSlot.item.ID != 1)
             {
-                // Swap parents
-                Transform originalParent = draggedItem.parentAfterDrag;
-                draggedItem.parentAfterDrag = itemInSlot.transform.parent;
-                itemInSlot.parentAfterDrag = originalParent;
+                if(CanStackItem(draggedItem, itemInSlot))
+                {
+                    StackItem(draggedItem, itemInSlot);
+                }
+                else
+                {
+                    // Swap parents
+                    Transform originalParent = draggedItem.parentAfterDrag;
+                    draggedItem.parentAfterDrag = itemInSlot.transform.parent;
+                    itemInSlot.parentAfterDrag = originalParent;
 
-                // Change place in the inventory (parents)
-                draggedItem.transform.SetParent(draggedItem.parentAfterDrag);
-                itemInSlot.transform.SetParent(itemInSlot.parentAfterDrag);
+                    // Change place in the inventory (parents)
+                    draggedItem.transform.SetParent(draggedItem.parentAfterDrag);
+                    itemInSlot.transform.SetParent(itemInSlot.parentAfterDrag);
 
-                // Change place in the inventory (visual)
-                draggedItem.transform.position = draggedItem.parentAfterDrag.position;
-                itemInSlot.transform.position = itemInSlot.parentAfterDrag.position;
+                    // Change place in the inventory (visual)
+                    draggedItem.transform.position = draggedItem.parentAfterDrag.position;
+                    itemInSlot.transform.position = itemInSlot.parentAfterDrag.position;
 
-                SwapEquippedItem(draggedItem, itemInSlot);
+                    SwapEquippedItem(draggedItem, itemInSlot);
+                }
             }
         }
+    }
+
+    private void StackItem(InventoryItem draggedItem, InventoryItem stackingItem)
+    {
+        int spaceAvailable = stackingItem.item.MaxStackCount - stackingItem.count;
+
+        if (draggedItem.count <= spaceAvailable)
+        {
+            stackingItem.count += draggedItem.count;
+            stackingItem.UpdateCount();
+            Destroy(draggedItem.gameObject);
+            Destroy(draggedItem.item.gameObject);
+        }
+        else
+        {
+            stackingItem.count = stackingItem.item.MaxStackCount;
+            stackingItem.UpdateCount();
+
+            draggedItem.count -= spaceAvailable;
+            draggedItem.UpdateCount();
+
+            draggedItem.transform.SetParent(draggedItem.parentAfterDrag);
+            draggedItem.transform.position = draggedItem.parentAfterDrag.position;
+        }
+        InventoryManager.Instance.EquipItem(stackingItem.item);
+    }
+
+    private bool CanStackItem(InventoryItem draggedItem, InventoryItem stackingItem)
+    {
+        return draggedItem.item.ID == stackingItem.item.ID &&
+               stackingItem.count < stackingItem.item.MaxStackCount &&
+               draggedItem.item.IsStackable &&
+               stackingItem.item.IsStackable;
     }
 
     private void SwapEquippedItem(InventoryItem draggedItem, InventoryItem itemInSlot)

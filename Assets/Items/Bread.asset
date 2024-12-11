@@ -15,8 +15,8 @@ MonoBehaviour:
   itemName: Bread
   ID: 6
   itemIcon: {fileID: 602703515024233923, guid: 1b39c0fe73f0433468e25eb21cfde7c2, type: 3}
-  maxStackCount: 10
   isStackable: 1
+  maxStackCount: 10
   itemWorld: {fileID: 1435809113128098979, guid: 2fb621a08a0a59c4ba897d3d4416b166, type: 3}
   foodStat: 20
   isEatable: 1

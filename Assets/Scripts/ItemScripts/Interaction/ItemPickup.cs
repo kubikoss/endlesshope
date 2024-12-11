@@ -36,10 +36,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 }
                 else if (canAdd == 2)
                 {
-                    Item stackedItem = InventoryManager.Instance.currentItem;
                     Destroy(item.gameObject);
-                    InventoryManager.Instance.currentItem = null;
-                    InventoryManager.Instance.EquipItem(stackedItem);
                 }
                 else if (canAdd == 3)
                 {
@@ -49,7 +46,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
         }
     }
 
-    private void SetItemPosition()
+    public void SetItemPosition()
     {
         Transform itemHolder = GameObject.Find("ItemHolder").transform;
         item.transform.SetParent(itemHolder);

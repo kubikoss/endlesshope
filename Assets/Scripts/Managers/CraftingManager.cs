@@ -49,12 +49,13 @@ public class CraftingManager : MonoBehaviour
         {
             isCrafted = true;
             InventoryItem invItem = invSlot.GetComponentInChildren<InventoryItem>();
-            GameObject itemInWorld = Instantiate(invItem.item.ItemWorld, PlayerManager.Instance.player.transform.position, Quaternion.identity);
-            itemInWorld.name = invItem.item.name;
-            itemInWorld.GetComponent<ItemPickup>().Interact();
-            ClearCraftingSlots();
-            ClearOutputSlot();
-            isCrafted = false;
+            if (invItem != null)
+            {
+                Item itemToWorld = InventoryManager.Instance.InstantiateItem(false, true, invItem.item);
+                ClearCraftingSlots();
+                ClearOutputSlot();
+                isCrafted = false;
+            }
         }
     }
 
@@ -197,9 +198,7 @@ public class CraftingManager : MonoBehaviour
                 int currentStackCount = itemInSlot.count;
                 for(int i = 0; i < currentStackCount; i++)
                 {
-                    GameObject itemBack = Instantiate(itemInSlot.item.ItemWorld, transform.position, Quaternion.identity);
-                    itemBack.name = itemInSlot.item.name;
-                    itemBack.GetComponent<ItemPickup>().Interact();
+                    Item itemToInventory = InventoryManager.Instance.InstantiateItem(false, true, itemInSlot.item);
                 }
                 Destroy(itemInSlot.gameObject);
                 Destroy(itemInSlot.item.gameObject);

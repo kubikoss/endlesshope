@@ -1,7 +1,6 @@
-using JetBrains.Annotations;
-using NUnit.Framework.Constraints;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -25,7 +24,7 @@ public class InventoryManager : MonoBehaviour
     public bool isInventoryOpened;
     [HideInInspector] public int hotbarCount = 0;
     int selectedSlot = -1;
-
+    public bool isDragging = false;
     private float fireTimer = 0f;
 
     private void Awake()
@@ -46,9 +45,13 @@ public class InventoryManager : MonoBehaviour
     private void Update()
     {
         SwitchItem();
-        DropItem(currentItem);
         OpenInventory();
         HandleCurrentItem();
+
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            DropItem(currentItem);
+        }
     }
 
     #region add/remove from inventory
@@ -67,6 +70,8 @@ public class InventoryManager : MonoBehaviour
                     itemInSlot.count++;
                     itemInSlot.UpdateCount();
                     Destroy(item.gameObject);
+
+                    EquipItemFromInventory(i);
                     return 2; // Item stacked
                 }
             }
@@ -107,7 +112,7 @@ public class InventoryManager : MonoBehaviour
 
     public void DropItem(Item itemToDrop)
     {
-        if (Input.GetKeyDown(KeyCode.G) && !(itemToDrop is Hands) && itemToDrop != null)
+        if (!(itemToDrop is Hands) && itemToDrop != null)
         {
             for (int i = 0; i < inventorySlots.Count; i++)
             {
@@ -119,29 +124,32 @@ public class InventoryManager : MonoBehaviour
                     {
                         itemInSlot.RemoveItemFromInventory();
                         itemToDrop.transform.SetParent(null);
-
                         currentItem = null;
                         EquipFirstSlot();
-
                         hotbarCount--;
+                        DropItemRigidBody(itemToDrop);
                     }
                     else if(itemInSlot.count > 1)
                     {
-                        Item notDropping = itemToDrop;
-                        Item newItem = Instantiate(itemToDrop, player.transform.position, Quaternion.identity);
-                        newItem.transform.SetParent(null);
-                        newItem.name = itemToDrop.name;
-
+                        Item itemToWorld = InstantiateItem(true, false, itemToDrop);
                         currentItem = null;
-
-                        EquipItem(notDropping);
-
+                        EquipItem(itemToDrop);
                         itemInSlot.count--;
                         itemInSlot.UpdateCount();
                     }
                 }
             }
         }
+    }
+
+    private void DropItemRigidBody(Item item)
+    {
+        Vector3 cameraForward = playerCam.transform.forward;
+        cameraForward.y = 2f;
+        cameraForward.Normalize();
+
+        Rigidbody rb = item.AddComponent<Rigidbody>();
+        rb.AddForce(cameraForward * 5f, ForceMode.Impulse);
     }
 
     private void SpawnToInventory(Item item, InventorySlot slot)
@@ -219,8 +227,13 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void SwitchItem()
+    public void SwitchItem()
     {
+        if(isDragging)
+        {
+            return;
+        }
+
         for (int i = 0; i < 9; i++)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1 + i) && (!isInventoryOpened || !CraftingManager.Instance.isCraftingPanelOpened))
@@ -326,15 +339,35 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
     }
+
+    public Item InstantiateItem(bool toWorld, bool toInventory, Item item)
+    {
+        if(toWorld && !toInventory)
+        {
+            Item itemToSpawn = Instantiate(item, PlayerManager.Instance.player.transform.position, Quaternion.identity);
+            itemToSpawn.gameObject.SetActive(true);
+            itemToSpawn.transform.SetParent(null);
+            itemToSpawn.name = item.name;
+            DropItemRigidBody(itemToSpawn);
+            return itemToSpawn;
+        }
+        else if(!toWorld && toInventory)
+        {
+            Item itemToInventory = Instantiate(item, PlayerManager.Instance.player.transform.position, Quaternion.identity);
+            itemToInventory.name = item.name;
+            itemToInventory.GetComponent<ItemPickup>().Interact();
+        }
+        return null;
+    }
     #endregion
 }
 // TODO
 // inventory rework (95%):
 // current slot selected -> moved item = currentitem (1 -> tab -> move item -> tab -> 2 -> drop item)
 //                       -> moved item -> tab -> E -> drop item
-//                       -> can use item only when panels are not active
-// stack system (95%(85%)) - current item fix (stacking 2nd slot, currently on 3rd slot)
-// ~shift left mouse "split" inventory item, same item on same item = stack
+//                       -> method for instantiating item (inventorymanager, craftingmanager, inventoryitem)
+// stack system (95%) - current item fix (stacking 2nd slot, currently on 3rd slot)
+// ~shift left mouse "split" inventory item
 // crafting system (90%):
 // shopping system (50%):
 // money, items to sell, ui
