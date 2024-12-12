@@ -19,4 +19,4 @@ MonoBehaviour:
   maxStackCount: 0
   itemWorld: {fileID: 919132149155446097, guid: 10dcf45ce31ebac41b4d407f13cfd2d7, type: 3}
   amount: 0
-  maxAmount: 1000
+  maxAmount: 20

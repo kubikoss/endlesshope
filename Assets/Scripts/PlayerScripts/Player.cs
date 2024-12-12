@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class Player : MonoBehaviour
@@ -14,9 +15,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float hungerTime;
     private float currentHungerTime;
-
     [SerializeField]
-    public TextMeshProUGUI playerHealthText;
+    private float hunger = 100;
+    [SerializeField]
+    public float fatigueTime = 100;
+    private float currentFatigue;
+
+    public Slider healthBar;
+    public Slider hungerBar;
+    public Slider fatigueBar;
 
     private void Awake()
     {
@@ -27,24 +34,28 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentHungerTime = hungerTime;
-        playerHealthText.text = "HP: " + hp.ToString();
+        hungerBar.value = hunger;
+        healthBar.value = hp;
+        currentFatigue = fatigueTime;
+        fatigueBar.value = fatigueTime;
     }
 
     void Update()
     {
         isDead();
         UpdateHungerTimer();
+        UpdateFatigueTimer();
     }
 
     public void Heal(float healAmount)
     {
         hp += healAmount;
-
+        healthBar.value += healAmount;
         if (hp > 100)
         {
             hp = 100;
+            healthBar.value = hp;
         }
-        playerHealthText.text = "HP: " + hp.ToString();
     }
 
     public void isDead()
@@ -59,11 +70,11 @@ public class Player : MonoBehaviour
     public void TakeDamage(float amount)
     {
         hp -= amount;
+        healthBar.value -= amount;
         if (hp <= 0f)
         {
             isDead();
         }
-        playerHealthText.text = "HP: " + hp.ToString();
     }
 
     public void UpdateHunger(Food food)
@@ -76,6 +87,8 @@ public class Player : MonoBehaviour
             {
                 Heal(foodItem.foodStat);
                 currentHungerTime = hungerTime;
+                hunger = currentHungerTime;
+                hungerBar.value = hunger;
             }
             else
             {
@@ -93,5 +106,15 @@ public class Player : MonoBehaviour
             TakeDamage(10);
             currentHungerTime = hungerTime;
         }
+        hunger = currentHungerTime;
+        hungerBar.value = hunger;
+    }
+
+    private void UpdateFatigueTimer()
+    {
+        currentFatigue -= Time.deltaTime;
+        fatigueBar.value = currentFatigue;
     }
 }
+//TODO
+// sleep bar
