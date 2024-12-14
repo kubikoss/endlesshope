@@ -8,7 +8,7 @@ public class Money : Item
 
     private void Start()
     {
-        moneyData = new MoneyItem();
+        moneyData = ScriptableObject.CreateInstance<MoneyItem>();
         moneyData.amount = AmountProbability();
         this.itemData = moneyData;
     }

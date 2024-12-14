@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Healable : Item
 {
-    public int HealAmount => ((HealableItem)itemData).healAmount;
+    public HealableItem healableData;
+    public int HealAmount => healableData.healAmount;
 
     public void Use()
     {

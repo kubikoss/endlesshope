@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 092e92df2fd686c469b38e123538ee18, type: 2}
   ammoText: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: 092e92df2fd686c469b38e123538ee18, type: 2}
 --- !u!114 &3650921456611950050
 MonoBehaviour:
   m_ObjectHideFlags: 0

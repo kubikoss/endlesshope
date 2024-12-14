@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,6 +13,10 @@ public class InventoryManager : MonoBehaviour
     public List<InventorySlot> inventorySlots;
     public GameObject inventoryItemPrefab;
     public GameObject fullInventory;
+    public bool isInventoryOpened = false;
+    public bool isDragging = false;
+    int selectedSlot = -1;
+    [HideInInspector] public int hotbarCount = 0;
 
     [Header("Item")]
     public Item currentItem;
@@ -21,10 +26,6 @@ public class InventoryManager : MonoBehaviour
     public Player player;
     public PlayerCam playerCam;
 
-    public bool isInventoryOpened;
-    [HideInInspector] public int hotbarCount = 0;
-    int selectedSlot = -1;
-    public bool isDragging = false;
     private float fireTimer = 0f;
 
     private void Awake()
@@ -148,8 +149,11 @@ public class InventoryManager : MonoBehaviour
         cameraForward.y = 2f;
         cameraForward.Normalize();
 
-        Rigidbody rb = item.AddComponent<Rigidbody>();
-        rb.AddForce(cameraForward * 5f, ForceMode.Impulse);
+        if(item.GetComponent<Rigidbody>() == null)
+        {
+            Rigidbody rb = item.AddComponent<Rigidbody>();
+            rb.AddForce(cameraForward * 5f, ForceMode.Impulse);
+        }
     }
 
     private void SpawnToInventory(Item item, InventorySlot slot)

@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 7128f2559a3d9c64a88883c6e4ea17d6, type: 2}
+  ammoText: {fileID: 0}
+  weaponData: {fileID: 11400000, guid: 7128f2559a3d9c64a88883c6e4ea17d6, type: 2}
 --- !u!114 &6484821778630439309
 MonoBehaviour:
   m_ObjectHideFlags: 0

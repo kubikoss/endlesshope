@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 809518c87eccbf047945d86c8efde981, type: 2}
+  healableData: {fileID: 11400000, guid: 809518c87eccbf047945d86c8efde981, type: 2}
 --- !u!114 &2738961692593878330
 MonoBehaviour:
   m_ObjectHideFlags: 0

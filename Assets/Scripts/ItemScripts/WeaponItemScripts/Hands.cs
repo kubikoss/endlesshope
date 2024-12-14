@@ -10,11 +10,6 @@ public class Hands : Weapon
         CurrentAmmo = 1;
     }
 
-    private void Update()
-    {
-        UpdateAmmoDisplay();
-    }
-
     public override void Shoot()
     {
         MeeleeAttack();
