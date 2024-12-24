@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.039215688, g: 0.03529412, b: 0.14117648, a: 1}
+  m_FogColor: {r: 0.69510794, g: 0.7659597, b: 0.7477249, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.23
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.15917587, g: 0.18318285, b: 0.46226418, a: 1}
+  m_AmbientSkyColor: {r: 0.8980393, g: 0.882353, b: 0.8431373, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -2652,7 +2652,7 @@ GameObject:
   - component: {fileID: 385572966}
   - component: {fileID: 385572965}
   m_Layer: 5
-  m_Name: CraftingText
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5826,7 +5826,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.13340831, g: 0.13340831, b: 0.13340831, a: 1}
+  m_Color: {r: 0.9289124, g: 0.9289124, b: 0.9289124, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -5885,7 +5885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 785411812}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.043921463, y: -0.8604508, z: -0.5020243, w: 0.07527974}
+  m_LocalRotation: {x: 0.072063245, y: -0.5603081, z: 0.82368606, w: 0.04902064}
   m_LocalPosition: {x: 0, y: -17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12011,9 +12011,8 @@ GameObject:
   - component: {fileID: 1746633242}
   - component: {fileID: 1746633243}
   - component: {fileID: 1746633244}
-  - component: {fileID: 1746633246}
   - component: {fileID: 1746633245}
-  - component: {fileID: 1746633247}
+  - component: {fileID: 1746633246}
   m_Layer: 0
   m_Name: GAME_MANAGER
   m_TagString: Untagged
@@ -12122,7 +12121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionalLight: {fileID: 785411813}
   Preset: {fileID: 11400000, guid: 5b5e53563250fa147a7f97943cb1b515, type: 2}
-  TimeOfDay: 19.651815
+  TimeOfDay: 134.36629
 --- !u!114 &1746633246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12153,19 +12152,6 @@ MonoBehaviour:
   craftingPanel: {fileID: 383383090}
   isCraftingPanelOpened: 0
   isCrafted: 0
---- !u!114 &1746633247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746633241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed3def416de63ed4790c07f4051ec591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ammoText: {fileID: 110539903}
 --- !u!1001 &1752814619
 PrefabInstance:
   m_ObjectHideFlags: 0
