@@ -28,6 +28,11 @@ public class Money : Item
         Destroy(gameObject);
     }
 
+    public int GetCurrentAmount()
+    {
+        return moneyData.amount;
+    }
+
     private int AmountProbability()
     {
         float chance = Random.Range(0f, 1f);

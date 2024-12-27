@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+  moneyData: {fileID: 1488664383108834527, guid: 8fb2e736b3566064382bc238853e2329, type: 3}
 --- !u!114 &9165643264426043870
 MonoBehaviour:
   m_ObjectHideFlags: 0

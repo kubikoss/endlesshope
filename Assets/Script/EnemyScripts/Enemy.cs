@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 public class Enemy : MonoBehaviour
 {
     public float hp = 100;
-    bool itsDead = false;
-    public MoneyItem moneyData;
 
     private void Update()
     {
@@ -19,7 +17,7 @@ public class Enemy : MonoBehaviour
     {
         if (hp <= 0)
         {
-            Destroy(gameObject, 0.1f);
+            Destroy(gameObject);
         }
     }
 
@@ -28,7 +26,6 @@ public class Enemy : MonoBehaviour
         hp -= amount;
         if (hp <= 0f)
         {
-            itsDead = true;
             isDead();
         }
     }

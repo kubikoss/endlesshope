@@ -58,6 +58,11 @@ public class InventoryManager : MonoBehaviour
     #region add/remove from inventory
     public int AddItem(Item item)
     {
+        if(isDragging)
+        {
+            return -1;
+        }
+
         // Stacking item
         for (int i = 0; i < inventorySlots.Count; i++)
         {
@@ -366,12 +371,21 @@ public class InventoryManager : MonoBehaviour
     #endregion
 }
 // TODO
-// inventory rework (95%):
-// current slot selected -> moved item = currentitem (1 -> tab -> move item -> tab -> 2 -> drop item)
-//                       -> moved item -> tab -> E -> drop item
-//                       -> method for instantiating item (inventorymanager, craftingmanager, inventoryitem)
-// stack system (95%) - current item fix (stacking 2nd slot, currently on 3rd slot)
-// ~shift left mouse "split" inventory item
-// crafting system (90%):
-// shopping system (50%):
-// money, items to sell, ui
+// inventory rework (99%)
+// crafting system (95%)
+// shopping system (65%)
+
+//project TODO
+//null item = equip hands
+//inv panel fix 
+//splitting & stacking item finish
+//ammo 
+//shopping items
+//player ally (movement, attack, enemy detection <=>)
+//minimap
+//tutorial
+//map & item models
+//vfx & sfx & animations & ui (menu,.., achievements)
+//chest
+//hunger & sleep bar
+//finished 70%

@@ -20,7 +20,7 @@ public class ShopItem : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.F) && canBuy)
+        if (Input.GetKeyDown(KeyCode.F) && canBuy)
         {
             TryBuyItem();
         }
@@ -32,6 +32,7 @@ public class ShopItem : MonoBehaviour
         {
             PlayerCurrency.Instance.SpendCurrency(itemCost);
             GameObject shopItem = Instantiate(item.ItemWorld, PlayerManager.Instance.transform.position, Quaternion.identity);
+            shopItem.AddComponent<ItemPickup>().item = item;
             shopItem.GetComponent<ItemPickup>().Interact();
         }
     }
@@ -42,6 +43,7 @@ public class ShopItem : MonoBehaviour
         {
             EnableText();
             canBuy = true;
+            costText.text = $"Press F to buy {item.ItemName.ToUpper()} for: " + itemCost.ToString() + " money.";
         }
     }
 
@@ -51,6 +53,7 @@ public class ShopItem : MonoBehaviour
         {
             DisableText();
             canBuy = false;
+            costText.text = "";
         }
     }
 
