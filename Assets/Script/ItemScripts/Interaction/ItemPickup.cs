@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class ItemPickup : MonoBehaviour, IInteractable
@@ -14,10 +15,11 @@ public class ItemPickup : MonoBehaviour, IInteractable
         }
         else
         {
-            if (!InventoryManager.Instance.isInventoryOpened || !CraftingManager.Instance.isCraftingPanelOpened)
+            /*if (!InventoryManager.Instance.isInventoryOpened || !CraftingManager.Instance.isCraftingPanelOpened)
             {
                 PickupItem();
-            }
+            }*/
+            PickupItem();
         }
     }
 
@@ -29,6 +31,8 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
             if (canAdd > 0)
             {
+                item.name = Regex.Replace(item.name, @"\s*\(.*?\)", "").Trim();
+
                 SetItemPosition();
                 if (canAdd == 1)
                 {
@@ -46,12 +50,10 @@ public class ItemPickup : MonoBehaviour, IInteractable
         }
     }
 
-    public void SetItemPosition()
+    private void SetItemPosition()
     {
         Transform itemHolder = GameObject.Find("ItemHolder").transform;
         item.transform.SetParent(itemHolder);
         item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
     }
 }
-// TO DO
-// item position - prefab "hand position"

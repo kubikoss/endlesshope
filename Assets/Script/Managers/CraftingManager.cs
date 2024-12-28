@@ -14,10 +14,6 @@ public class CraftingManager : MonoBehaviour
     [Header("Output")]
     public InventorySlot outputSlot;
     public InventoryItem outputItem;
-    
-    [Header("Crafting Panel")]
-    public GameObject craftingPanel;
-    public bool isCraftingPanelOpened;
 
     [HideInInspector] public bool isCrafted;
 
@@ -27,19 +23,6 @@ public class CraftingManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-    }
-
-    private void Start()
-    {
-        craftingPanel.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.C))
-        {
-            OpenCraftingMenu();
-        }
     }
 
     public void SpawnItem(InventorySlot invSlot)
@@ -168,24 +151,7 @@ public class CraftingManager : MonoBehaviour
         }
     }
 
-    public void OpenCraftingMenu()
-    {
-        isCraftingPanelOpened = !craftingPanel.activeSelf;
-        craftingPanel.SetActive(isCraftingPanelOpened);
-        InventoryManager.Instance.fullInventory.SetActive(isCraftingPanelOpened);
-
-        Cursor.lockState = isCraftingPanelOpened ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = isCraftingPanelOpened;
-
-        InventoryManager.Instance.playerCam.enabled = !isCraftingPanelOpened;
-
-        if(!isCraftingPanelOpened)
-        {
-            PutItemsBackInInventory();
-        }
-    }
-
-    private void PutItemsBackInInventory()
+    public void TryPutItemsBackInInventory()
     {
         foreach (InventorySlot slot in craftingSlots)
         {
@@ -205,5 +171,3 @@ public class CraftingManager : MonoBehaviour
         }
     }
 }
-//TODO
-// inventory & crafting panel opening fix

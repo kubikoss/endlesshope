@@ -39,7 +39,7 @@ public abstract class Item : MonoBehaviour
             {
                 InventoryManager.Instance.hotbarCount--;
                 inventoryItem.RemoveItemFromInventory();
-                InventoryManager.Instance.EquipFirstSlot();
+                InventoryManager.Instance.EquipHands();
                 Destroy(inventoryItem.gameObject);
                 Destroy(gameObject);
             }

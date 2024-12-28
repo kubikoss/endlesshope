@@ -19,7 +19,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (isOutputItem || item.ID == 1)
+        if (isOutputItem)
         {
             return;
         }
@@ -31,7 +31,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (isOutputItem || item.ID == 1)
+        if (isOutputItem)
         {
             return;
         }
@@ -40,7 +40,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (isOutputItem || item.ID == 1)
+        if (isOutputItem)
         {
             return;
         }
@@ -62,7 +62,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             }
             Destroy(item.gameObject);
             RemoveItemFromInventory();
-            InventoryManager.Instance.EquipFirstSlot();
+            InventoryManager.Instance.EquipHands();
         }
         else
         {
@@ -129,5 +129,3 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         return false;
     }
 }
-//TODO
-// edit splitting item

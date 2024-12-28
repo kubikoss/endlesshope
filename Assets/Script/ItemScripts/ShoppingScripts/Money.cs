@@ -21,16 +21,11 @@ public class Money : Item
         }
     }
 
-    public void AddCurrency()
+    private void AddCurrency()
     {
         PlayerCurrency.Instance.AddCurrency(moneyData.amount);
         Debug.Log(PlayerCurrency.Instance.currentCurrency);
         Destroy(gameObject);
-    }
-
-    public int GetCurrentAmount()
-    {
-        return moneyData.amount;
     }
 
     private int AmountProbability()

@@ -20,10 +20,8 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Item")]
     public Item currentItem;
-    public Hands hands;
 
-    [Header("Player")]
-    public Player player;
+    [Header("Camera")]
     public PlayerCam playerCam;
 
     private float fireTimer = 0f;
@@ -32,10 +30,8 @@ public class InventoryManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-        if (currentItem == null)
-            currentItem = hands;
 
-        AddItem(hands);
+        playerCam = PlayerManager.Instance.mainCamera;
     }
 
     private void Start()
@@ -46,13 +42,9 @@ public class InventoryManager : MonoBehaviour
     private void Update()
     {
         SwitchItem();
-        OpenInventory();
         HandleCurrentItem();
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            DropItem(currentItem);
-        }
+        OpenInventory();
+        DropItem(currentItem);
     }
 
     #region add/remove from inventory
@@ -116,32 +108,35 @@ public class InventoryManager : MonoBehaviour
         return -1; // Full inventory
     }
 
-    public void DropItem(Item itemToDrop)
+    private void DropItem(Item itemToDrop)
     {
-        if (!(itemToDrop is Hands) && itemToDrop != null)
+        if(Input.GetKeyDown(KeyCode.G))
         {
-            for (int i = 0; i < inventorySlots.Count; i++)
+            if (!(itemToDrop is Hands) && itemToDrop != null)
             {
-                InventoryItem itemInSlot = inventorySlots[i].GetComponentInChildren<InventoryItem>();
-
-                if (itemInSlot != null && itemInSlot.item == itemToDrop)
+                for (int i = 0; i < inventorySlots.Count; i++)
                 {
-                    if(itemInSlot.count == 1)
+                    InventoryItem itemInSlot = inventorySlots[i].GetComponentInChildren<InventoryItem>();
+
+                    if (itemInSlot != null && itemInSlot.item == itemToDrop)
                     {
-                        itemInSlot.RemoveItemFromInventory();
-                        itemToDrop.transform.SetParent(null);
-                        currentItem = null;
-                        EquipFirstSlot();
-                        hotbarCount--;
-                        DropItemRigidBody(itemToDrop);
-                    }
-                    else if(itemInSlot.count > 1)
-                    {
-                        Item itemToWorld = InstantiateItem(true, false, itemToDrop);
-                        currentItem = null;
-                        EquipItem(itemToDrop);
-                        itemInSlot.count--;
-                        itemInSlot.UpdateCount();
+                        if (itemInSlot.count == 1)
+                        {
+                            itemInSlot.RemoveItemFromInventory();
+                            itemToDrop.transform.SetParent(null);
+                            currentItem = null;
+                            EquipHands();
+                            hotbarCount--;
+                            DropItemRigidBody(itemToDrop);
+                        }
+                        else if (itemInSlot.count > 1)
+                        {
+                            Item itemToWorld = InstantiateItem(true, false, itemToDrop);
+                            currentItem = null;
+                            EquipItem(itemToDrop);
+                            itemInSlot.count--;
+                            itemInSlot.UpdateCount();
+                        }
                     }
                 }
             }
@@ -190,53 +185,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void HandleCurrentItem()
-    {
-        if (currentItem != null && !isInventoryOpened)
-        {
-            if (currentItem is Weapon weapon)
-            {
-                fireTimer += Time.deltaTime;
-
-                if (weapon.FiringMode == FiringMode.Automatic)
-                {
-                    if (Input.GetMouseButton(0) && fireTimer >= (1f / weapon.FireRate))
-                    {
-                        weapon.Shoot();
-                        fireTimer = 0f;
-                    }
-                }
-                else if (weapon.FiringMode == FiringMode.SemiAutomatic || weapon.FiringMode == FiringMode.Meelee)
-                {
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        weapon.Shoot();
-                    }
-                }
-
-                if (Input.GetKeyDown(KeyCode.R) && weapon != null && !(weapon is Hands) && !(weapon is Grenade))
-                {
-                    weapon.Reload();
-                }
-            }
-            else if (currentItem is Healable healingItem)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    healingItem.Use();
-                }
-            }
-            else if (currentItem is Food foodItem)
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    foodItem.Eat();
-                }
-            }
-        }
-    }
-
-    public void SwitchItem()
+    private void SwitchItem()
     {
         if(isDragging)
         {
@@ -245,7 +194,7 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = 0; i < 9; i++)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1 + i) && (!isInventoryOpened || !CraftingManager.Instance.isCraftingPanelOpened))
+            if (Input.GetKeyDown(KeyCode.Alpha1 + i) && !isInventoryOpened)
             {
                 EquipItemFromInventory(i);
                 ChangeSelectedSlot(i);
@@ -265,27 +214,18 @@ public class InventoryManager : MonoBehaviour
                 EquipItem(itemInSlot.item);
                 ChangeSelectedSlot(slotIndex);
             }
-        }
-    }
-
-    public void EquipFirstSlot()
-    {
-        for (int i = 0; i < inventorySlots.Count; i++)
-        {
-            InventoryItem itemInSlot = inventorySlots[i].GetComponentInChildren<InventoryItem>();
-
-            if (itemInSlot != null)
+            else
             {
-                EquipItem(itemInSlot.item);
-                ChangeSelectedSlot(i);
-                return;
+                EquipHands();
             }
         }
-        EquipItem(hands);
+        else
+        {
+            EquipHands();
+        }
     }
-    #endregion
-    #region ui/get method
-    public void ChangeSelectedSlot(int newSlot)
+
+    private void ChangeSelectedSlot(int newSlot)
     {
         int hotbarSlots = 9;
 
@@ -297,15 +237,115 @@ public class InventoryManager : MonoBehaviour
             inventorySlots[selectedSlot].Deselect();
         }
 
-        InventoryItem itemInSlot = inventorySlots[newSlot].GetComponentInChildren<InventoryItem>();
-        if(itemInSlot == null)
+        /*InventoryItem itemInSlot = inventorySlots[newSlot].GetComponentInChildren<InventoryItem>();
+        if (itemInSlot != null)
         {
-            EquipItem(hands);
+            EquipItem(itemInSlot.item);
         }
+        else
+        {
+            EquipHands();
+        }*/
         inventorySlots[newSlot].Select();
         selectedSlot = newSlot;
     }
 
+    public void EquipHands()
+    {
+        if (currentItem != null && currentItem.gameObject.activeSelf)
+        {
+            if (!(currentItem is Grenade grenade) || !grenade.IsBeingThrown)
+            {
+                currentItem.gameObject.SetActive(false);
+            }
+        }
+        currentItem = null;
+        Debug.Log("Equipped hands");
+    }
+    #endregion
+    #region handling current item
+    private void HandleCurrentItem()
+    {
+        if (!isInventoryOpened)
+        {
+            if (currentItem == null)
+            {
+                PlayerAttack.Instance.DefaultAttack();
+            }
+            else if (currentItem is Weapon weapon)
+            {
+                HandleWeapon(weapon);
+            }
+            else if (currentItem is Healable healable)
+            {
+                HandleHealable(healable);
+            }
+            else if (currentItem is Food food)
+            {
+                HandleFood(food);
+            }
+        }
+    }
+
+    /*private void HandleHands()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, 2f))
+            {
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    PlayerAttack.Instance.AttackEnemy(hit.collider.gameObject, null);
+                }
+            }
+            Debug.Log("attacking with hands");
+        }
+    }*/
+
+    private void HandleWeapon(Weapon weapon)
+    {
+        fireTimer += Time.deltaTime;
+
+        if (weapon.FiringMode == FiringMode.Automatic)
+        {
+            if (Input.GetMouseButton(0) && fireTimer >= (1f / weapon.FireRate))
+            {
+                weapon.Shoot();
+                fireTimer = 0f;
+            }
+        }
+        else if (weapon.FiringMode == FiringMode.SemiAutomatic)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                weapon.Shoot();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && weapon != null && !(weapon is Hands) && !(weapon is Grenade))
+        {
+            weapon.Reload();
+        }
+    }
+
+    private void HandleHealable(Healable healable)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            healable.Use();
+        }
+    }
+
+    private void HandleFood(Food food)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            food.Eat();
+        }
+    }
+    #endregion
+    #region ui/get method
     public void UpdateHotbar()
     {
         int temp = 0;
@@ -323,7 +363,7 @@ public class InventoryManager : MonoBehaviour
 
     private void OpenInventory()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKeyDown(KeyCode.Tab))
         {
             isInventoryOpened = !isInventoryOpened;
             fullInventory.SetActive(isInventoryOpened);
@@ -332,6 +372,11 @@ public class InventoryManager : MonoBehaviour
             Cursor.visible = isInventoryOpened;
 
             playerCam.enabled = !isInventoryOpened;
+
+            if (!isInventoryOpened)
+            {
+                CraftingManager.Instance.TryPutItemsBackInInventory();
+            }
         }
     }
 
@@ -370,22 +415,28 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-// TODO
 // inventory rework (99%)
-// crafting system (95%)
+// crafting system (97%)
 // shopping system (65%)
+// models (50%)
+// game-other (60%)
 
 //project TODO
-//null item = equip hands
-//inv panel fix 
-//splitting & stacking item finish
-//ammo 
-//shopping items
-//player ally (movement, attack, enemy detection <=>)
+
+//CODE TODO
+//splitting item finish - this week
+//item position fix & falling through map - after models
+//ammo - tmrw
+//shopping items - this week
+//player ally (movement, attack, enemy detection <=>) - this week
 //minimap
 //tutorial
+//chest
+
+//MODELS TODO
 //map & item models
 //vfx & sfx & animations & ui (menu,.., achievements)
-//chest
-//hunger & sleep bar
+//hunger & sleep bar - icons & fatigue effects + bed (60%) - tmrw
+//crafting recipes - after models
+
 //finished 70%

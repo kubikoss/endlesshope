@@ -39,36 +39,33 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             draggedItem.parentAfterDrag = transform;
             if (InventoryManager.Instance.currentItem == draggedItem.item)
             {
-                InventoryManager.Instance.EquipFirstSlot();
+                InventoryManager.Instance.EquipHands();
             }
         }
         else if (transform.childCount == 1)
         {
             InventoryItem itemInSlot = transform.GetChild(0).GetComponent<InventoryItem>();
 
-            if (draggedItem.item.ID != 1 && itemInSlot.item.ID != 1)
+            if(CanStackItem(draggedItem, itemInSlot))
             {
-                if(CanStackItem(draggedItem, itemInSlot))
-                {
-                    StackItem(draggedItem, itemInSlot);
-                }
-                else
-                {
-                    // Swap parents
-                    Transform originalParent = draggedItem.parentAfterDrag;
-                    draggedItem.parentAfterDrag = itemInSlot.transform.parent;
-                    itemInSlot.parentAfterDrag = originalParent;
+                StackItem(draggedItem, itemInSlot);
+            }
+            else
+            {
+                // Swap parents
+                Transform originalParent = draggedItem.parentAfterDrag;
+                draggedItem.parentAfterDrag = itemInSlot.transform.parent;
+                itemInSlot.parentAfterDrag = originalParent;
 
-                    // Change place in the inventory (parents)
-                    draggedItem.transform.SetParent(draggedItem.parentAfterDrag);
-                    itemInSlot.transform.SetParent(itemInSlot.parentAfterDrag);
+                // Change place in the inventory (parents)
+                draggedItem.transform.SetParent(draggedItem.parentAfterDrag);
+                itemInSlot.transform.SetParent(itemInSlot.parentAfterDrag);
 
-                    // Change place in the inventory (visual)
-                    draggedItem.transform.position = draggedItem.parentAfterDrag.position;
-                    itemInSlot.transform.position = itemInSlot.parentAfterDrag.position;
+                // Change place in the inventory (visual)
+                draggedItem.transform.position = draggedItem.parentAfterDrag.position;
+                itemInSlot.transform.position = itemInSlot.parentAfterDrag.position;
 
-                    SwapEquippedItem(draggedItem, itemInSlot);
-                }
+                SwapEquippedItem(draggedItem, itemInSlot);
             }
         }
     }
@@ -95,7 +92,8 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             draggedItem.transform.SetParent(draggedItem.parentAfterDrag);
             draggedItem.transform.position = draggedItem.parentAfterDrag.position;
         }
-        InventoryManager.Instance.EquipItem(stackingItem.item);
+
+        InventoryManager.Instance.isDragging = false;
     }
 
     private bool CanStackItem(InventoryItem draggedItem, InventoryItem stackingItem)

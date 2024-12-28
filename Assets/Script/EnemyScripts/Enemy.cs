@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
         isDead();
     }
 
-    public void isDead()
+    private void isDead()
     {
         if (hp <= 0)
         {

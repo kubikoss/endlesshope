@@ -26,6 +26,5 @@ public abstract class Weapon : Item
 public enum FiringMode
 {
     SemiAutomatic,
-    Automatic,
-    Meelee
+    Automatic
 }

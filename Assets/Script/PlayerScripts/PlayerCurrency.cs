@@ -21,12 +21,12 @@ public class PlayerCurrency : MonoBehaviour
             Instance = this;
     }
 
-    void Start()
+    private void Start()
     {
         InitializeCurrency();
     }
 
-    public void InitializeCurrency()
+    private void InitializeCurrency()
     {
         startCurrency = Mathf.Min(startCurrency, moneyItem.maxAmount);
         currentCurrency = startCurrency;

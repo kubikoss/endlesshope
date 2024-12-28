@@ -50,7 +50,7 @@ public class ChestInteraction : MonoBehaviour, IInteractable
         }
     }
 
-    public void AddToChest(int amount)
+    private void AddToChest(int amount)
     {
         for (int i = 0; i < amount; i++)
         {

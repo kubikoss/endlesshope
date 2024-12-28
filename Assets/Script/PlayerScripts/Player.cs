@@ -13,17 +13,26 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float hp = 100;
     [SerializeField]
-    public float hungerTime;
+    float hungerTime;
     private float currentHungerTime;
     [SerializeField]
-    private float hunger = 100;
+    float hungerDamageInterval;
+    private float currentDamageInterval;
     [SerializeField]
-    public float fatigueTime = 100;
+    float fatigueTime = 100;
     private float currentFatigue;
+
+    private bool canReduce = true;
 
     public Slider healthBar;
     public Slider hungerBar;
     public Slider fatigueBar;
+
+    private float originalBaseSpread;
+    private float originalMovingSpread;
+    private float originalMaxSpread;
+    private float originalSpeed;
+    private float originalDefaultDamage;
 
     private void Awake()
     {
@@ -34,10 +43,14 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentHungerTime = hungerTime;
-        hungerBar.value = hunger;
+        hungerBar.value = hungerTime;
+        currentDamageInterval = hungerDamageInterval;
         healthBar.value = hp;
         currentFatigue = fatigueTime;
         fatigueBar.value = fatigueTime;
+
+        originalSpeed = PlayerMovement.Instance.moveSpeed;
+        originalDefaultDamage = PlayerAttack.Instance.defaultDamage;
     }
 
     void Update()
@@ -58,7 +71,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void isDead()
+    private void isDead()
     {
         Scene activeScene = SceneManager.GetActiveScene();
         if (hp <= 0)
@@ -87,8 +100,7 @@ public class Player : MonoBehaviour
             {
                 Heal(foodItem.foodStat);
                 currentHungerTime = hungerTime;
-                hunger = currentHungerTime;
-                hungerBar.value = hunger;
+                hungerBar.value = hungerTime;
             }
             else
             {
@@ -99,22 +111,75 @@ public class Player : MonoBehaviour
 
     private void UpdateHungerTimer()
     {
-        currentHungerTime -= Time.deltaTime;
+        int damage = 10;
+        currentDamageInterval -= Time.deltaTime;
 
-        if (currentHungerTime <= 0)
+        if (currentHungerTime <= hungerTime / 2)
+            currentHungerTime -= Time.deltaTime * 2;
+        else
+            currentHungerTime -= Time.deltaTime;
+
+        if (currentHungerTime <= 0 && currentDamageInterval <= 0)
         {
-            TakeDamage(10);
-            currentHungerTime = hungerTime;
+            TakeDamage(damage);
+            currentDamageInterval = hungerDamageInterval;
         }
-        hunger = currentHungerTime;
-        hungerBar.value = hunger;
+
+        hungerBar.value = currentHungerTime;
     }
 
     private void UpdateFatigueTimer()
     {
         currentFatigue -= Time.deltaTime;
         fatigueBar.value = currentFatigue;
+
+        if (currentFatigue <= 0 && canReduce)
+        {
+            ApplyFatigue();
+            canReduce = false;
+        }
+        else if (currentFatigue > 0)
+        {
+            RevertFatigue();
+            canReduce = true;
+        }
+    }
+
+    public void Sleep()
+    {
+        currentFatigue = fatigueTime;
+        fatigueBar.value = currentFatigue;
+
+        //bed game object
+    }
+
+    private void ApplyFatigue()
+    {
+        if (InventoryManager.Instance.currentItem is AK47 ak)
+        {
+            originalBaseSpread = ak.baseSpread;
+            originalMovingSpread = ak.movingSpread;
+            originalMaxSpread = ak.maxSpread;
+
+            ak.baseSpread *= 2;
+            ak.movingSpread *= 2;
+            ak.maxSpread *= 2;
+        }
+
+        PlayerMovement.Instance.moveSpeed /= 2;
+        PlayerAttack.Instance.defaultDamage /= 2;
+    }
+
+    private void RevertFatigue()
+    {
+        if (InventoryManager.Instance.currentItem is AK47 ak)
+        {
+            ak.baseSpread = originalBaseSpread;
+            ak.movingSpread = originalMovingSpread;
+            ak.maxSpread = originalMaxSpread;
+        }
+
+        PlayerMovement.Instance.moveSpeed = originalSpeed;
+        PlayerAttack.Instance.defaultDamage = originalDefaultDamage;
     }
 }
-//TODO
-// sleep bar

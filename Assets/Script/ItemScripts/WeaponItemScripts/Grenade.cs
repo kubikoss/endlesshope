@@ -13,7 +13,6 @@ public class Grenade : Weapon
 
     private void Start()
     {
-        CurrentAmmo = 1;
         IsBeingThrown = false;
     }
 
@@ -29,29 +28,24 @@ public class Grenade : Weapon
 
     private bool ThrowGrenade()
     {
-        if (CurrentAmmo > 0)
-        {
-            CurrentAmmo--;
-            IsBeingThrown = true;
+        IsBeingThrown = true;
 
-            transform.SetParent(null);
+        transform.SetParent(null);
+        rb = gameObject.AddComponent<Rigidbody>();
+        gameObject.GetComponent<Collider>().isTrigger = false;
+        rb.AddForce(PlayerCamera.transform.forward * throwForce, ForceMode.Impulse);
 
-            rb = gameObject.AddComponent<Rigidbody>();
-            gameObject.GetComponent<Collider>().isTrigger = false;
-            rb.AddForce(PlayerCamera.transform.forward * throwForce, ForceMode.Impulse);
-
-            InventoryItem invItem = InventoryManager.Instance.GetInventoryItem(this);
-            invItem.RemoveItemFromInventory();
-            InventoryManager.Instance.EquipFirstSlot();
-            StartCoroutine(ExplodeGrenade(this));
-            return true;
-        }
-        return false;
+        InventoryItem invItem = InventoryManager.Instance.GetInventoryItem(this);
+        invItem.RemoveItemFromInventory();
+        InventoryManager.Instance.EquipHands();
+        StartCoroutine(ExplodeGrenade(this));
+        return true;
     }
+
 
     private IEnumerator ExplodeGrenade(Grenade grenade)
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
 
         Collider[] explosionColliders = Physics.OverlapSphere(grenade.transform.position, explodeRadius);
         foreach (var explosionCollider in explosionColliders)

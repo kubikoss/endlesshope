@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public static PlayerAttack Instance { get; private set; }
+    public float defaultDamage = 15f;
 
     private void Awake()
     {
@@ -23,6 +24,26 @@ public class PlayerAttack : MonoBehaviour
             {
                 enemyHealth.TakeDamage(weapon.Damage);
             }
+            else if(currentItem == null)
+            {
+                enemyHealth.TakeDamage(defaultDamage);
+            }
+        }
+    }
+
+    public void DefaultAttack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(PlayerManager.Instance.mainCamera.transform.position, PlayerManager.Instance.mainCamera.transform.forward, out hit, 2f))
+            {
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    AttackEnemy(hit.collider.gameObject, null);
+                }
+            }
+            Debug.Log("attacking with hands");
         }
     }
 }

@@ -13,7 +13,7 @@ public class EnemyMovement : MonoBehaviour
     NavMeshAgent agent;
     EnemyAttack enemyAttack;
 
-    void Start()
+    private void Start()
     {
         target = PlayerManager.Instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
@@ -22,7 +22,7 @@ public class EnemyMovement : MonoBehaviour
 
     }
 
-    void Update()
+    private void Update()
     {
         float distance = Vector3.Distance(target.position, transform.position);
 
@@ -52,7 +52,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    void FaceTarget()
+    private void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));

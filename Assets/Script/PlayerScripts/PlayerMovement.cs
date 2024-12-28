@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance {  get; private set; }
+
     [Header("Movement")]
     public float moveSpeed = 10f;
 
@@ -22,6 +24,12 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 moveDirection;
     public Rigidbody rb;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
 
     private void Start()
     {
