@@ -8,6 +8,7 @@ public class WeaponItem : BaseItem
     public int damage;
     public int fireRate;
     public int magazineSize;
+    public int fullAmmo;
     public int range;
     public float reloadSpeed;
     public FiringMode firingMode;

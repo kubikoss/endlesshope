@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject fullInventory;
     public bool isInventoryOpened = false;
     public bool isDragging = false;
-    int selectedSlot = -1;
+    [HideInInspector] public int selectedSlot = -1;
     [HideInInspector] public int hotbarCount = 0;
 
     [Header("Item")]
@@ -68,9 +68,7 @@ public class InventoryManager : MonoBehaviour
                     itemInSlot.count++;
                     itemInSlot.UpdateCount();
                     Destroy(item.gameObject);
-
-                    EquipItemFromInventory(i);
-                    return 2; // Item stacked
+                    return 2; // Item stacked and not equipped
                 }
             }
         }
@@ -120,6 +118,7 @@ public class InventoryManager : MonoBehaviour
 
                     if (itemInSlot != null && itemInSlot.item == itemToDrop)
                     {
+                        // Dropping single item
                         if (itemInSlot.count == 1)
                         {
                             itemInSlot.RemoveItemFromInventory();
@@ -129,6 +128,7 @@ public class InventoryManager : MonoBehaviour
                             hotbarCount--;
                             DropItemRigidBody(itemToDrop);
                         }
+                        // Dropping stacked item
                         else if (itemInSlot.count > 1)
                         {
                             Item itemToWorld = InstantiateItem(true, false, itemToDrop);
@@ -260,13 +260,12 @@ public class InventoryManager : MonoBehaviour
             }
         }
         currentItem = null;
-        Debug.Log("Equipped hands");
     }
     #endregion
     #region handling current item
     private void HandleCurrentItem()
     {
-        if (!isInventoryOpened)
+        if (!isInventoryOpened && !isDragging)
         {
             if (currentItem == null)
             {
@@ -286,22 +285,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
-
-    /*private void HandleHands()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, 2f))
-            {
-                if (hit.collider.CompareTag("Enemy"))
-                {
-                    PlayerAttack.Instance.AttackEnemy(hit.collider.gameObject, null);
-                }
-            }
-            Debug.Log("attacking with hands");
-        }
-    }*/
 
     private void HandleWeapon(Weapon weapon)
     {
@@ -363,7 +346,7 @@ public class InventoryManager : MonoBehaviour
 
     private void OpenInventory()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKeyDown(KeyCode.Tab) && !isDragging)
         {
             isInventoryOpened = !isInventoryOpened;
             fullInventory.SetActive(isInventoryOpened);
@@ -426,7 +409,7 @@ public class InventoryManager : MonoBehaviour
 //CODE TODO
 //splitting item finish - this week
 //item position fix & falling through map - after models
-//ammo - tmrw
+//ammo - tmrw - 90%
 //shopping items - this week
 //player ally (movement, attack, enemy detection <=>) - this week
 //minimap
@@ -436,7 +419,7 @@ public class InventoryManager : MonoBehaviour
 //MODELS TODO
 //map & item models
 //vfx & sfx & animations & ui (menu,.., achievements)
-//hunger & sleep bar - icons & fatigue effects + bed (60%) - tmrw
+//sleep bar fatigue effects & health bar icon - 85% + bed
 //crafting recipes - after models
 
 //finished 70%

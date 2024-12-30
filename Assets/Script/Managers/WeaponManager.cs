@@ -27,11 +27,10 @@ public class WeaponManager : MonoBehaviour
 
     private void UpdateAmmoText()
     {
-
-        if (currentItem is Weapon weapon)
+        if (currentItem is Weapon weapon && !(currentItem is Grenade))
         {
             ammoText.gameObject.SetActive(true);
-            ammoText.text = $"{weapon.CurrentAmmo}/{weapon.MagazineSize}";
+            ammoText.text = $"{weapon.CurrentAmmo}/{Weapon.ammoPools[weapon.name]}";
         }
         else
         {

@@ -9,18 +9,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if(CraftingManager.Instance.isCrafted)
-        {
-            PickupItem();
-        }
-        else
-        {
-            /*if (!InventoryManager.Instance.isInventoryOpened || !CraftingManager.Instance.isCraftingPanelOpened)
-            {
-                PickupItem();
-            }*/
-            PickupItem();
-        }
+        PickupItem();
     }
 
     private void PickupItem()
@@ -34,6 +23,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
                 item.name = Regex.Replace(item.name, @"\s*\(.*?\)", "").Trim();
 
                 SetItemPosition();
+                CheckForAmmo();
                 if (canAdd == 1)
                 {
                     InventoryManager.Instance.EquipItem(item);
@@ -55,5 +45,25 @@ public class ItemPickup : MonoBehaviour, IInteractable
         Transform itemHolder = GameObject.Find("ItemHolder").transform;
         item.transform.SetParent(itemHolder);
         item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
+        item.transform.localRotation = Quaternion.identity;
+    }
+
+    private void CheckForAmmo()
+    {
+        if(item is Weapon weapon && weapon.weaponData != null && !(weapon is Grenade))
+        {
+            int fullAmmo = weapon.weaponData.fullAmmo;
+            string weaponName = weapon.weaponData.name;
+
+            if (Weapon.collectedWeapons.Contains(item))
+                return;
+            
+            Weapon.collectedWeapons.Add(item);
+
+            if(Weapon.ammoPools.ContainsKey(weaponName))
+                Weapon.ammoPools[weaponName] += fullAmmo;
+            else
+                Weapon.ammoPools[weaponName] = fullAmmo;
+        }
     }
 }

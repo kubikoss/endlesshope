@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public static PlayerAttack Instance { get; private set; }
+
     public float defaultDamage = 15f;
 
     private void Awake()

@@ -15,8 +15,6 @@ public class CraftingManager : MonoBehaviour
     public InventorySlot outputSlot;
     public InventoryItem outputItem;
 
-    [HideInInspector] public bool isCrafted;
-
     private void Awake()
     {
         if (Instance == null)
@@ -29,14 +27,12 @@ public class CraftingManager : MonoBehaviour
     {
         if (invSlot != null)
         {
-            isCrafted = true;
             InventoryItem invItem = invSlot.GetComponentInChildren<InventoryItem>();
             if (invItem != null)
             {
                 Item itemToWorld = InventoryManager.Instance.InstantiateItem(false, true, invItem.item);
                 ClearCraftingSlots();
                 ClearOutputSlot();
-                isCrafted = false;
             }
         }
     }

@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: AK47
   ID: 3
-  itemIcon: {fileID: 21300000, guid: b3a67fc6bd9f6405ba5785b99c7d830a, type: 3}
-  maxStackCount: 1
+  itemIcon: {fileID: 21300000, guid: b21cf2f1082ebe94e86818cbcefed0e4, type: 3}
   isStackable: 0
+  maxStackCount: 1
   itemWorld: {fileID: 5332758825078760378, guid: 72e4166afaca5894491ab0a054169f6d, type: 3}
   damage: 35
-  fireRate: 10
+  fireRate: 8
   magazineSize: 30
-  range: 100
+  fullAmmo: 60
+  range: 80
   reloadSpeed: 2
   firingMode: 1
   canShoot: 1

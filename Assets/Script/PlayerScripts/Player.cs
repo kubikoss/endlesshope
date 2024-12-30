@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        isDead();
+        IsDead();
         UpdateHungerTimer();
         UpdateFatigueTimer();
     }
@@ -71,11 +71,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void isDead()
+    private void IsDead()
     {
         Scene activeScene = SceneManager.GetActiveScene();
         if (hp <= 0)
         {
+            Weapon.ammoPools.Clear();
+            Weapon.collectedWeapons.Clear();
             SceneManager.LoadScene(activeScene.name);
         }
     }
@@ -86,7 +88,7 @@ public class Player : MonoBehaviour
         healthBar.value -= amount;
         if (hp <= 0f)
         {
-            isDead();
+            IsDead();
         }
     }
 

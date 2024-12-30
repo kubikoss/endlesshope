@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 using UnityEngine.EventSystems;
@@ -14,20 +15,15 @@ public class AK47 : Weapon
     private void Start()
     {
         CurrentAmmo = MagazineSize;
+        InitializeAmmoPool(weaponData.name, weaponData.fullAmmo);
+
         if (playerMovement == null)
             playerMovement = GetComponentInParent<PlayerMovement>();
     }
 
-    private void Update()
-    {
-        //UpdateAmmoDisplay();
-    }
-
     public override void Shoot()
     {
-        var weaponItem = (WeaponItem)itemData;
-
-        if (CurrentAmmo > 0 && weaponItem.canShoot)
+        if (CurrentAmmo > 0 && weaponData.canShoot)
         {
             RaycastHit hit;
 
@@ -46,7 +42,6 @@ public class AK47 : Weapon
             }
             
             CurrentAmmo--;
-            Debug.Log(CurrentAmmo);
         }
     }
 
@@ -60,12 +55,28 @@ public class AK47 : Weapon
 
     private IEnumerator ReloadCoroutine()
     {
-        var weaponItem = (WeaponItem)itemData;
-        weaponItem.canShoot = false;
+        int neededAmmo = MagazineSize - CurrentAmmo;
+        string weaponName = weaponData.name;
+
+        if (Weapon.ammoPools[weaponName] <= 0)
+        {
+            yield break;
+        }
+
+        weaponData.canShoot = false;
 
         yield return new WaitForSeconds(ReloadSpeed);
 
-        CurrentAmmo = MagazineSize;
-        weaponItem.canShoot = true;
+        if (Weapon.ammoPools[weaponName] >= neededAmmo)
+        {
+            CurrentAmmo += neededAmmo;
+            Weapon.ammoPools[weaponName] -= neededAmmo;
+        }
+        else
+        {
+            CurrentAmmo += Weapon.ammoPools[weaponName];
+            Weapon.ammoPools[weaponName] = 0;
+        }
+        weaponData.canShoot = true;
     }
 }
