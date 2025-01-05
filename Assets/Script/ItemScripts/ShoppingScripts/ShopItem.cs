@@ -26,7 +26,7 @@ public class ShopItem : MonoBehaviour
         }
     }
 
-    private void TryBuyItem()
+    public void TryBuyItem()
     {
         if (PlayerCurrency.Instance.CanAfford(itemCost))
         {
@@ -42,7 +42,7 @@ public class ShopItem : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             EnableText();
-            canBuy = true;
+            //canBuy = true;
             costText.text = $"Press F to buy {item.ItemName.ToUpper()} for: " + itemCost.ToString() + " money.";
         }
     }
@@ -52,7 +52,7 @@ public class ShopItem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             DisableText();
-            canBuy = false;
+            //canBuy = false;
             costText.text = "";
         }
     }

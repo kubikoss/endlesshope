@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
             instantiatedParticles.gameObject.SetActive(true);
             instantiatedParticles.Play();
 
-            StartCoroutine(DestroyParticles(instantiatedParticles, 0.4f));
+            StartCoroutine(DestroyParticles(instantiatedParticles, 0.3f));
         }
     }
 

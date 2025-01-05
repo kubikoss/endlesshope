@@ -16,6 +16,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             StartCoroutine(PickupItem()); 
         }
+        CheckCollisionLook();
     }
 
     private IEnumerator PickupItem()
@@ -36,5 +37,20 @@ public class PlayerInteraction : MonoBehaviour
 
         yield return new WaitForSeconds(pickupCooldown);
         canPickup = true;
+    }
+
+    private void CheckCollisionLook()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionRange))
+        {
+            ShopItem shop = hit.collider.GetComponent<ShopItem>();
+            if (shop != null && Input.GetKeyDown(KeyCode.F))
+            {
+                shop.TryBuyItem();
+                Debug.Log(shop.GetComponent<Item>().ItemName);
+                //look range = text, triggger = no
+            }
+        }
     }
 }
