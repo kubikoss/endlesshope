@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 using UnityEngine.EventSystems;
+using static UnityEngine.ParticleSystem;
 
 public class AK47 : Weapon
 {
@@ -11,6 +12,8 @@ public class AK47 : Weapon
     public float movingSpread = 0.1f;
     public float maxSpread = 0.2f;
     public PlayerMovement playerMovement;
+    [SerializeField]
+    ParticleSystem particles;
 
     private void Start()
     {
@@ -18,25 +21,24 @@ public class AK47 : Weapon
         InitializeAmmoPool(weaponData.name, weaponData.fullAmmo);
 
         if (playerMovement == null)
-            playerMovement = GetComponentInParent<PlayerMovement>();
+            playerMovement = FindFirstObjectByType<PlayerMovement>();
     }
 
     public override void Shoot()
     {
         if (CurrentAmmo > 0 && weaponData.canShoot)
         {
+            
             RaycastHit hit;
 
             float playerSpeed = new Vector3(playerMovement.rb.velocity.x, 0f, playerMovement.rb.velocity.z).magnitude;
             float currentSpread = Mathf.Lerp(baseSpread, movingSpread, playerSpeed / playerMovement.moveSpeed);
 
             Vector3 spread = new Vector3(Random.Range(-currentSpread, currentSpread), Random.Range(-currentSpread, currentSpread), 0f);
+            Vector3 shootDirection = PlayerManager.Instance.mainCamera.transform.forward + spread;
 
-            Vector3 shootDirection = PlayerCamera.transform.forward + spread;
-
-            if (Physics.Raycast(PlayerCamera.transform.position, shootDirection, out hit, Range))
+            if (Physics.Raycast(PlayerManager.Instance.mainCamera.transform.position, shootDirection, out hit, Range))
             {
-
                 if (hit.collider.CompareTag("Enemy"))
                     PlayerAttack.Instance.AttackEnemy(hit.collider.gameObject, this);
             }

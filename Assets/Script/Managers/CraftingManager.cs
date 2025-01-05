@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class CraftingManager : MonoBehaviour
@@ -39,7 +40,7 @@ public class CraftingManager : MonoBehaviour
 
     public void CheckCraftingSlotsForRecipes()
     {
-        // item count check
+        // Item count check
         int itemCount = 0;
         foreach (InventorySlot slot in craftingSlots)
         {
@@ -57,13 +58,13 @@ public class CraftingManager : MonoBehaviour
             }
         }
 
-        // recipe pattern check
-        string recipe = GetCraftingPattern();
-        if(!string.IsNullOrEmpty(recipe))
+        // Recipe pattern check
+        string recipeCheck = GetCraftingPattern();
+        if(!string.IsNullOrEmpty(recipeCheck))
         {
             foreach(CraftingRecipes craftingRecipe in allRecipes)
             {
-                if(recipe == GetPatternFromRecipes(craftingRecipe))
+                if(recipeCheck == GetPatternFromRecipes(craftingRecipe))
                 {
                     SpawnCraftingItem(craftingRecipe.resultItem);
                     return;
@@ -151,7 +152,8 @@ public class CraftingManager : MonoBehaviour
     {
         foreach (InventorySlot slot in craftingSlots)
         {
-            if (slot.transform.childCount == 0) continue;
+            if (slot.transform.childCount == 0) 
+                continue;
 
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if (itemInSlot != null)

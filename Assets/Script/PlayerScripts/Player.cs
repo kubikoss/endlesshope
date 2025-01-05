@@ -101,18 +101,25 @@ public class Player : MonoBehaviour
             if (foodItem.isEatable)
             {
                 Heal(foodItem.foodStat);
-                currentHungerTime = hungerTime;
-                hungerBar.value = hungerTime;
+                currentHungerTime += foodItem.foodStat/4*3;
+                hungerBar.value = currentHungerTime;
             }
             else
             {
                 TakeDamage(foodItem.foodStat);
+                currentHungerTime += foodItem.foodStat/2;
+                hungerBar.value = currentHungerTime;
             }
+            if (currentHungerTime > hungerTime)
+                currentHungerTime = hungerTime;
         }
     }
 
     private void UpdateHungerTimer()
     {
+        if (currentHungerTime < 0)
+            currentHungerTime = 0;
+
         int damage = 10;
         currentDamageInterval -= Time.deltaTime;
 

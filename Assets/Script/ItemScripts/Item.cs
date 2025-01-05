@@ -13,20 +13,9 @@ public abstract class Item : MonoBehaviour
     public string ItemName => itemData.name;
     public int ID => itemData.ID;
     public Sprite ItemIcon => itemData.itemIcon;
-    private Camera playerCamera;
-    public Camera PlayerCamera
-    {
-        get { return playerCamera; }
-        set { playerCamera = value; }
-    }
     public int MaxStackCount => itemData.maxStackCount;
     public bool IsStackable => itemData.isStackable;
     public GameObject ItemWorld => itemData.itemWorld;
-
-    private void Awake()
-    {
-        playerCamera = Camera.main;
-    }
 
     public void UpdateInventoryItemCountOnUse()
     {

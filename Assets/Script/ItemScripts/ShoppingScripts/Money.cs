@@ -24,11 +24,10 @@ public class Money : Item
     private void AddCurrency()
     {
         PlayerCurrency.Instance.AddCurrency(moneyData.amount);
-        Debug.Log(PlayerCurrency.Instance.currentCurrency);
         Destroy(gameObject);
     }
 
-    private int AmountProbability()
+    public int AmountProbability()
     {
         float chance = Random.Range(0f, 1f);
 

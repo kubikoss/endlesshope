@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
@@ -16,6 +17,28 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public bool isSplitting = false;
     public GameObject imageBackGround;
     public bool isOutputItem = false;
+
+    public void DisplayItemInInventory(Item newItem, bool isOutput = false)
+    {
+        item = newItem;
+        image.sprite = newItem.ItemIcon;
+        isOutputItem = isOutput;
+        UpdateCount();
+    }
+
+    public void RemoveItemFromInventory()
+    {
+        item = null;
+        image.sprite = null;
+        Destroy(gameObject);
+    }
+
+    public void UpdateCount()
+    {
+        countText.text = count.ToString();
+        bool textActive = count > 1;
+        countText.gameObject.SetActive(textActive);
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -47,16 +70,52 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.raycastTarget = true;
         InventoryManager.Instance.isDragging = false;
 
-        if (!IsMouseInInventory())
+        CheckItemOutsideInventory();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if(eventData.button == PointerEventData.InputButton.Right && count > 1)
         {
-            if(count > 1)
+            int itemCount = 0;
+            foreach(InventorySlot slot in InventoryManager.Instance.inventorySlots)
+            {
+                if(slot.transform.childCount <= 0)
+                {
+                    itemCount++;  
+                }
+            }
+
+            if(itemCount > 0)
+            {
+                InventoryManager.Instance.splitting = true;
+                Item splitItem = Instantiate(item, Vector3.zero, Quaternion.identity);
+                splitItem.GetComponent<ItemPickup>().Interact();
+                count--;
+                UpdateCount();
+                InventoryManager.Instance.splitting = false;
+            }
+        }
+    }
+
+    private void CheckItemOutsideInventory()
+    {
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = Input.mousePosition
+        };
+
+        // Inventory item outside of slot, dropped => equipped hands
+        if (!IsMouseInInventory(pointerData))
+        {
+            if (count > 1)
             {
                 for (int i = 0; i < count; i++)
                 {
                     Item itemToWorld = InventoryManager.Instance.InstantiateItem(true, false, item);
                 }
             }
-            else if(count == 1)
+            else if (count == 1)
             {
                 Item itemToWorld = InventoryManager.Instance.InstantiateItem(true, false, item);
             }
@@ -64,6 +123,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             RemoveItemFromInventory();
             InventoryManager.Instance.EquipHands();
         }
+        // Inventory item put in slot
         else
         {
             transform.SetParent(parentAfterDrag);
@@ -72,50 +132,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private bool IsMouseInInventory(PointerEventData pointerData)
     {
-        /*if (Input.GetKey(KeyCode.LeftShift))
-        {
-            if (item != null && count > 1)
-            {
-                GameObject splitItem = Instantiate(item.ItemWorld, PlayerManager.Instance.player.transform.position, Quaternion.identity);
-                splitItem.GetComponent<ItemPickup>().SetItemPosition();
-                InventoryManager.Instance.AddItem(splitItem.GetComponent<Item>());
-                count--;
-                UpdateCount();
-            }
-        }*/
-    }
-
-    public void DisplayItemInInventory(Item newItem, bool isOutput = false)
-    {
-        item = newItem;
-        image.sprite = newItem.ItemIcon;
-        isOutputItem = isOutput;
-        UpdateCount();
-    }
-
-    public void RemoveItemFromInventory()
-    {
-        item = null;
-        image.sprite = null;
-        Destroy(gameObject);
-    }
-
-    public void UpdateCount()
-    {
-        countText.text = count.ToString();
-        bool textActive = count > 1;
-        countText.gameObject.SetActive(textActive);
-    }
-
-    private bool IsMouseInInventory()
-    {
-        PointerEventData pointerData = new PointerEventData(EventSystem.current)
-        {
-            position = Input.mousePosition
-        };
-
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(pointerData, results);
 

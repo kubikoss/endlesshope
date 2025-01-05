@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -44,7 +45,6 @@ public class PlayerAttack : MonoBehaviour
                     AttackEnemy(hit.collider.gameObject, null);
                 }
             }
-            Debug.Log("attacking with hands");
         }
     }
 }

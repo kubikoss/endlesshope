@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCurrency : MonoBehaviour
 {
     public static PlayerCurrency Instance { get; private set; }
 
     [SerializeField]
-    public InventoryItem currencyInventoryItem;
+    private Image image;
+    [SerializeField]
+    private TextMeshProUGUI moneyCount;
     [SerializeField]
     public MoneyItem moneyItem;
 
@@ -30,7 +34,7 @@ public class PlayerCurrency : MonoBehaviour
     {
         startCurrency = Mathf.Min(startCurrency, moneyItem.maxAmount);
         currentCurrency = startCurrency;
-        //UpdateInventoryCurrency();
+        UpdateInventoryCurrency();
     }
     
     public void AddCurrency(int amount)
@@ -43,7 +47,7 @@ public class PlayerCurrency : MonoBehaviour
         {
             currentCurrency = moneyItem.maxAmount;
         }
-        //UpdateInventoryCurrency();
+        UpdateInventoryCurrency();
     }
 
     public void SpendCurrency(int amount)
@@ -51,7 +55,7 @@ public class PlayerCurrency : MonoBehaviour
         if(CanAfford(amount))
         {
             currentCurrency -= amount;
-            //UpdateInventoryCurrency();
+            UpdateInventoryCurrency();
         }
     }
 
@@ -69,10 +73,8 @@ public class PlayerCurrency : MonoBehaviour
 
     private void UpdateInventoryCurrency()
     {
-        currencyInventoryItem.count = currentCurrency;
+        moneyCount.text = currentCurrency.ToString();
     }
 }
 //TODO
-// money inventory item
-// starting money
 // shopping system

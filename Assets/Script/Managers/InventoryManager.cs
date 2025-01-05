@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using Unity.VisualScripting;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class InventoryManager : MonoBehaviour
     public bool isDragging = false;
     [HideInInspector] public int selectedSlot = -1;
     [HideInInspector] public int hotbarCount = 0;
+    [HideInInspector] public bool splitting = false;
 
     [Header("Item")]
     public Item currentItem;
@@ -26,12 +28,19 @@ public class InventoryManager : MonoBehaviour
 
     private float fireTimer = 0f;
 
+    [SerializeField]
+    ParticleSystem particles;
+    private ParticleSystem instantiatedParticles;
+    [SerializeField]
+    Transform particlesPosition;
+
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
 
         playerCam = PlayerManager.Instance.mainCamera;
+        particlesPosition = GameObject.Find("ParticlesPosition").transform;
     }
 
     private void Start()
@@ -54,6 +63,10 @@ public class InventoryManager : MonoBehaviour
         {
             return -1;
         }
+        if(item.GetComponent<Grenade>() != null && item.GetComponent<Grenade>().IsBeingThrown)
+        {
+            return -1;
+        }
 
         // Stacking item
         for (int i = 0; i < inventorySlots.Count; i++)
@@ -61,7 +74,7 @@ public class InventoryManager : MonoBehaviour
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
 
-            if (itemInSlot != null && itemInSlot.item.ID == item.ID && itemInSlot.count < item.MaxStackCount)
+            if (itemInSlot != null && itemInSlot.item.ID == item.ID && itemInSlot.count < item.MaxStackCount && !splitting)
             {
                 if (itemInSlot.item.IsStackable && item.IsStackable)
                 {
@@ -237,15 +250,6 @@ public class InventoryManager : MonoBehaviour
             inventorySlots[selectedSlot].Deselect();
         }
 
-        /*InventoryItem itemInSlot = inventorySlots[newSlot].GetComponentInChildren<InventoryItem>();
-        if (itemInSlot != null)
-        {
-            EquipItem(itemInSlot.item);
-        }
-        else
-        {
-            EquipHands();
-        }*/
         inventorySlots[newSlot].Select();
         selectedSlot = newSlot;
     }
@@ -274,6 +278,7 @@ public class InventoryManager : MonoBehaviour
             else if (currentItem is Weapon weapon)
             {
                 HandleWeapon(weapon);
+                HandleWeaponReload(weapon);
             }
             else if (currentItem is Healable healable)
             {
@@ -294,6 +299,11 @@ public class InventoryManager : MonoBehaviour
         {
             if (Input.GetMouseButton(0) && fireTimer >= (1f / weapon.FireRate))
             {
+                instantiatedParticles = Instantiate(particles, particlesPosition.position, Quaternion.identity);
+                instantiatedParticles.transform.SetParent(particlesPosition, true); // Set parent to follow position
+                instantiatedParticles.gameObject.SetActive(true);
+                instantiatedParticles.Play();
+                StartCoroutine(DestroyParticles(instantiatedParticles, 0.2f));
                 weapon.Shoot();
                 fireTimer = 0f;
             }
@@ -302,10 +312,25 @@ public class InventoryManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                instantiatedParticles = Instantiate(particles, particlesPosition.position, Quaternion.identity);
+                instantiatedParticles.transform.SetParent(particlesPosition, true); // Set parent to follow position
+                instantiatedParticles.gameObject.SetActive(true);
+                instantiatedParticles.Play();
+                StartCoroutine(DestroyParticles(instantiatedParticles, 0.2f));
                 weapon.Shoot();
             }
         }
+    }
 
+    private IEnumerator DestroyParticles(ParticleSystem instantiatedParticles, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Destroy(instantiatedParticles.gameObject);
+    }
+
+    private void HandleWeaponReload(Weapon weapon)
+    {
         if (Input.GetKeyDown(KeyCode.R) && weapon != null && !(weapon is Hands) && !(weapon is Grenade))
         {
             weapon.Reload();
@@ -398,28 +423,30 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-// inventory rework (99%)
+// inventory rework (99,9%)
 // crafting system (97%)
-// shopping system (65%)
-// models (50%)
-// game-other (60%)
+// shopping system (85%)
+// models (60%)  
+// game-other (75%)
 
 //project TODO
 
 //CODE TODO
-//splitting item finish - this week
 //item position fix & falling through map - after models
-//ammo - tmrw - 90%
-//shopping items - this week
 //player ally (movement, attack, enemy detection <=>) - this week
-//minimap
-//tutorial
-//chest
+//minimap->
+//tutorial-> 1 day
+//chest->
 
 //MODELS TODO
-//map & item models
+//map & item models - town 90%, farm, airport + military, graveyard, port,
+//croissant, coconut, painkillers, sweet drinks, extractor
 //vfx & sfx & animations & ui (menu,.., achievements)
-//sleep bar fatigue effects & health bar icon - 85% + bed
+//sleep bar fatigue effects + bed
 //crafting recipes - after models
 
-//finished 70%
+//icons coconut, croissant, painkillers, water, milk, sweet drink, extractor
+
+//finished 75%
+
+//shopitem triggering fix

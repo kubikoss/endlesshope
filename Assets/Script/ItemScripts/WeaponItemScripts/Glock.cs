@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class Glock : Weapon
 {
+    public float baseSpread = 0.02f;
+    public float movingSpread = 0.1f;
+    public float maxSpread = 0.2f;
+    public PlayerMovement playerMovement;
+
     private void Start()
     {
         CurrentAmmo = MagazineSize;
         InitializeAmmoPool(weaponData.name, weaponData.fullAmmo);
+
+        if (playerMovement == null)
+            playerMovement = FindFirstObjectByType<PlayerMovement>();
     }
 
     public override void Shoot()
@@ -16,15 +24,18 @@ public class Glock : Weapon
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(PlayerCamera.transform.position, PlayerCamera.transform.forward, out hit, Range))
+            float playerSpeed = new Vector3(playerMovement.rb.velocity.x, 0f, playerMovement.rb.velocity.z).magnitude;
+            float currentSpread = Mathf.Lerp(baseSpread, movingSpread, playerSpeed / playerMovement.moveSpeed);
+
+            Vector3 spread = new Vector3(Random.Range(-currentSpread, currentSpread), Random.Range(-currentSpread, currentSpread), 0f);
+            Vector3 shootDirection = PlayerManager.Instance.mainCamera.transform.forward + spread;
+
+            if (Physics.Raycast(PlayerManager.Instance.mainCamera.transform.position, shootDirection, out hit, Range))
             {
                 if (hit.collider.CompareTag("Enemy"))
                     PlayerAttack.Instance.AttackEnemy(hit.collider.gameObject, this);
-                else
-                    Debug.Log(hit.collider);
             }
             CurrentAmmo--;
-            Debug.Log(CurrentAmmo);
         }
     }
 

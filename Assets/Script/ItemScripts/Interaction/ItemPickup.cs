@@ -45,7 +45,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
         Transform itemHolder = GameObject.Find("ItemHolder").transform;
         item.transform.SetParent(itemHolder);
         item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
-        item.transform.localRotation = Quaternion.identity;
+        //item.transform.localRotation = Quaternion.identity;
     }
 
     private void CheckForAmmo()
@@ -58,9 +58,9 @@ public class ItemPickup : MonoBehaviour, IInteractable
             if (Weapon.collectedWeapons.Contains(item))
                 return;
             
-            Weapon.collectedWeapons.Add(item);
+            //Weapon.collectedWeapons.Add(item);
 
-            if(Weapon.ammoPools.ContainsKey(weaponName))
+            if (Weapon.ammoPools.ContainsKey(weaponName))
                 Weapon.ammoPools[weaponName] += fullAmmo;
             else
                 Weapon.ammoPools[weaponName] = fullAmmo;

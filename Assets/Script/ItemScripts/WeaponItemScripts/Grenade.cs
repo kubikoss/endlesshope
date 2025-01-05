@@ -26,14 +26,14 @@ public class Grenade : Weapon
 
     }
 
-    private bool ThrowGrenade()
+    public bool ThrowGrenade()
     {
         IsBeingThrown = true;
 
         transform.SetParent(null);
         rb = gameObject.AddComponent<Rigidbody>();
         gameObject.GetComponent<Collider>().isTrigger = false;
-        rb.AddForce(PlayerCamera.transform.forward * throwForce, ForceMode.Impulse);
+        rb.AddForce(PlayerManager.Instance.mainCamera.transform.forward * throwForce, ForceMode.Impulse);
 
         InventoryItem invItem = InventoryManager.Instance.GetInventoryItem(this);
         invItem.RemoveItemFromInventory();
