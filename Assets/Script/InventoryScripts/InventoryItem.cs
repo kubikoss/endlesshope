@@ -71,6 +71,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         InventoryManager.Instance.isDragging = false;
 
         CheckItemOutsideInventory();
+        CraftingManager.Instance.CheckCraftingSlotsForRecipes();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -94,6 +95,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 count--;
                 UpdateCount();
                 InventoryManager.Instance.splitting = false;
+                CraftingManager.Instance.CheckCraftingSlotsForRecipes();
             }
         }
     }
@@ -128,7 +130,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             transform.SetParent(parentAfterDrag);
             InventoryManager.Instance.UpdateHotbar();
-            CraftingManager.Instance.CheckCraftingSlotsForRecipes();
         }
     }
 

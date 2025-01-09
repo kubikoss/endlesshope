@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 243b14d5cf7a912418327c7c6862e2f1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.07625746
+      value: 0.1063242
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 243b14d5cf7a912418327c7c6862e2f1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.07625746
+      value: 0.1063242
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 243b14d5cf7a912418327c7c6862e2f1, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.07625746
+      value: 0.1063242
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 243b14d5cf7a912418327c7c6862e2f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -60,9 +60,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 243b14d5cf7a912418327c7c6862e2f1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 243b14d5cf7a912418327c7c6862e2f1, type: 3}
       propertyPath: m_Name
       value: Item_MilkRed
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 243b14d5cf7a912418327c7c6862e2f1, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6824746026288583490, guid: 243b14d5cf7a912418327c7c6862e2f1, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -102,8 +114,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.0941143, y: 6.2704854, z: 2.0425987}
+  m_Center: {x: -0.022706905, y: 2.0737877, z: -0.004669112}
 --- !u!114 &6016815324941518194
 MonoBehaviour:
   m_ObjectHideFlags: 0

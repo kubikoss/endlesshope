@@ -23,6 +23,6 @@ MonoBehaviour:
   magazineSize: 12
   fullAmmo: 24
   range: 40
-  reloadSpeed: 1.2
+  reloadSpeed: 0.9
   firingMode: 0
   canShoot: 1

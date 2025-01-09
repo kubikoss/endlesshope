@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: WaterBottle
   ID: 24
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 098d1ce0876b98d4a8f98451be7d85b0, type: 3}
   isStackable: 1
   maxStackCount: 10
   itemWorld: {fileID: 475834276611930234, guid: ab8cc893567cf1a40b60921c5bdf4e40, type: 3}

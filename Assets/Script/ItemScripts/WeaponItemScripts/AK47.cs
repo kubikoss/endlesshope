@@ -18,7 +18,7 @@ public class AK47 : Weapon
     private void Start()
     {
         CurrentAmmo = MagazineSize;
-        InitializeAmmoPool(weaponData.name, weaponData.fullAmmo);
+        InitializeAmmoPool(weaponData.firingMode, weaponData.fullAmmo);
 
         if (playerMovement == null)
             playerMovement = FindFirstObjectByType<PlayerMovement>();
@@ -58,9 +58,9 @@ public class AK47 : Weapon
     private IEnumerator ReloadCoroutine()
     {
         int neededAmmo = MagazineSize - CurrentAmmo;
-        string weaponName = weaponData.name;
+        FiringMode firingMode = weaponData.firingMode;
 
-        if (Weapon.ammoPools[weaponName] <= 0)
+        if (Weapon.ammoPools[firingMode] <= 0)
         {
             yield break;
         }
@@ -69,15 +69,15 @@ public class AK47 : Weapon
 
         yield return new WaitForSeconds(ReloadSpeed);
 
-        if (Weapon.ammoPools[weaponName] >= neededAmmo)
+        if (Weapon.ammoPools[firingMode] >= neededAmmo)
         {
             CurrentAmmo += neededAmmo;
-            Weapon.ammoPools[weaponName] -= neededAmmo;
+            Weapon.ammoPools[firingMode] -= neededAmmo;
         }
         else
         {
-            CurrentAmmo += Weapon.ammoPools[weaponName];
-            Weapon.ammoPools[weaponName] = 0;
+            CurrentAmmo += Weapon.ammoPools[firingMode];
+            Weapon.ammoPools[firingMode] = 0;
         }
         weaponData.canShoot = true;
     }

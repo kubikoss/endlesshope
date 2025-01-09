@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4455782808536057523}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6561667098233389763}
   - component: {fileID: 7728432653491594841}
   - component: {fileID: 218344873271683832}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 2463159393213650636}
   - component: {fileID: 2236463496995469951}
   - component: {fileID: 6215602810016997664}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   hungerTime: 0
-  playerHealthText: {fileID: 0}
+  hungerDamageInterval: 0
+  fatigueTime: 100
+  healthBar: {fileID: 0}
+  hungerBar: {fileID: 0}
+  fatigueBar: {fileID: 0}
 --- !u!114 &2463159393213650636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,8 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7649e851c55aa4da96c5c5c0009d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentItem: {fileID: 0}
-  hands: {fileID: 7574625976508586866}
+  defaultDamage: 15
 --- !u!114 &6215602810016997664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,6 +403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hands
       objectReference: {fileID: 0}
+    - target: {fileID: 3628001355650765280, guid: 613a48348a63b9e4e9872580b93169e5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -410,14 +417,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2659464166789208293, guid: 613a48348a63b9e4e9872580b93169e5, type: 3}
   m_PrefabInstance: {fileID: 2850348862830858117}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7574625976508586866 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5661028037970711799, guid: 613a48348a63b9e4e9872580b93169e5, type: 3}
-  m_PrefabInstance: {fileID: 2850348862830858117}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b550f89c4bb44fa43b02d36a0edfe67b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

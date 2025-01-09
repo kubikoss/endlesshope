@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23fc4e6051d691e4f97a10c0f9fcafd2, type: 3}
   m_Name: AK47
   m_EditorClassIdentifier: 
-  itemName: AssaultRifle
+  itemName: AK47
   ID: 2
   itemIcon: {fileID: 21300000, guid: 7978304c1923a50449b290d18e2bab7f, type: 3}
   isStackable: 0
   maxStackCount: 1
   itemWorld: {fileID: 6318301674177526126, guid: c2f7cffdeac232b4888d6c3a507a021d, type: 3}
   damage: 35
-  fireRate: 8
+  fireRate: 9
   magazineSize: 30
   fullAmmo: 60
   range: 80
-  reloadSpeed: 2
+  reloadSpeed: 1.4
   firingMode: 1
   canShoot: 1

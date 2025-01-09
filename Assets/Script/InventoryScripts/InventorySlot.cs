@@ -54,6 +54,7 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             if(CanStackItem(draggedItem, itemInSlot))
             {
                 StackItem(draggedItem, itemInSlot);
+                CraftingManager.Instance.CheckCraftingSlotsForRecipes();
             }
             else
             {
@@ -144,6 +145,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler
 
     private bool CanStackItem(InventoryItem draggedItem, InventoryItem stackingItem)
     {
+        /*if (stackingItem.transform.parent.CompareTag("CraftingSlot"))
+        {
+            return false;
+        }*/
+
         return draggedItem.item.ID == stackingItem.item.ID &&
                stackingItem.count < stackingItem.item.MaxStackCount &&
                draggedItem.item.IsStackable &&

@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: be692b1c0f968c144913b603cb5ae1ee, type: 3}
       propertyPath: m_LocalScale.x
-      value: 7.8917556
+      value: 9.844965
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be692b1c0f968c144913b603cb5ae1ee, type: 3}
       propertyPath: m_LocalScale.y
-      value: 7.8917556
+      value: 9.844965
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be692b1c0f968c144913b603cb5ae1ee, type: 3}
       propertyPath: m_LocalScale.z
-      value: 7.8917556
+      value: 9.844965
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be692b1c0f968c144913b603cb5ae1ee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26,11 +26,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be692b1c0f968c144913b603cb5ae1ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.0526
+      value: 2.0091
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be692b1c0f968c144913b603cb5ae1ee, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.010248
+      value: -0.010031
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: be692b1c0f968c144913b603cb5ae1ee, type: 3}
       propertyPath: m_LocalRotation.w
@@ -63,6 +63,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: be692b1c0f968c144913b603cb5ae1ee, type: 3}
       propertyPath: m_Name
       value: Item_WaterBottle
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: be692b1c0f968c144913b603cb5ae1ee, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

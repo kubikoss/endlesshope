@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Item_Chicken
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bd5a523754291bd448f380a90440e6fa, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

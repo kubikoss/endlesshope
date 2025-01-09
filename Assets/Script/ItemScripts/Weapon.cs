@@ -8,8 +8,8 @@ public abstract class Weapon : Item
 {
     public WeaponItem weaponData;
 
-    // ammo pools
-    public static Dictionary<string, int> ammoPools = new Dictionary<string, int>();
+    // Ammo pools
+    public static Dictionary<FiringMode, int> ammoPools = new Dictionary<FiringMode, int>();
     public static HashSet<Item> collectedWeapons = new HashSet<Item>();
 
     public virtual int Damage => weaponData.damage;
@@ -25,12 +25,13 @@ public abstract class Weapon : Item
         protected set { currentAmmo = value; }
     }
 
-    protected void InitializeAmmoPool(string weaponName, int fullAmmo)
+    protected void InitializeAmmoPool(FiringMode firingmode, int fullAmmo)
     {
-        if(!ammoPools.ContainsKey(weaponName))
+        if(!ammoPools.ContainsKey(firingmode))
         {
-            ammoPools[weaponName] = fullAmmo;
+            ammoPools[firingmode] = fullAmmo;
         }
+        weaponData.canShoot = true;
     }
 
     public abstract void Shoot();

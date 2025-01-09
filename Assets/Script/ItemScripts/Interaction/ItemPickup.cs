@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UnityEditor;
 using UnityEngine;
 
 public class ItemPickup : MonoBehaviour, IInteractable
@@ -43,9 +44,20 @@ public class ItemPickup : MonoBehaviour, IInteractable
     private void SetItemPosition()
     {
         Transform itemHolder = GameObject.Find("ItemHolder").transform;
-        item.transform.SetParent(itemHolder);
-        item.transform.localPosition = new Vector3(0.58f, -0.14f, 0.682f);
-        //item.transform.localRotation = Quaternion.identity;
+        item.transform.SetParent(itemHolder, true);
+        item.transform.localPosition = Vector3.zero;
+        item.transform.localRotation = Quaternion.identity;
+
+        if (item.GetComponent<Rigidbody>() != null)
+        {
+            Rigidbody rb = item.GetComponent<Rigidbody>();
+            Destroy(rb);
+        }
+        if(item.GetComponent<Collider>() != null)
+        {
+            Collider cd = item.GetComponent<Collider>();
+            cd.isTrigger = true;
+        }
     }
 
     private void CheckForAmmo()
@@ -53,17 +65,17 @@ public class ItemPickup : MonoBehaviour, IInteractable
         if(item is Weapon weapon && weapon.weaponData != null && !(weapon is Grenade))
         {
             int fullAmmo = weapon.weaponData.fullAmmo;
-            string weaponName = weapon.weaponData.name;
+            FiringMode firingMode = weapon.weaponData.firingMode;
 
             if (Weapon.collectedWeapons.Contains(item))
                 return;
             
-            //Weapon.collectedWeapons.Add(item);
+            Weapon.collectedWeapons.Add(item);
 
-            if (Weapon.ammoPools.ContainsKey(weaponName))
-                Weapon.ammoPools[weaponName] += fullAmmo;
+            if (Weapon.ammoPools.ContainsKey(firingMode))
+                Weapon.ammoPools[firingMode] += fullAmmo;
             else
-                Weapon.ammoPools[weaponName] = fullAmmo;
+                Weapon.ammoPools[firingMode] = fullAmmo;
         }
     }
 }

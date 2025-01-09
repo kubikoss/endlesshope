@@ -60,9 +60,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 39a0d9dbe1d00cb488957ee39f6a68e2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 39a0d9dbe1d00cb488957ee39f6a68e2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 39a0d9dbe1d00cb488957ee39f6a68e2, type: 3}
       propertyPath: m_Name
       value: Item_Medkit
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 39a0d9dbe1d00cb488957ee39f6a68e2, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

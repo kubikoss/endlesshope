@@ -100,9 +100,16 @@ public class Player : MonoBehaviour
 
             if (foodItem.isEatable)
             {
-                Heal(foodItem.foodStat);
-                currentHungerTime += foodItem.foodStat/4*3;
-                hungerBar.value = currentHungerTime;
+                if(foodItem.itemName == "Painkillers")
+                {
+                    currentFatigue += foodItem.foodStat;
+                }
+                else
+                {
+                    Heal(foodItem.foodStat);
+                    currentHungerTime += foodItem.foodStat / 4 * 3;
+                    hungerBar.value = currentHungerTime;
+                }
             }
             else
             {
@@ -152,6 +159,8 @@ public class Player : MonoBehaviour
             RevertFatigue();
             canReduce = true;
         }
+        if(currentFatigue > fatigueTime)
+        currentFatigue = fatigueTime;
     }
 
     public void Sleep()

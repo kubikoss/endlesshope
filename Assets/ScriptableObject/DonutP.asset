@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4712d5cafea12ff42855e57c0b696649, type: 3}
   m_Name: DonutP
   m_EditorClassIdentifier: 
-  itemName: Donut
+  itemName: DonutP
   ID: 11
   itemIcon: {fileID: 21300000, guid: b27de2954063704409c13cb53b5aed83, type: 3}
   isStackable: 1

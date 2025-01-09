@@ -39,11 +39,11 @@ public class WeaponManager : MonoBehaviour
             ammoText.gameObject.SetActive(true);
             if(weapon is AK47)
             {
-                ammoText.text = $"{weapon.CurrentAmmo}/{Weapon.ammoPools[weapon.GetComponent<AK47>().weaponData.name]}";
+                ammoText.text = $"{weapon.CurrentAmmo}/{Weapon.ammoPools[weapon.GetComponent<AK47>().weaponData.firingMode]}";
             }
             else if(weapon is Glock)
             {
-                ammoText.text = $"{weapon.CurrentAmmo}/{Weapon.ammoPools[weapon.GetComponent<Glock>().weaponData.name]}";
+                ammoText.text = $"{weapon.CurrentAmmo}/{Weapon.ammoPools[weapon.GetComponent<Glock>().weaponData.firingMode]}";
             }
         }
         else
@@ -56,8 +56,8 @@ public class WeaponManager : MonoBehaviour
     {
         if(InventoryManager.Instance.isInventoryOpened)
         {
-            int ak47ammo = Weapon.ammoPools.ContainsKey("AK47") ? Weapon.ammoPools["AK47"] : 0;
-            int glockAmmo = Weapon.ammoPools.ContainsKey("Glock") ? Weapon.ammoPools["Glock"] : 0;
+            int ak47ammo = Weapon.ammoPools.ContainsKey(FiringMode.Automatic) ? Weapon.ammoPools[FiringMode.Automatic] : 0;
+            int glockAmmo = Weapon.ammoPools.ContainsKey(FiringMode.SemiAutomatic) ? Weapon.ammoPools[FiringMode.SemiAutomatic] : 0;
             fullAmmoText.text = $"AK47 ammo: {ak47ammo} Glock Ammo: {glockAmmo}";
             fullAmmoText.gameObject.SetActive(true);
         }

@@ -50,8 +50,9 @@ public class CraftingManager : MonoBehaviour
                 if (itemInSlot != null)
                 {
                     itemCount = itemInSlot.count;
-                    if (itemCount != 1)
+                    if (itemCount > 1)
                     {
+                        ClearOutputSlot();
                         return;
                     }
                 }

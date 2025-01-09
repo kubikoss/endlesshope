@@ -22,18 +22,19 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Item")]
     public Item currentItem;
+    private float fireTimer = 0f;
 
     [Header("Camera")]
     public PlayerCam playerCam;
 
-    private float fireTimer = 0f;
-
+    [Header("Particles")]
     [SerializeField]
     ParticleSystem particles;
     private ParticleSystem instantiatedParticles;
     [SerializeField]
     Transform particlesPosition;
 
+   
     private void Awake()
     {
         if (Instance == null)
@@ -167,6 +168,10 @@ public class InventoryManager : MonoBehaviour
             Rigidbody rb = item.AddComponent<Rigidbody>();
             rb.AddForce(cameraForward * 5f, ForceMode.Impulse);
         }
+        if(item.GetComponent<Collider>() != null)
+        {
+            item.GetComponent<Collider>().isTrigger = false;
+        }
     }
 
     private void SpawnToInventory(Item item, InventorySlot slot)
@@ -282,7 +287,8 @@ public class InventoryManager : MonoBehaviour
             }
             else if (currentItem is Healable healable)
             {
-                HandleHealable(healable);
+                if (Player.Instance.hp < 100)
+                    HandleHealable(healable);
             }
             else if (currentItem is Food food)
             {
@@ -326,13 +332,6 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private IEnumerator DestroyParticles(ParticleSystem instantiatedParticles, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        Destroy(instantiatedParticles.gameObject);
-    }
-
     private void HandleWeaponReload(Weapon weapon)
     {
         if (Input.GetKeyDown(KeyCode.R) && weapon != null && !(weapon is Hands) && !(weapon is Grenade))
@@ -355,6 +354,13 @@ public class InventoryManager : MonoBehaviour
         {
             food.Eat();
         }
+    }
+
+    private IEnumerator DestroyParticles(ParticleSystem instantiatedParticles, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Destroy(instantiatedParticles.gameObject);
     }
     #endregion
     #region ui/get method
@@ -389,6 +395,7 @@ public class InventoryManager : MonoBehaviour
             {
                 CraftingManager.Instance.TryPutItemsBackInInventory();
             }
+            CraftingManager.Instance.CheckCraftingSlotsForRecipes();
         }
     }
 
@@ -428,29 +435,28 @@ public class InventoryManager : MonoBehaviour
     #endregion
 }
 // inventory rework (99,9%)
-// crafting system (97%)
-// shopping system (85%)
-// models (60%)  
-// game-other (75%)
+// crafting system (98%)
+// shopping system (90%)
+// models (65%)  
+// game-other (78%)
 
 //project TODO
 
 //CODE TODO
-//item position fix & falling through map - after models
 //player ally (movement, attack, enemy detection <=>) - this week
 //minimap->
 //tutorial-> 1 day
 //chest->
+//shopitem rework - this week
 
 //MODELS TODO
-//map & item models - town 90%, farm, airport + military, graveyard, port,
-//croissant, coconut, painkillers, sweet drinks, extractor
-//vfx & sfx & animations & ui (menu,.., achievements)
-//sleep bar fatigue effects + bed
+//map & item models - town 90%, farm, airport + military, graveyard, port (extractor)
+//resources - bag of sand, metal piece, glass, wood, plastic, cork, rubber, bed, chest
+//vfx & sfx & animations & ui (menu,.., achievements) (animations this week)
+
+//OTHER TODO
+//sleep bar fatigue effects
 //crafting recipes - after models
+//fix item rotation -> this week
 
-//icons coconut, croissant, painkillers, water, milk, sweet drink, extractor
-
-//finished 75%
-
-//shopitem triggering fix
+//finished 77%

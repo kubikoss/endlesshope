@@ -60,9 +60,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1018664272722485354, guid: b962f63c28d7c9e4f959e01f0a857972, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -391268320553695201, guid: b962f63c28d7c9e4f959e01f0a857972, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b962f63c28d7c9e4f959e01f0a857972, type: 3}
       propertyPath: m_Name
       value: Item_Grenade
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b962f63c28d7c9e4f959e01f0a857972, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
