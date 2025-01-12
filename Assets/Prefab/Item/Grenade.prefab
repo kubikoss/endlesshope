@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: ee259e34662c5e446980a42a9f7ec103, type: 2}
-  ammoText: {fileID: 0}
   weaponData: {fileID: 11400000, guid: ee259e34662c5e446980a42a9f7ec103, type: 2}
+  throwableItem: {fileID: 11400000, guid: ee259e34662c5e446980a42a9f7ec103, type: 2}
 --- !u!114 &496304678338771593
 MonoBehaviour:
   m_ObjectHideFlags: 0

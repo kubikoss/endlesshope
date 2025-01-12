@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Grenade : Weapon
 {
-    public int throwForce => ((ThrowableItem)itemData).throwForce;
-    private int explodeRadius => ((ThrowableItem)itemData).explodeRadius;
+    public ThrowableItem throwableItem;
+    public int ThrowForce => throwableItem.throwForce;
+    private int ExplodeRadius => throwableItem.explodeRadius;
     public bool IsBeingThrown { get; private set; }
 
     Rigidbody rb;
@@ -33,7 +34,7 @@ public class Grenade : Weapon
         transform.SetParent(null);
         rb = gameObject.AddComponent<Rigidbody>();
         gameObject.GetComponent<Collider>().isTrigger = false;
-        rb.AddForce(PlayerManager.Instance.mainCamera.transform.forward * throwForce, ForceMode.Impulse);
+        rb.AddForce(PlayerManager.Instance.mainCamera.transform.forward * ThrowForce, ForceMode.Impulse);
 
         InventoryItem invItem = InventoryManager.Instance.GetInventoryItem(this);
         invItem.RemoveItemFromInventory();
@@ -47,7 +48,7 @@ public class Grenade : Weapon
     {
         yield return new WaitForSeconds(3f);
 
-        Collider[] explosionColliders = Physics.OverlapSphere(grenade.transform.position, explodeRadius);
+        Collider[] explosionColliders = Physics.OverlapSphere(grenade.transform.position, ExplodeRadius);
         foreach (var explosionCollider in explosionColliders)
         {
             Enemy enemy = explosionCollider.GetComponent<Enemy>();
@@ -67,6 +68,6 @@ public class Grenade : Weapon
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, explodeRadius);
+        Gizmos.DrawSphere(transform.position, ExplodeRadius);
     }
 }
