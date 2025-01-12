@@ -6,9 +6,10 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField]
-    public float lookRadius = 10f;
+    private float lookRadius = 10f;
     [SerializeField]
-    public float attackRadius = 2f;
+    private float attackRadius = 2f;
+    private bool hasSeen;
     Transform target;
     NavMeshAgent agent;
     EnemyAttack enemyAttack;
@@ -19,35 +20,34 @@ public class EnemyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         enemyAttack = GetComponent<EnemyAttack>();
         agent.stoppingDistance = attackRadius;
-
+        hasSeen = false;
     }
 
     private void Update()
     {
         float distance = Vector3.Distance(target.position, transform.position);
 
-        if (distance <= lookRadius)
+        if (distance <= lookRadius && !hasSeen)
+        {
+            RaycastHit hit;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
+
+            if (Physics.Raycast(transform.position, directionToTarget, out hit, lookRadius))
+            {
+                if (hit.transform == target)
+                {
+                    hasSeen = true;
+                }
+            }
+        }
+
+        if (hasSeen)
         {
             agent.SetDestination(target.position);
-
-            if (distance <= agent.stoppingDistance)
+            if (distance <= attackRadius)
             {
                 FaceTarget();
-                RaycastHit hit;
-                Vector3 directionToTarget = (target.position - transform.position).normalized;
-                if (Physics.Raycast(transform.position, directionToTarget, out hit, distance))
-                {
-                    if (hit.transform == target)
-                    {
-
-                        enemyAttack.AttackPlayer(target.gameObject);
-                    }
-                    else
-                    {
-                        Debug.Log("neni to hrac");
-                    }
-                }
-
+                enemyAttack.AttackPlayer(target.gameObject);
             }
         }
     }

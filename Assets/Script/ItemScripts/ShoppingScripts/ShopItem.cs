@@ -16,6 +16,7 @@ public class ShopItem : MonoBehaviour
     private void Start()
     {
         costText.gameObject.SetActive(false);
+        canBuy = false;
     }
 
     private void Update()
@@ -42,7 +43,7 @@ public class ShopItem : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             EnableText();
-            //canBuy = true;
+            canBuy = true;
             costText.text = $"Press F to buy {item.ItemName.ToUpper()} for: " + itemCost.ToString() + " money.";
         }
     }
@@ -52,7 +53,7 @@ public class ShopItem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             DisableText();
-            //canBuy = false;
+            canBuy = false;
             costText.text = "";
         }
     }

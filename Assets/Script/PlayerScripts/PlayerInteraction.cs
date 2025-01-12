@@ -47,7 +47,7 @@ public class PlayerInteraction : MonoBehaviour
             ShopItem shop = hit.collider.GetComponent<ShopItem>();
             if (shop != null && Input.GetKeyDown(KeyCode.F))
             {
-                shop.TryBuyItem();
+                //shop.TryBuyItem();
                 Debug.Log(shop.GetComponent<Item>().ItemName);
                 //look range = text, triggger = no
             }

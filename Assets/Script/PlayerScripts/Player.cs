@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private float currentFatigue;
 
     private bool canReduce = true;
+    private bool reduced = false;
 
     public Slider healthBar;
     public Slider hungerBar;
@@ -30,7 +31,6 @@ public class Player : MonoBehaviour
 
     private float originalBaseSpread;
     private float originalMovingSpread;
-    private float originalMaxSpread;
     private float originalSpeed;
     private float originalDefaultDamage;
 
@@ -154,50 +154,49 @@ public class Player : MonoBehaviour
             ApplyFatigue();
             canReduce = false;
         }
-        else if (currentFatigue > 0)
+        else if (currentFatigue > 0 && reduced)
         {
             RevertFatigue();
             canReduce = true;
         }
         if(currentFatigue > fatigueTime)
-        currentFatigue = fatigueTime;
+            currentFatigue = fatigueTime;
     }
 
     public void Sleep()
     {
         currentFatigue = fatigueTime;
         fatigueBar.value = currentFatigue;
-
         //bed game object
     }
 
     private void ApplyFatigue()
     {
-        if (InventoryManager.Instance.currentItem is AK47 ak)
-        {
-            originalBaseSpread = ak.baseSpread;
-            originalMovingSpread = ak.movingSpread;
-            originalMaxSpread = ak.maxSpread;
+        AK47[] akWeapons = FindObjectsByType<AK47>(FindObjectsSortMode.None);
 
+        foreach (var ak in akWeapons)
+        {
             ak.baseSpread *= 2;
             ak.movingSpread *= 2;
-            ak.maxSpread *= 2;
         }
 
         PlayerMovement.Instance.moveSpeed /= 2;
         PlayerAttack.Instance.defaultDamage /= 2;
+        reduced = true;
     }
 
     private void RevertFatigue()
     {
-        if (InventoryManager.Instance.currentItem is AK47 ak)
+        AK47[] akWeapons = FindObjectsByType<AK47>(FindObjectsSortMode.None);
+
+        foreach (var ak in akWeapons)
         {
             ak.baseSpread = originalBaseSpread;
             ak.movingSpread = originalMovingSpread;
-            ak.maxSpread = originalMaxSpread;
         }
 
         PlayerMovement.Instance.moveSpeed = originalSpeed;
         PlayerAttack.Instance.defaultDamage = originalDefaultDamage;
+        reduced = false;
     }
 }

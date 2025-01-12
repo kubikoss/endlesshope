@@ -8,9 +8,8 @@ using static UnityEngine.ParticleSystem;
 
 public class AK47 : Weapon
 {
-    public float baseSpread = 0.02f;
-    public float movingSpread = 0.1f;
-    public float maxSpread = 0.2f;
+    public float baseSpread;
+    public float movingSpread;
     public PlayerMovement playerMovement;
     [SerializeField]
     ParticleSystem particles;

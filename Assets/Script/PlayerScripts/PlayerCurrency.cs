@@ -9,7 +9,7 @@ public class PlayerCurrency : MonoBehaviour
     public static PlayerCurrency Instance { get; private set; }
 
     [SerializeField]
-    private Image image;
+    private Sprite image;
     [SerializeField]
     private TextMeshProUGUI moneyCount;
     [SerializeField]

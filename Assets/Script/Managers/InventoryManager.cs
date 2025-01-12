@@ -434,9 +434,9 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-// inventory rework (99,9%)
-// crafting system (98%)
-// shopping system (90%)
+// inventory rework (100%)
+// crafting system (99%)
+// shopping system (93%)
 // models (65%)  
 // game-other (78%)
 
@@ -448,6 +448,7 @@ public class InventoryManager : MonoBehaviour
 //tutorial-> 1 day
 //chest->
 //shopitem rework - this week
+//fix reloading more than 30 in magazine
 
 //MODELS TODO
 //map & item models - town 90%, farm, airport + military, graveyard, port (extractor)
@@ -459,4 +460,4 @@ public class InventoryManager : MonoBehaviour
 //crafting recipes - after models
 //fix item rotation -> this week
 
-//finished 77%
+//finished 78%
