@@ -12,6 +12,7 @@ public class ShopItem : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI costText;
     private bool canBuy;
+    public bool isLooking;
 
     private void Start()
     {
@@ -21,7 +22,7 @@ public class ShopItem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && canBuy)
+        if (Input.GetKeyDown(KeyCode.F) && canBuy && isLooking)
         {
             TryBuyItem();
         }
@@ -44,7 +45,7 @@ public class ShopItem : MonoBehaviour
         {
             EnableText();
             canBuy = true;
-            costText.text = $"Press F to buy {item.ItemName.ToUpper()} for: " + itemCost.ToString() + " money.";
+            costText.text = $"Press F to buy {item.ItemName} for: " + itemCost.ToString() + " money.";
         }
     }
 

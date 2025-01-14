@@ -17,6 +17,16 @@ public abstract class Weapon : Item
     public virtual float FireRate => weaponData.fireRate;
     public virtual int Range => weaponData.range;
     public virtual float ReloadSpeed => weaponData.reloadSpeed;
+    public bool CanShoot
+    {
+        get { return weaponData.canShoot; }
+        protected set { weaponData.canShoot = value; }
+    }
+    public bool IsReloading
+    {
+        get { return weaponData.isReloading; }
+        set { weaponData.isReloading = value; }
+    }
     public FiringMode FiringMode => weaponData.firingMode;
     private int currentAmmo;
     public int CurrentAmmo
@@ -31,7 +41,8 @@ public abstract class Weapon : Item
         {
             ammoPools[firingmode] = fullAmmo;
         }
-        weaponData.canShoot = true;
+        CanShoot = true;
+        IsReloading = false;
     }
 
     public abstract void Shoot();

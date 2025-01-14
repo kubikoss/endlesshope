@@ -13,4 +13,5 @@ public class WeaponItem : BaseItem
     public float reloadSpeed;
     public FiringMode firingMode;
     public bool canShoot = true;
+    public bool isReloading = false;
 }

@@ -17,7 +17,7 @@ public class PlayerCurrency : MonoBehaviour
 
     [SerializeField]
     private int startCurrency = 5;
-    public int currentCurrency = 0;
+    [HideInInspector] public int currentCurrency = 0;
 
     private void Awake()
     {
@@ -76,5 +76,3 @@ public class PlayerCurrency : MonoBehaviour
         moneyCount.text = currentCurrency.ToString();
     }
 }
-//TODO
-// shopping system

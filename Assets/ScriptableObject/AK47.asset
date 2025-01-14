@@ -26,3 +26,4 @@ MonoBehaviour:
   reloadSpeed: 1.4
   firingMode: 1
   canShoot: 1
+  isReloading: 0

@@ -27,21 +27,12 @@ public class InventoryManager : MonoBehaviour
     [Header("Camera")]
     public PlayerCam playerCam;
 
-    [Header("Particles")]
-    [SerializeField]
-    ParticleSystem particles;
-    private ParticleSystem instantiatedParticles;
-    [SerializeField]
-    Transform particlesPosition;
-
-   
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
 
         playerCam = PlayerManager.Instance.mainCamera;
-        particlesPosition = GameObject.Find("ParticlesPosition").transform;
     }
 
     private void Start()
@@ -157,7 +148,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void DropItemRigidBody(Item item)
+    public void DropItemRigidBody(Item item)
     {
         Vector3 cameraForward = playerCam.transform.forward;
         cameraForward.y = 2f;
@@ -205,7 +196,7 @@ public class InventoryManager : MonoBehaviour
 
     private void SwitchItem()
     {
-        if(isDragging)
+        if(isDragging || currentItem is Weapon weapon && weapon.IsReloading)
         {
             return;
         }
@@ -288,7 +279,9 @@ public class InventoryManager : MonoBehaviour
             else if (currentItem is Healable healable)
             {
                 if (Player.Instance.hp < 100)
+                {
                     HandleHealable(healable);
+                }
             }
             else if (currentItem is Food food)
             {
@@ -320,9 +313,12 @@ public class InventoryManager : MonoBehaviour
 
     private void HandleWeaponReload(Weapon weapon)
     {
-        if (Input.GetKeyDown(KeyCode.R) && weapon != null && !(weapon is Hands) && !(weapon is Grenade))
+        if (Input.GetKeyDown(KeyCode.R) && weapon != null)
         {
-            weapon.Reload();
+            if(!(weapon is Hands) && !(weapon is Grenade) && !weapon.IsReloading)
+            {
+                weapon.Reload();
+            }
         }
     }
 
@@ -360,7 +356,6 @@ public class InventoryManager : MonoBehaviour
             {
                 temp++;
             }
-
         }
         hotbarCount = temp;
     }
@@ -422,9 +417,10 @@ public class InventoryManager : MonoBehaviour
 }
 // inventory rework (100%)
 // crafting system (99%)
-// shopping system (93%)
+// shopping system (95%)
+// ally system (45%)
 // models (65%)  
-// game-other (78%)
+// game-other (82%)
 
 //project TODO
 
@@ -434,7 +430,6 @@ public class InventoryManager : MonoBehaviour
 //tutorial-> 1 day
 //chest->
 //shopitem rework - this week
-//fix reloading more than 30 in magazine
 
 //MODELS TODO
 //map & item models - town 90%, farm, airport + military, graveyard, port (extractor)

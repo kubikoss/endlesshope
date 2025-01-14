@@ -110,18 +110,28 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         // Inventory item outside of slot, dropped => equipped hands
         if (!IsMouseInInventory(pointerData))
         {
-            if (count > 1)
+            if(item is Weapon weapon && (weapon is AK47 || weapon is Glock))
             {
-                for (int i = 0; i < count; i++)
+                item.transform.SetParent(null);
+                item.transform.position = PlayerManager.Instance.player.transform.position;
+                InventoryManager.Instance.currentItem = null;
+                InventoryManager.Instance.DropItemRigidBody(item);
+            }
+            else
+            {
+                if (count > 1)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        Item itemToWorld = InventoryManager.Instance.InstantiateItem(true, false, item);
+                    }
+                }
+                else if (count == 1)
                 {
                     Item itemToWorld = InventoryManager.Instance.InstantiateItem(true, false, item);
                 }
+                Destroy(item.gameObject);
             }
-            else if (count == 1)
-            {
-                Item itemToWorld = InventoryManager.Instance.InstantiateItem(true, false, item);
-            }
-            Destroy(item.gameObject);
             RemoveItemFromInventory();
             InventoryManager.Instance.EquipHands();
         }

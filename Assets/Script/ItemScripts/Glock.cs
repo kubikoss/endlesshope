@@ -13,6 +13,8 @@ public class Glock : Weapon
     {
         CurrentAmmo = MagazineSize;
         InitializeAmmoPool(weaponData.firingMode, weaponData.fullAmmo);
+        CanShoot = true;
+        IsReloading = false;
 
         if (playerMovement == null)
             playerMovement = FindFirstObjectByType<PlayerMovement>();
@@ -20,7 +22,7 @@ public class Glock : Weapon
 
     public override void Shoot()
     {
-        if (CurrentAmmo > 0 && weaponData.canShoot)
+        if (CurrentAmmo > 0 && CanShoot)
         {
             RaycastHit hit;
 
@@ -35,7 +37,7 @@ public class Glock : Weapon
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     PlayerAttack.Instance.AttackEnemy(hit.collider.gameObject, this);
-                    //ParticleManager.Instance.SpawnParticles(hit.collider.GetComponent<Enemy>().particles, hit.point, 0.3f);
+                    ParticleManager.Instance.SpawnParticles(hit.collider.GetComponent<Enemy>().particles, hit.point, 0.3f);
                 }   
             }
             CurrentAmmo--;
@@ -60,7 +62,8 @@ public class Glock : Weapon
             yield break;
         }
 
-        weaponData.canShoot = false;
+        CanShoot = false;
+        IsReloading = true;
 
         yield return new WaitForSeconds(ReloadSpeed);
 
@@ -74,6 +77,7 @@ public class Glock : Weapon
             CurrentAmmo += Weapon.ammoPools[firingMode];
             Weapon.ammoPools[firingMode] = 0;
         }
-        weaponData.canShoot = true;
+        CanShoot = true;
+        IsReloading = false;
     }
 }

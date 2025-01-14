@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ public class AK47 : Weapon
     {
         CurrentAmmo = MagazineSize;
         InitializeAmmoPool(weaponData.firingMode, weaponData.fullAmmo);
+        CanShoot = true;
+        IsReloading = false;
 
         if (playerMovement == null)
             playerMovement = FindFirstObjectByType<PlayerMovement>();
@@ -25,7 +28,7 @@ public class AK47 : Weapon
 
     public override void Shoot()
     {
-        if (CurrentAmmo > 0 && weaponData.canShoot)
+        if (CurrentAmmo > 0 && CanShoot)
         {
             RaycastHit hit;
 
@@ -66,7 +69,8 @@ public class AK47 : Weapon
             yield break;
         }
 
-        weaponData.canShoot = false;
+        CanShoot = false;
+        IsReloading = true;
 
         yield return new WaitForSeconds(ReloadSpeed);
 
@@ -80,6 +84,7 @@ public class AK47 : Weapon
             CurrentAmmo += Weapon.ammoPools[firingMode];
             Weapon.ammoPools[firingMode] = 0;
         }
-        weaponData.canShoot = true;
+        CanShoot = true;
+        IsReloading = false;
     }
 }
