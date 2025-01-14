@@ -33,7 +33,10 @@ public class Glock : Weapon
             if (Physics.Raycast(PlayerManager.Instance.mainCamera.transform.position, shootDirection, out hit, Range))
             {
                 if (hit.collider.CompareTag("Enemy"))
+                {
                     PlayerAttack.Instance.AttackEnemy(hit.collider.gameObject, this);
+                    //ParticleManager.Instance.SpawnParticles(hit.collider.GetComponent<Enemy>().particles, hit.point, 0.3f);
+                }   
             }
             CurrentAmmo--;
         }

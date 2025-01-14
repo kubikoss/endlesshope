@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   moneyObject: {fileID: 2404473243706432959, guid: b1a8379c54fd72f4cbd5f3a4a988b418, type: 3}
-  particles: {fileID: 0}
+  particles: {fileID: 2969370436116315102, guid: e4ddf9c159ede4640b3cb7da3d4b7054, type: 3}
 --- !u!114 &9165643264426043870
 MonoBehaviour:
   m_ObjectHideFlags: 0

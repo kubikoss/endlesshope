@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 8715441182552265739}
   - component: {fileID: 5031201375439590631}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Natures_Grass Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -43,6 +43,7 @@ public class PlayerAttack : MonoBehaviour
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     AttackEnemy(hit.collider.gameObject, null);
+                    ParticleManager.Instance.SpawnParticles(hit.collider.GetComponent<Enemy>().particles, hit.point, 0.3f);
                 }
             }
         }

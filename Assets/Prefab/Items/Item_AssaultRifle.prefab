@@ -132,9 +132,8 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: 779e3d9cc44626d40b57c34a7ed210c6, type: 2}
   baseSpread: 0.02
   movingSpread: 0.1
-  maxSpread: 0.2
   playerMovement: {fileID: 0}
-  particles: {fileID: 0}
+  particles: {fileID: 717801258268495461, guid: d34fe9d53b5422a4697fc82a85fa2330, type: 3}
 --- !u!114 &8410727910169317517
 MonoBehaviour:
   m_ObjectHideFlags: 0

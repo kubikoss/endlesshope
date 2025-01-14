@@ -8,8 +8,6 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     public ParticleSystem particles;
 
-    private ParticleSystem instantiatedParticles;
-
     private void Update()
     {
         IsDead();
@@ -21,7 +19,6 @@ public class Enemy : MonoBehaviour
         {
             AddMoney();
             Destroy(moneyObject.gameObject);
-            Destroy(instantiatedParticles.gameObject);
             Destroy(gameObject);
         }
     }
@@ -29,7 +26,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
         hp -= amount;
-        TriggerParticles();
+        //ParticleManager.Instance.SpawnParticles(particles, transform, 0.5f);
+
         if (hp <= 0f)
         {
             IsDead();
@@ -44,22 +42,4 @@ public class Enemy : MonoBehaviour
         PlayerCurrency.Instance.AddCurrency(moneyScript.moneyData.amount);
     }
 
-    public void TriggerParticles()
-    {
-        if (particles != null)
-        {
-            instantiatedParticles = Instantiate(particles, transform.position, Quaternion.identity);
-            instantiatedParticles.gameObject.SetActive(true);
-            instantiatedParticles.Play();
-
-            StartCoroutine(DestroyParticles(instantiatedParticles, 0.3f));
-        }
-    }
-
-    private IEnumerator DestroyParticles(ParticleSystem instantiatedParticles, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        Destroy(instantiatedParticles.gameObject);
-    }
 }

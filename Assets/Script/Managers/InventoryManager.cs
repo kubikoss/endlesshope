@@ -305,13 +305,6 @@ public class InventoryManager : MonoBehaviour
         {
             if (Input.GetMouseButton(0) && fireTimer >= (1f / weapon.FireRate))
             {
-                instantiatedParticles = Instantiate(particles, particlesPosition.position, Quaternion.identity);
-                instantiatedParticles.transform.SetParent(null);
-                instantiatedParticles.transform.rotation = Quaternion.identity;
-                instantiatedParticles.gameObject.SetActive(true);
-                instantiatedParticles.Play();
-                StartCoroutine(DestroyParticles(instantiatedParticles, 0.2f));
-
                 weapon.Shoot();
                 fireTimer = 0f;
             }
@@ -320,13 +313,6 @@ public class InventoryManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                instantiatedParticles = Instantiate(particles, particlesPosition.position, Quaternion.identity);
-                instantiatedParticles.transform.SetParent(null);
-                instantiatedParticles.transform.rotation = Quaternion.identity;
-                instantiatedParticles.gameObject.SetActive(true);
-                instantiatedParticles.Play();
-                StartCoroutine(DestroyParticles(instantiatedParticles, 0.2f));
-
                 weapon.Shoot();
             }
         }
