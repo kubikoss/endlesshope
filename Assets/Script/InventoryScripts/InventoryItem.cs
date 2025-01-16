@@ -133,6 +133,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 Destroy(item.gameObject);
             }
             RemoveItemFromInventory();
+            InventoryManager.Instance.hotbarCount--;
             InventoryManager.Instance.EquipHands();
         }
         // Inventory item put in slot

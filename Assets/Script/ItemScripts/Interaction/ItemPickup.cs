@@ -46,7 +46,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
         Transform itemHolder = GameObject.Find("ItemHolder").transform;
         item.transform.SetParent(itemHolder, true);
         item.transform.localPosition = Vector3.zero;
-        item.transform.localRotation = Quaternion.identity;
+        item.transform.localRotation = item.GetComponent<Item>().SetHandRotation();
 
         if (item.GetComponent<Rigidbody>() != null)
         {

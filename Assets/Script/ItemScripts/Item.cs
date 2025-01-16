@@ -17,6 +17,22 @@ public abstract class Item : MonoBehaviour
     public bool IsStackable => itemData.isStackable;
     public GameObject ItemWorld => itemData.itemWorld;
 
+    public float RotX
+    {
+        get { return itemData.rotX; }
+        set { itemData.rotX = value; }
+    }
+    public float RotY
+    {
+        get { return itemData.rotY; }
+        set { itemData.rotY = value; }
+    }
+    public float RotZ
+    {
+        get { return itemData.rotZ; }
+        set { itemData.rotZ = value; }
+    }
+
     public void UpdateInventoryItemCountOnUse()
     {
         InventoryItem inventoryItem = InventoryManager.Instance.GetInventoryItem(this);
@@ -33,5 +49,11 @@ public abstract class Item : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    public Quaternion SetHandRotation()
+    {
+        Quaternion handRotation = Quaternion.Euler(RotX, RotY, RotZ);
+        return handRotation;
     }
 }

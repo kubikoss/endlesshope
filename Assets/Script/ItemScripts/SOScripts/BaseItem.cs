@@ -12,4 +12,7 @@ public class BaseItem : ScriptableObject
     public bool isStackable = false;
     public int maxStackCount;
     public GameObject itemWorld;
+    public float rotX;
+    public float rotY;
+    public float rotZ;
 }
