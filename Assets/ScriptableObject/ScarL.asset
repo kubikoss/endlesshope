@@ -18,6 +18,9 @@ MonoBehaviour:
   isStackable: 0
   maxStackCount: 1
   itemWorld: {fileID: 8626007082407076914, guid: b27b3d3c9504bdc42998b425fdd80d38, type: 3}
+  rotX: -99.4
+  rotY: -21.5
+  rotZ: 29.9
   damage: 45
   fireRate: 6
   magazineSize: 25
@@ -26,3 +29,4 @@ MonoBehaviour:
   reloadSpeed: 1.8
   firingMode: 1
   canShoot: 1
+  isReloading: 0
