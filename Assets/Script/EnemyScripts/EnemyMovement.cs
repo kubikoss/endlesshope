@@ -18,7 +18,7 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         playerTarget = PlayerManager.Instance.player.transform;
-        allyTarget = AllyController.Instance.ally.transform;
+        //allyTarget = AllyController.Instance.ally.transform;
         agent = GetComponent<NavMeshAgent>();
         enemyAttack = GetComponent<EnemyAttack>();
         agent.stoppingDistance = attackRadius;

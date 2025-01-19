@@ -24890,6 +24890,7 @@ MonoBehaviour:
   attackRadius: 3.5
   attackCooldown: 2
   damage: 30
+  ally: {fileID: 0}
 --- !u!1001 &909813441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38926,7 +38927,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 2b44d3dc70909334fad4a3c62222cfc5, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &1397498418 stripped
 Transform:
