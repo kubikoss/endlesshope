@@ -27,6 +27,8 @@ public class InventoryManager : MonoBehaviour
     [Header("Camera")]
     public PlayerCam playerCam;
 
+    public ParticleSystem particles;
+
     private void Awake()
     {
         if (Instance == null)
@@ -174,6 +176,26 @@ public class InventoryManager : MonoBehaviour
         int invSlot = inventorySlots.IndexOf(slot);
         ChangeSelectedSlot(invSlot);
     }
+
+    public Item InstantiateItem(bool toWorld, bool toInventory, Item item)
+    {
+        if (toWorld && !toInventory)
+        {
+            Item itemToSpawn = Instantiate(item, PlayerManager.Instance.player.transform.position, Quaternion.identity);
+            itemToSpawn.gameObject.SetActive(true);
+            itemToSpawn.transform.SetParent(null);
+            itemToSpawn.name = item.name;
+            DropItemRigidBody(itemToSpawn);
+            return itemToSpawn;
+        }
+        else if (!toWorld && toInventory)
+        {
+            Item itemToInventory = Instantiate(item, PlayerManager.Instance.player.transform.position, Quaternion.identity);
+            itemToInventory.name = item.name;
+            itemToInventory.GetComponent<ItemPickup>().Interact();
+        }
+        return null;
+    }
     #endregion
     #region item equipping/switching
     public void EquipItem(Item itemToEquip)
@@ -274,7 +296,6 @@ public class InventoryManager : MonoBehaviour
             else if (currentItem is Weapon weapon)
             {
                 HandleWeapon(weapon);
-                HandleWeaponReload(weapon);
             }
             else if (currentItem is Healable healable)
             {
@@ -300,6 +321,8 @@ public class InventoryManager : MonoBehaviour
             {
                 weapon.Shoot();
                 fireTimer = 0f;
+                ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, currentItem.gameObject.GetComponentInChildren<Transform>().position, 0.3f);
+                pts.transform.SetParent(currentItem.gameObject.GetComponentInChildren<Transform>());
             }
         }
         else if (weapon.FiringMode == FiringMode.SemiAutomatic)
@@ -309,13 +332,10 @@ public class InventoryManager : MonoBehaviour
                 weapon.Shoot();
             }
         }
-    }
 
-    private void HandleWeaponReload(Weapon weapon)
-    {
         if (Input.GetKeyDown(KeyCode.R) && weapon != null)
         {
-            if(!(weapon is Hands) && !(weapon is Grenade) && !weapon.IsReloading)
+            if (!(weapon is Hands) && !(weapon is Grenade) && !weapon.IsReloading)
             {
                 weapon.Reload();
             }
@@ -336,13 +356,6 @@ public class InventoryManager : MonoBehaviour
         {
             food.Eat();
         }
-    }
-
-    private IEnumerator DestroyParticles(ParticleSystem instantiatedParticles, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        Destroy(instantiatedParticles.gameObject);
     }
     #endregion
     #region ui/get method
@@ -393,52 +406,31 @@ public class InventoryManager : MonoBehaviour
         }
         return null;
     }
-
-    public Item InstantiateItem(bool toWorld, bool toInventory, Item item)
-    {
-        if(toWorld && !toInventory)
-        {
-            Item itemToSpawn = Instantiate(item, PlayerManager.Instance.player.transform.position, Quaternion.identity);
-            itemToSpawn.gameObject.SetActive(true);
-            itemToSpawn.transform.SetParent(null);
-            itemToSpawn.name = item.name;
-            DropItemRigidBody(itemToSpawn);
-            return itemToSpawn;
-        }
-        else if(!toWorld && toInventory)
-        {
-            Item itemToInventory = Instantiate(item, PlayerManager.Instance.player.transform.position, Quaternion.identity);
-            itemToInventory.name = item.name;
-            itemToInventory.GetComponent<ItemPickup>().Interact();
-        }
-        return null;
-    }
     #endregion
 }
 // inventory rework (100%)
 // crafting system (99%)
-// shopping system (95%)
-// ally system (45%)
-// models (65%)  
-// game-other (82%)
+// shopping system (97%)
+// ally system (90%%)
+// models (75%)  
+// game-other (86%)
 
 //project TODO
 
 //CODE TODO
-//player ally (movement, attack, enemy detection <=>) - this week
-//minimap->
+//player ally (enemy detection) - this week
+//minimap-> 1 day
 //tutorial-> 1 day
-//chest->
-//shopitem rework - this week
+//chest-> this week
+//shopitem rework - 90%
 
 //MODELS TODO
-//map & item models - town 90%, farm, airport + military, graveyard, port (extractor)
+//map & item models - town 95%, farm 50%, airport 80%, military, graveyard, port 95%
 //resources - bag of sand, metal piece, glass, wood, plastic, cork, rubber, bed, chest
 //vfx & sfx & animations & ui (menu,.., achievements) (animations this week)
 
 //OTHER TODO
 //sleep bar fatigue effects
 //crafting recipes - after models
-//fix item rotation -> this week
 
-//finished 78%
+//finished 84%

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4712d5cafea12ff42855e57c0b696649, type: 3}
+  m_Name: PizzaSlice
+  m_EditorClassIdentifier: 
+  itemName: PizzaSlice
+  ID: 18
+  itemIcon: {fileID: 21300000, guid: 7d94f279412dd754aa80c8bd62bde320, type: 3}
+  isStackable: 1
+  maxStackCount: 4
+  itemWorld: {fileID: 1614602444342441036, guid: d74f9929f8cfbbb44a743f2267019a51, type: 3}
+  rotX: -48.8
+  rotY: -51.8
+  rotZ: -27.8
+  foodStat: 40
+  isEatable: 1

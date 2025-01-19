@@ -10,10 +10,12 @@ public class PlayerAttack : MonoBehaviour
 
     public float defaultDamage = 15f;
 
+    private Animator animator;
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
+        animator = GetComponent<Animator>();
     }
 
     public void AttackEnemy(GameObject enemy, Item currentItem)
@@ -37,6 +39,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            animator.SetTrigger("Attack");
             RaycastHit hit;
             if (Physics.Raycast(PlayerManager.Instance.mainCamera.transform.position, PlayerManager.Instance.mainCamera.transform.forward, out hit, 2f))
             {

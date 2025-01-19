@@ -10,13 +10,15 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private float attackRadius = 2f;
     private bool hasSeen;
-    Transform target;
+    Transform playerTarget;
+    Transform allyTarget;
     NavMeshAgent agent;
     EnemyAttack enemyAttack;
 
     private void Start()
     {
-        target = PlayerManager.Instance.player.transform;
+        playerTarget = PlayerManager.Instance.player.transform;
+        allyTarget = AllyController.Instance.ally.transform;
         agent = GetComponent<NavMeshAgent>();
         enemyAttack = GetComponent<EnemyAttack>();
         agent.stoppingDistance = attackRadius;
@@ -25,16 +27,16 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        float distance = Vector3.Distance(target.position, transform.position);
+        float distance = Vector3.Distance(playerTarget.position, transform.position);
 
         if (distance <= lookRadius && !hasSeen)
         {
             RaycastHit hit;
-            Vector3 directionToTarget = (target.position - transform.position).normalized;
+            Vector3 directionToTarget = (playerTarget.position - transform.position).normalized;
 
             if (Physics.Raycast(transform.position, directionToTarget, out hit, lookRadius))
             {
-                if (hit.transform == target)
+                if (hit.transform == playerTarget)
                 {
                     hasSeen = true;
                 }
@@ -43,18 +45,24 @@ public class EnemyMovement : MonoBehaviour
 
         if (hasSeen)
         {
-            agent.SetDestination(target.position);
+            agent.SetDestination(playerTarget.position);
             if (distance <= attackRadius)
             {
                 FaceTarget();
-                enemyAttack.AttackPlayer(target.gameObject);
+                enemyAttack.AttackPlayer(playerTarget.gameObject);
             }
         }
     }
 
+    /*private Transform GetClosestTarget()
+    {
+        Transform target = transform;
+        return target;
+    }*/
+
     private void FaceTarget()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (playerTarget.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }

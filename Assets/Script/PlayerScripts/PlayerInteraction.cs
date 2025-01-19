@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public float interactionRange = 2f;
-    public Camera playerCamera;
+    [SerializeField]
+    private Camera playerCamera;
 
-    public float pickupCooldown = 0.2f;
+    [SerializeField]
+    private float interactionRange = 2f;
+    [SerializeField]
+    private float pickupCooldown = 0.2f;
     private bool canPickup = true;
+
+    private ShopItem currentlShopItem;
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.E) && canPickup)
         {
-            StartCoroutine(PickupItem()); 
+            StartCoroutine(PickupItem());
         }
         CheckCollisionLook();
     }
@@ -34,7 +39,6 @@ public class PlayerInteraction : MonoBehaviour
                 interactable.Interact();
             }
         }
-
         yield return new WaitForSeconds(pickupCooldown);
         canPickup = true;
     }
@@ -45,10 +49,22 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionRange))
         {
             ShopItem shop = hit.collider.GetComponent<ShopItem>();
-            if (shop != null && Input.GetKeyDown(KeyCode.F))
+            if (shop != null)
             {
+                if (currentlShopItem != null && currentlShopItem != shop)
+                {
+                    currentlShopItem.isLooking = false;
+                }
                 shop.isLooking = true;
+                currentlShopItem = shop;
             }
+            return;
+        }
+
+        if (currentlShopItem != null)
+        {
+            currentlShopItem.isLooking = false;
+            currentlShopItem = null;
         }
     }
 }

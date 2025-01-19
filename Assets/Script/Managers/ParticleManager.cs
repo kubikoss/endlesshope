@@ -16,10 +16,11 @@ public class ParticleManager : MonoBehaviour
         }
     }
 
-    public void SpawnParticles(ParticleSystem particles, Vector3 position, float destroyTime)
+    public ParticleSystem SpawnParticles(ParticleSystem particles, Vector3 position, float destroyTime)
     {
         ParticleSystem currentParticles = Instantiate(particles, position, Quaternion.identity);
         StartCoroutine(DestroyParticles(destroyTime, currentParticles));
+        return currentParticles;
     }
 
     private IEnumerator DestroyParticles(float destroyTime, ParticleSystem particles)

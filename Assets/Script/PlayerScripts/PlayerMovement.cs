@@ -25,10 +25,13 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
     public Rigidbody rb;
 
+    private Animator animator;
+
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -43,11 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
         MovementControl();
         SpeedControl();
-
-        if (grounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
+        PlayerMovementAnimation();
     }
 
     private void FixedUpdate()
@@ -73,6 +72,11 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 2f, ForceMode.Force);
         else if(!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 0.3f, ForceMode.Force);
+
+        if (grounded)
+            rb.drag = groundDrag;
+        else
+            rb.drag = 0;
     }
 
     private void SpeedControl()
@@ -90,5 +94,23 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce / 2f, ForceMode.Impulse);
+    }
+
+    private void PlayerMovementAnimation()
+    {
+        bool isMoving = Mathf.Abs(horizontalInput) > 0.1f || Mathf.Abs(verticalInput) > 0.1f;
+
+        animator.SetBool("isMoving", isMoving);
+
+        if (!isMoving)
+        {
+            animator.SetBool("isIdle", true);
+            Debug.Log("nehybe se");
+        }
+        else
+        {
+            Debug.Log("hybe se");
+            animator.SetBool("isIdle", false);
+        }
     }
 }
