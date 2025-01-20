@@ -60,7 +60,7 @@ public class CraftingManager : MonoBehaviour
         }
 
         // Recipe pattern check
-        string recipeCheck = GetCraftingPattern();
+        string recipeCheck = GetCraftingPattern(); // Gets item name in each crafting slot and returns string
         if(!string.IsNullOrEmpty(recipeCheck))
         {
             foreach(CraftingRecipes craftingRecipe in allRecipes)

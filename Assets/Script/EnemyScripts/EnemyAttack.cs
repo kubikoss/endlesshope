@@ -31,4 +31,18 @@ public class EnemyAttack : MonoBehaviour
             }
         }
     }
+
+    public void AttackAlly(GameObject ally)
+    {
+        if (attackCooldown <= 0f)
+        {
+            AllyController allyHealth = ally.GetComponent<AllyController>();
+
+            if (allyHealth != null)
+            {
+                allyHealth.AllyTakeDamage(damage);
+                attackCooldown = 1f / attackRate;
+            }
+        }
+    }
 }

@@ -105,11 +105,11 @@ public class PlayerMovement : MonoBehaviour
         if (!isMoving)
         {
             animator.SetBool("isIdle", true);
-            Debug.Log("nehybe se");
+            //Debug.Log("nehybe se");
         }
         else
         {
-            Debug.Log("hybe se");
+            //Debug.Log("hybe se");
             animator.SetBool("isIdle", false);
         }
     }

@@ -23,6 +23,9 @@ public class AllyController : MonoBehaviour
     [SerializeField] 
     private float damage = 30f;
 
+    [SerializeField]
+    private float hp = 100f;
+
     private NavMeshAgent agent;
     private Transform playerTarget;
 
@@ -60,7 +63,7 @@ public class AllyController : MonoBehaviour
 
         if (closestEnemy != null)
         {
-            TakeDamage(closestEnemy);
+            EnemyTakeDamage(closestEnemy);
         }
         else if (distanceToPlayer > playerLookRadius)
         {
@@ -91,7 +94,7 @@ public class AllyController : MonoBehaviour
         return closestEnemy;
     }
 
-    private void TakeDamage(Collider enemyCollider)
+    public void EnemyTakeDamage(Collider enemyCollider)
     {
         float distanceToEnemy = Vector3.Distance(transform.position, enemyCollider.transform.position);
         agent.SetDestination(enemyCollider.transform.position);
@@ -105,6 +108,17 @@ public class AllyController : MonoBehaviour
                 currentCooldown = attackCooldown;
             }
         }
+    }
+
+    public void AllyTakeDamage(float amount)
+    {
+        hp -= amount;
+
+        if (hp <= 0f)
+        {
+            Destroy(gameObject);
+        }
+        Debug.Log(hp);
     }
 
     private void Patrol()

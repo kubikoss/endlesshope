@@ -411,21 +411,20 @@ public class InventoryManager : MonoBehaviour
 // inventory rework (100%)
 // crafting system (99%)
 // shopping system (97%)
-// ally system (90%%)
+// ally system (97%)
 // models (75%)  
 // game-other (86%)
 
 //project TODO
 
 //CODE TODO
-//player ally (enemy detection) - this week
 //minimap-> 1 day
 //tutorial-> 1 day
 //chest-> this week
 //shopitem rework - 90%
 
 //MODELS TODO
-//map & item models - town 95%, farm 50%, airport 80%, military, graveyard, port 95%
+//map & item models - town 95%, farm 50%, airport 90%, military, graveyard, port 95%
 //resources - bag of sand, metal piece, glass, wood, plastic, cork, rubber, bed, chest
 //vfx & sfx & animations & ui (menu,.., achievements) (animations this week)
 
@@ -433,4 +432,4 @@ public class InventoryManager : MonoBehaviour
 //sleep bar fatigue effects
 //crafting recipes - after models
 
-//finished 84%
+//finished 85%

@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -9,7 +12,8 @@ public class EnemyMovement : MonoBehaviour
     private float lookRadius = 10f;
     [SerializeField]
     private float attackRadius = 2f;
-    private bool hasSeen;
+    private bool hasSeen = false;
+
     Transform playerTarget;
     Transform allyTarget;
     NavMeshAgent agent;
@@ -18,51 +22,87 @@ public class EnemyMovement : MonoBehaviour
     private void Start()
     {
         playerTarget = PlayerManager.Instance.player.transform;
-        //allyTarget = AllyController.Instance.ally.transform;
-        agent = GetComponent<NavMeshAgent>();
+        allyTarget = AllyController.Instance.ally.transform;
+
         enemyAttack = GetComponent<EnemyAttack>();
+        agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = attackRadius;
+
         hasSeen = false;
     }
 
+
     private void Update()
     {
-        float distance = Vector3.Distance(playerTarget.position, transform.position);
+        CheckTarget();
+    }
+
+    private Transform GetClosestTarget()
+    {
+        if (allyTarget == null)
+            return playerTarget;
+
+        Transform closestTarget = null;
+        float distanceToPlayer = playerTarget != null ? Vector3.Distance(playerTarget.position, transform.position) : 0;
+        float distanceToAlly = allyTarget != null ? Vector3.Distance(allyTarget.position, transform.position) : 0;
+
+        if (playerTarget != null)
+            distanceToPlayer = Vector3.Distance(playerTarget.position, transform.position);
+
+        if (allyTarget != null)
+            distanceToAlly = Vector3.Distance(allyTarget.position, transform.position);
+
+        if (distanceToPlayer < distanceToAlly)
+            closestTarget = playerTarget.transform;
+        else
+            closestTarget = allyTarget.transform;
+
+        return closestTarget;
+    }
+
+    private void CheckTarget()
+    {
+        Transform target = GetClosestTarget();
+        if (target == null) return;
+
+        float distance = Vector3.Distance(target.position, transform.position);
 
         if (distance <= lookRadius && !hasSeen)
         {
             RaycastHit hit;
-            Vector3 directionToTarget = (playerTarget.position - transform.position).normalized;
+            Vector3 directionToTarget = (target.position - transform.position).normalized;
 
             if (Physics.Raycast(transform.position, directionToTarget, out hit, lookRadius))
             {
-                if (hit.transform == playerTarget)
+                if (hit.transform == target)
                 {
                     hasSeen = true;
                 }
             }
         }
+        AttackTarget(distance, target);
+    }
 
+    private void AttackTarget(float distance, Transform target)
+    {
         if (hasSeen)
         {
-            agent.SetDestination(playerTarget.position);
+            agent.SetDestination(GetClosestTarget().position);
             if (distance <= attackRadius)
             {
-                FaceTarget();
-                enemyAttack.AttackPlayer(playerTarget.gameObject);
+                FaceTarget(target);
+
+                if (target.transform.CompareTag("Player"))
+                    enemyAttack.AttackPlayer(playerTarget.gameObject);
+                else if (target.transform.CompareTag("Ally"))
+                    enemyAttack.AttackAlly(allyTarget.gameObject);
             }
         }
     }
 
-    /*private Transform GetClosestTarget()
+    private void FaceTarget(Transform target)
     {
-        Transform target = transform;
-        return target;
-    }*/
-
-    private void FaceTarget()
-    {
-        Vector3 direction = (playerTarget.position - transform.position).normalized;
+        Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
