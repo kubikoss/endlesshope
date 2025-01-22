@@ -102,6 +102,7 @@ public class AllyController : MonoBehaviour
         if (distanceToEnemy <= attackRadius && currentCooldown <= 0)
         {
             Enemy enemy = enemyCollider.GetComponent<Enemy>();
+            FaceTarget(enemy.transform);
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
@@ -144,7 +145,14 @@ public class AllyController : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         isPatrolling = false;
+    }
+
+    private void FaceTarget(Transform target)
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 }

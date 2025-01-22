@@ -12,6 +12,8 @@ TagManager:
   - ShopItem
   - CraftingSlot
   - Ally
+  - ParticlesPosition
+  - Item
   layers:
   - Default
   - TransparentFX

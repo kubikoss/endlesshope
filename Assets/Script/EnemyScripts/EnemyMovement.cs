@@ -18,6 +18,9 @@ public class EnemyMovement : MonoBehaviour
     Transform allyTarget;
     NavMeshAgent agent;
     EnemyAttack enemyAttack;
+    Animator animator;
+
+    private Vector3 lastPosition;
 
     private void Start()
     {
@@ -26,15 +29,18 @@ public class EnemyMovement : MonoBehaviour
 
         enemyAttack = GetComponent<EnemyAttack>();
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         agent.stoppingDistance = attackRadius;
 
         hasSeen = false;
+        lastPosition = transform.position;
     }
 
 
     private void Update()
     {
         CheckTarget();
+        EnemyMovementAnimation();
     }
 
     private Transform GetClosestTarget()
@@ -105,6 +111,23 @@ public class EnemyMovement : MonoBehaviour
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    private void EnemyMovementAnimation()
+    {
+        bool isMoving = Vector3.Distance(transform.position, lastPosition) > 0f;
+        lastPosition = transform.position;
+
+        animator.SetBool("isMoving", isMoving);
+
+        if (!isMoving)
+        {
+            animator.SetBool("isMoving", false);
+        }
+        else
+        {
+            animator.SetBool("isMoving", true);
+        }
     }
 
     private void OnDrawGizmosSelected()

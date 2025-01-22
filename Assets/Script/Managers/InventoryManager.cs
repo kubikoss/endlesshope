@@ -29,6 +29,7 @@ public class InventoryManager : MonoBehaviour
 
     public ParticleSystem particles;
 
+    public Transform transf;
     private void Awake()
     {
         if (Instance == null)
@@ -289,6 +290,11 @@ public class InventoryManager : MonoBehaviour
     {
         if (!isInventoryOpened && !isDragging)
         {
+            if(currentItem != null)
+                Player.Instance.GetComponent<Animator>().SetBool("isNull", true);
+            else
+                Player.Instance.GetComponent<Animator>().SetBool("isNull", false);
+
             if (currentItem == null)
             {
                 PlayerAttack.Instance.DefaultAttack();
@@ -321,8 +327,10 @@ public class InventoryManager : MonoBehaviour
             {
                 weapon.Shoot();
                 fireTimer = 0f;
-                ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, currentItem.gameObject.GetComponentInChildren<Transform>().position, 0.3f);
-                pts.transform.SetParent(currentItem.gameObject.GetComponentInChildren<Transform>());
+
+                /*ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, transf.position, 0.3f);
+                pts.transform.SetParent(transf);
+                pts.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);*/
             }
         }
         else if (weapon.FiringMode == FiringMode.SemiAutomatic)
@@ -330,6 +338,10 @@ public class InventoryManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 weapon.Shoot();
+                
+                /*ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, transf.position, 0.3f);
+                pts.transform.SetParent(transf);
+                pts.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);*/
             }
         }
 
@@ -409,9 +421,9 @@ public class InventoryManager : MonoBehaviour
     #endregion
 }
 // inventory rework (100%)
-// crafting system (99%)
-// shopping system (97%)
-// ally system (97%)
+// crafting system (100%)
+// shopping system (100%)
+// ally system (98%)
 // models (75%)  
 // game-other (86%)
 
@@ -420,8 +432,6 @@ public class InventoryManager : MonoBehaviour
 //CODE TODO
 //minimap-> 1 day
 //tutorial-> 1 day
-//chest-> this week
-//shopitem rework - 90%
 
 //MODELS TODO
 //map & item models - town 95%, farm 50%, airport 90%, military, graveyard, port 95%
@@ -432,4 +442,4 @@ public class InventoryManager : MonoBehaviour
 //sleep bar fatigue effects
 //crafting recipes - after models
 
-//finished 85%
+//finished 86%

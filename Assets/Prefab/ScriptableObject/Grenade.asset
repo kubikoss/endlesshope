@@ -30,5 +30,6 @@ MonoBehaviour:
   firingMode: 0
   canShoot: 1
   isReloading: 0
+  itemSound: {fileID: 8300000, guid: 68bc2e25e5215014199e1f2e3568824a, type: 3}
   throwForce: 15
   explodeRadius: 3

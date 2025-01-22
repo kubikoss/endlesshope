@@ -11,6 +11,7 @@ public class PlayerCam : MonoBehaviour
     float yRotation;
 
     public Transform player;
+    public GameObject hand;
 
     private void Start()
     {

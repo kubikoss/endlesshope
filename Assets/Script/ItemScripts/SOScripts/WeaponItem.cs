@@ -14,4 +14,5 @@ public class WeaponItem : BaseItem
     public FiringMode firingMode;
     public bool canShoot = true;
     public bool isReloading = false;
+    public AudioClip itemSound;
 }

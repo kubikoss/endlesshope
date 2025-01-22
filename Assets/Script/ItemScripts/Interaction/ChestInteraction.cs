@@ -7,19 +7,14 @@ public class ChestInteraction : MonoBehaviour, IInteractable
     private System.Random rndNumber = new System.Random();
     public int maxItemsCount = 3;
     private bool isOpened = false;
-
-    public GameObject item1;
-    public GameObject item2;
-    public GameObject item3;
-    public GameObject item4;
-    public GameObject item5;
-    public GameObject item6;
+    [SerializeField]
+    private float range = 3f;
 
     private List<GameObject> items;
 
     private void Start()
     {
-        items = new List<GameObject> { item1, item2, item3, item4, item5, item6 };
+        items = new List<GameObject>(Resources.LoadAll<GameObject>("Items"));
 
         int itemCount = rndNumber.Next(1, maxItemsCount + 1);
         AddToChest(itemCount);
@@ -32,7 +27,9 @@ public class ChestInteraction : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (!isOpened && Input.GetKeyDown(KeyCode.E))
+        float distance = Vector3.Distance(transform.position, PlayerManager.Instance.player.transform.position);
+
+        if (!isOpened && Input.GetKeyDown(KeyCode.E) && distance <= range)
         {
             isOpened = true;
 
@@ -52,9 +49,18 @@ public class ChestInteraction : MonoBehaviour, IInteractable
 
     private void AddToChest(int amount)
     {
-        for (int i = 0; i < amount; i++)
+        List<GameObject> shuffledItems = new List<GameObject>(items);
+        for (int i = 0; i < shuffledItems.Count; i++)
         {
-            GameObject randomItem = items[rndNumber.Next(0, items.Count)];
+            int randomIndex = rndNumber.Next(i, shuffledItems.Count);
+            GameObject temp = shuffledItems[i];
+            shuffledItems[i] = shuffledItems[randomIndex];
+            shuffledItems[randomIndex] = temp;
+        }
+
+        for (int i = 0; i < Mathf.Min(amount, shuffledItems.Count); i++)
+        {
+            GameObject randomItem = shuffledItems[i];
             GameObject itemInstance = Instantiate(randomItem, transform.position, Quaternion.identity);
             itemInstance.transform.SetParent(transform);
             itemInstance.gameObject.SetActive(false);

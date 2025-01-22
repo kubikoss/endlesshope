@@ -30,3 +30,4 @@ MonoBehaviour:
   firingMode: 1
   canShoot: 1
   isReloading: 0
+  itemSound: {fileID: 8300000, guid: b1f29edf9a890d545beff599fe0ede11, type: 3}

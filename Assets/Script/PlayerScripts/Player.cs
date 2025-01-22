@@ -180,8 +180,8 @@ public class Player : MonoBehaviour
             ak.movingSpread *= 2;
         }
 
-        PlayerMovement.Instance.moveSpeed /= 2;
-        PlayerAttack.Instance.defaultDamage /= 2;
+        PlayerMovement.Instance.moveSpeed = 9f;
+        PlayerAttack.Instance.defaultDamage = 10f;
         reduced = true;
     }
 

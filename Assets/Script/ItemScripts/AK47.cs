@@ -30,6 +30,7 @@ public class AK47 : Weapon
     {
         if (CurrentAmmo > 0 && CanShoot)
         {
+            AudioManager.Instance.PlayAudio(ItemSound);
             RaycastHit hit;
 
             float playerSpeed = new Vector3(playerMovement.rb.velocity.x, 0f, playerMovement.rb.velocity.z).magnitude;

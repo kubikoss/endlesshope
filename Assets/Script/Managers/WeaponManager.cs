@@ -58,7 +58,7 @@ public class WeaponManager : MonoBehaviour
         {
             int ak47ammo = Weapon.ammoPools.ContainsKey(FiringMode.Automatic) ? Weapon.ammoPools[FiringMode.Automatic] : 0;
             int glockAmmo = Weapon.ammoPools.ContainsKey(FiringMode.SemiAutomatic) ? Weapon.ammoPools[FiringMode.SemiAutomatic] : 0;
-            fullAmmoText.text = $"AK47 ammo: {ak47ammo} Glock Ammo: {glockAmmo}";
+            fullAmmoText.text = $"AR ammo: {ak47ammo} Glock Ammo: {glockAmmo}";
             fullAmmoText.gameObject.SetActive(true);
         }
         else

@@ -34,7 +34,12 @@ public abstract class Weapon : Item
         get { return currentAmmo; }
         protected set { currentAmmo = value; }
     }
-
+    public AudioClip ItemSound
+    {
+        get { return weaponData.itemSound; }
+        set { weaponData.itemSound = value; }
+    }
+    
     protected void InitializeAmmoPool(FiringMode firingmode, int fullAmmo)
     {
         if(!ammoPools.ContainsKey(firingmode))
