@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     public GameObject moneyObject;
     [SerializeField]
     public ParticleSystem particles;
-
+    
     private void Update()
     {
         IsDead();

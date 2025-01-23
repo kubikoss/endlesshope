@@ -8,6 +8,15 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     public float moveSpeed = 10f;
+    public float sensX;
+    public float sensY;
+    public Rigidbody rb;
+    [HideInInspector] public bool canRotateCam = true;
+    float xRotation;
+    float yRotation;
+    float horizontalInput;
+    float verticalInput;
+    Vector3 moveDirection;
 
     [Header("Jumping")]
     public float jumpForce = 6f;
@@ -18,12 +27,6 @@ public class PlayerMovement : MonoBehaviour
     public float playerHeight;
     public LayerMask whatIsGround;
     bool grounded;
-
-    float horizontalInput;
-    float verticalInput;
-
-    Vector3 moveDirection;
-    public Rigidbody rb;
 
     private Animator animator;
 
@@ -38,6 +41,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -47,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         MovementControl();
         SpeedControl();
         PlayerMovementAnimation();
+        MoveCamera();
     }
 
     private void FixedUpdate()
@@ -96,6 +103,21 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(transform.up * jumpForce / 2f, ForceMode.Impulse);
     }
 
+    private void MoveCamera()
+    {
+        if(canRotateCam)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensX;
+            float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensY;
+
+            yRotation += mouseX;
+            xRotation -= mouseY;
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            transform.rotation = Quaternion.Euler(0, yRotation, 0);
+            PlayerManager.Instance.mainCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        }
+    }
+
     private void PlayerMovementAnimation()
     {
         bool isMoving = Mathf.Abs(horizontalInput) > 0.1f || Mathf.Abs(verticalInput) > 0.1f;
@@ -105,11 +127,9 @@ public class PlayerMovement : MonoBehaviour
         if (!isMoving)
         {
             animator.SetBool("isIdle", true);
-            //Debug.Log("nehybe se");
         }
         else
         {
-            //Debug.Log("hybe se");
             animator.SetBool("isIdle", false);
         }
     }

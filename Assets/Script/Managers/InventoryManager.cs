@@ -25,7 +25,7 @@ public class InventoryManager : MonoBehaviour
     private float fireTimer = 0f;
 
     [Header("Camera")]
-    public PlayerCam playerCam;
+    public Camera playerCam;
 
     public ParticleSystem particles;
 
@@ -395,7 +395,7 @@ public class InventoryManager : MonoBehaviour
             Cursor.lockState = isInventoryOpened ? CursorLockMode.None : CursorLockMode.Locked;
             Cursor.visible = isInventoryOpened;
 
-            playerCam.enabled = !isInventoryOpened;
+            PlayerMovement.Instance.canRotateCam = !isInventoryOpened;
 
             if (!isInventoryOpened)
             {
