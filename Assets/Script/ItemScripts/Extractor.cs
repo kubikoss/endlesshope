@@ -45,8 +45,8 @@ public class Extractor : Item
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    GameObject extractor = Instantiate(FilledExtractor, PlayerManager.Instance.transform.position, Quaternion.identity);
-                    extractor.GetComponent<ItemPickup>().Interact();
+                    /*GameObject extractor = Instantiate(FilledExtractor, PlayerManager.Instance.transform.position, Quaternion.identity);
+                    extractor.GetComponent<ItemPickup>().Interact();*/
                     isDestroyed = true;
                     Destroy(this.gameObject);
                     Destroy(InventoryManager.Instance.GetInventoryItem(this).gameObject);

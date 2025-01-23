@@ -33,7 +33,7 @@ public class AllyController : MonoBehaviour
     private bool isPatrolling;
 
     public GameObject ally;
-
+    public AudioClip clip;
     private void Awake()
     {
         if (Instance == null)
@@ -105,6 +105,7 @@ public class AllyController : MonoBehaviour
             FaceTarget(enemy.transform);
             if (enemy != null)
             {
+                AudioManager.Instance.PlayAudio(clip);
                 enemy.TakeDamage(damage);
                 currentCooldown = attackCooldown;
             }
