@@ -30807,6 +30807,7 @@ MonoBehaviour:
   movingSpread: 0.1
   maxSpread: 0.2
   playerMovement: {fileID: 0}
+  reloadSound: {fileID: 0}
 --- !u!136 &1105337654
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -32170,6 +32171,7 @@ MonoBehaviour:
   movingSpread: 0.1
   maxSpread: 0.2
   playerMovement: {fileID: 0}
+  reloadSound: {fileID: 0}
 --- !u!136 &1169659265
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -36814,6 +36816,7 @@ MonoBehaviour:
   movingSpread: 0.1
   maxSpread: 0.2
   playerMovement: {fileID: 0}
+  reloadSound: {fileID: 0}
 --- !u!136 &1308913290
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -47192,6 +47195,7 @@ MonoBehaviour:
   movingSpread: 0.1
   maxSpread: 0.2
   playerMovement: {fileID: 0}
+  reloadSound: {fileID: 0}
 --- !u!136 &1663486618
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -49562,6 +49566,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpSound: {fileID: 8300000, guid: a0e7281086a377b409e4f5eaae30c8de, type: 3}
+  dropSound: {fileID: 8300000, guid: 994ab6d40621fb7498a8f5f00dcabe71, type: 3}
+  buySound: {fileID: 8300000, guid: c0b053da6f39252489d18e99733e9aa0, type: 3}
+  eatSound: {fileID: 8300000, guid: 37f51627194f44d418f45c96004aa2d2, type: 3}
 --- !u!1001 &1746732579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50064,6 +50071,7 @@ MonoBehaviour:
   movingSpread: 0.1
   maxSpread: 0.2
   playerMovement: {fileID: 0}
+  reloadSound: {fileID: 0}
 --- !u!136 &1762466260
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -63990,6 +63998,10 @@ PrefabInstance:
     - target: {fileID: 2575219676272005088, guid: 0af3b594896353843ba6f2e1d6b16ac9, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860715830193619101, guid: 0af3b594896353843ba6f2e1d6b16ac9, type: 3}
+      propertyPath: hp
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3860715830193619101, guid: 0af3b594896353843ba6f2e1d6b16ac9, type: 3}
       propertyPath: healthBar

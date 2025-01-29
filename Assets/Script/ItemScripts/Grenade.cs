@@ -48,7 +48,7 @@ public class Grenade : Weapon
     {
         yield return new WaitForSeconds(3f);
 
-        AudioManager.Instance.PlayAudio(ItemSound, 0.7f);
+        AudioManager.Instance.PlayAudio(ItemSound);
 
         Collider[] explosionColliders = Physics.OverlapSphere(grenade.transform.position, ExplodeRadius);
         foreach (var explosionCollider in explosionColliders)

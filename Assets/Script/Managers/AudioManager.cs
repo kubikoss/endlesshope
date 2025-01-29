@@ -9,6 +9,9 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     public AudioClip pickUpSound;
+    public AudioClip dropSound;
+    public AudioClip buySound;
+    public AudioClip eatSound;
 
     private void Awake()
     {
@@ -28,8 +31,23 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PickupItemSound()
+    public void PickupItemAudio()
     {
-        PlayAudio(pickUpSound, 1f);
+        PlayAudio(pickUpSound);
+    }
+
+    public void DropItemAudio()
+    {
+        PlayAudio(dropSound);
+    }
+
+    public void BuyItemAudio()
+    {
+        PlayAudio(buySound);
+    }
+
+    public void EatItemAudio()
+    {
+        PlayAudio(eatSound, 0.4f);
     }
 }

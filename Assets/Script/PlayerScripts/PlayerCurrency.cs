@@ -54,6 +54,7 @@ public class PlayerCurrency : MonoBehaviour
     {
         if(CanAfford(amount))
         {
+            AudioManager.Instance.BuyItemAudio();
             currentCurrency -= amount;
             UpdateInventoryCurrency();
         }

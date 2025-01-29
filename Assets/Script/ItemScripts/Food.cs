@@ -9,6 +9,7 @@ public class Food : Item
 
     public void Eat()
     {
+        AudioManager.Instance.EatItemAudio();
         Player.Instance.UpdateHunger(this);
         UpdateInventoryItemCountOnUse();
     }

@@ -1887,6 +1887,7 @@ MonoBehaviour:
   hungerTime: 60
   hungerDamageInterval: 10
   fatigueTime: 60
+  heartBeat: {fileID: 8300000, guid: 58e8bc154ef8e19479f76c2ca5d851fa, type: 3}
   healthBar: {fileID: 0}
   hungerBar: {fileID: 0}
   fatigueBar: {fileID: 0}
@@ -1903,6 +1904,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 12
+  sensX: 300
+  sensY: 300
+  rb: {fileID: 9047702370288674614}
+  canRotateCam: 1
+  movementSound: {fileID: 8300000, guid: 530c54dd1569beb4389b9e24c6a0dbbd, type: 3}
   jumpForce: 7
   jumpKey: 32
   groundDrag: 3
@@ -1910,9 +1916,6 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  rb: {fileID: 9047702370288674614}
-  sensX: 300
-  sensY: 300
 --- !u!114 &8431734714070533081
 MonoBehaviour:
   m_ObjectHideFlags: 0

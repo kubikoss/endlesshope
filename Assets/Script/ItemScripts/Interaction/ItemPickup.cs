@@ -22,7 +22,7 @@ public class ItemPickup : MonoBehaviour, IInteractable
             if (canAdd > 0)
             {
                 item.name = Regex.Replace(item.name, @"\s*\(.*?\)", "").Trim();
-                AudioManager.Instance.PickupItemSound();
+                AudioManager.Instance.PickupItemAudio();
 
                 SetItemPosition();
                 CheckForAmmo();

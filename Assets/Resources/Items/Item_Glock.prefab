@@ -181,7 +181,7 @@ MonoBehaviour:
   movingSpread: 0.1
   maxSpread: 0.2
   playerMovement: {fileID: 0}
-  audioC: {fileID: 8300000, guid: fddf8807021560c4183cd415707731a0, type: 3}
+  reloadSound: {fileID: 8300000, guid: 1c2c9437869a1184195ecd5344e0eea0, type: 3}
 --- !u!114 &-866377204410740026
 MonoBehaviour:
   m_ObjectHideFlags: 0

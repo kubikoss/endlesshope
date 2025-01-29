@@ -14,7 +14,8 @@ public class AK47 : Weapon
     public PlayerMovement playerMovement;
     [SerializeField]
     ParticleSystem particles;
-
+    [SerializeField]
+    AudioClip reloadSound;
     private void Start()
     {
         CurrentAmmo = MagazineSize;
@@ -30,7 +31,7 @@ public class AK47 : Weapon
     {
         if (CurrentAmmo > 0 && CanShoot)
         {
-            AudioManager.Instance.PlayAudio(ItemSound);
+            AudioManager.Instance.PlayAudio(ItemSound, 0.3f);
             RaycastHit hit;
 
             float playerSpeed = new Vector3(playerMovement.rb.velocity.x, 0f, playerMovement.rb.velocity.z).magnitude;
@@ -72,6 +73,8 @@ public class AK47 : Weapon
 
         CanShoot = false;
         IsReloading = true;
+
+        AudioManager.Instance.PlayAudio(reloadSound, 0.4f);
 
         yield return new WaitForSeconds(ReloadSpeed);
 

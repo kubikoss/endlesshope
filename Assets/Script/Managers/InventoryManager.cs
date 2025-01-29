@@ -144,6 +144,7 @@ public class InventoryManager : MonoBehaviour
                             itemInSlot.count--;
                             itemInSlot.UpdateCount();
                         }
+                        AudioManager.Instance.DropItemAudio();
                     }
                 }
             }

@@ -21,6 +21,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     float fatigueTime = 100;
     private float currentFatigue;
+    private AudioSource healthAudioSource;
+    [SerializeField]
+    AudioClip heartBeat;
 
     private bool canReduce = true;
     private bool reduced = false;
@@ -51,11 +54,15 @@ public class Player : MonoBehaviour
 
         originalSpeed = PlayerMovement.Instance.moveSpeed;
         originalDefaultDamage = PlayerAttack.Instance.defaultDamage;
+
+        healthAudioSource = gameObject.AddComponent<AudioSource>();
+        healthAudioSource.loop = true;
     }
 
     void Update()
     {
         IsDead();
+        CheckHealth();
         UpdateHungerTimer();
         UpdateFatigueTimer();
     }
@@ -89,6 +96,20 @@ public class Player : MonoBehaviour
         if (hp <= 0f)
         {
             IsDead();
+        }
+    }
+
+    private void CheckHealth()
+    {
+        if (hp <= 20 && !healthAudioSource.isPlaying)
+        {
+            healthAudioSource.clip = heartBeat;
+            healthAudioSource.volume = 0.5f;
+            healthAudioSource.Play();
+        }
+        else if (hp > 20 && healthAudioSource.isPlaying)
+        {
+            healthAudioSource.Stop();
         }
     }
 

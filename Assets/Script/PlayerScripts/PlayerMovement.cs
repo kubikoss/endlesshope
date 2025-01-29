@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     float verticalInput;
     Vector3 moveDirection;
+    private AudioSource movementAudioSource;
+    [SerializeField]
+    AudioClip movementSound;
 
     [Header("Jumping")]
     public float jumpForce = 6f;
@@ -44,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        movementAudioSource = gameObject.AddComponent<AudioSource>();
+        movementAudioSource.loop = true;
     }
 
     private void Update()
@@ -127,10 +133,26 @@ public class PlayerMovement : MonoBehaviour
         if (!isMoving)
         {
             animator.SetBool("isIdle", true);
+
+            if (movementAudioSource.isPlaying)
+                StartCoroutine(StopWalking());
         }
         else
         {
             animator.SetBool("isIdle", false);
+
+            if(!movementAudioSource.isPlaying)
+            {
+                movementAudioSource.clip = movementSound;
+                movementAudioSource.volume = 1f;
+                movementAudioSource.Play();
+            }
         }
+    }
+
+    private IEnumerator StopWalking()
+    {
+        yield return new WaitForSeconds(0.2f);
+        movementAudioSource.Stop();
     }
 }

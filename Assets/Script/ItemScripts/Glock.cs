@@ -8,7 +8,8 @@ public class Glock : Weapon
     public float movingSpread = 0.1f;
     public float maxSpread = 0.2f;
     public PlayerMovement playerMovement;
-
+    [SerializeField]
+    AudioClip reloadSound;
     private void Start()
     {
         CurrentAmmo = MagazineSize;
@@ -24,7 +25,7 @@ public class Glock : Weapon
     {
         if (CurrentAmmo > 0 && CanShoot)
         {
-            AudioManager.Instance.PlayAudio(ItemSound);
+            AudioManager.Instance.PlayAudio(ItemSound, 0.3f);
             RaycastHit hit;
 
             float playerSpeed = new Vector3(playerMovement.rb.velocity.x, 0f, playerMovement.rb.velocity.z).magnitude;
@@ -65,6 +66,8 @@ public class Glock : Weapon
 
         CanShoot = false;
         IsReloading = true;
+
+        AudioManager.Instance.PlayAudio(reloadSound, 0.2f);
 
         yield return new WaitForSeconds(ReloadSpeed);
 

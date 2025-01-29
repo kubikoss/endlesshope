@@ -105,7 +105,7 @@ public class AllyController : MonoBehaviour
             FaceTarget(enemy.transform);
             if (enemy != null)
             {
-                AudioManager.Instance.PlayAudio(clip);
+                AudioManager.Instance.PlayAudio(clip, 0.2f);
                 enemy.TakeDamage(damage);
                 currentCooldown = attackCooldown;
             }

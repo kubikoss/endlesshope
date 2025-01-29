@@ -132,6 +132,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
                 }
                 Destroy(item.gameObject);
             }
+            AudioManager.Instance.DropItemAudio();
             RemoveItemFromInventory();
             InventoryManager.Instance.hotbarCount--;
             InventoryManager.Instance.EquipHands();
