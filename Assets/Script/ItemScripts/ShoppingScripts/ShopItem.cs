@@ -30,7 +30,7 @@ public class ShopItem : MonoBehaviour
 
     public void TryBuyItem()
     {
-        if (PlayerCurrency.Instance.CanAfford(itemCost))
+        if (PlayerCurrency.Instance.CanAfford(itemCost) && !MenuManager.Instance.isPaused)
         {
             PlayerCurrency.Instance.SpendCurrency(itemCost);
             GameObject shopItem = Instantiate(item.ItemWorld, PlayerManager.Instance.transform.position, Quaternion.identity);

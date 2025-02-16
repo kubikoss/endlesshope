@@ -44,10 +44,13 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        SwitchItem();
-        HandleCurrentItem();
-        OpenInventory();
-        DropItem(currentItem);
+        if(!MenuManager.Instance.isPaused)
+        {
+            SwitchItem();
+            HandleCurrentItem();
+            OpenInventory();
+            DropItem(currentItem);
+        }
     }
 
     #region add/remove from inventory
@@ -423,23 +426,23 @@ public class InventoryManager : MonoBehaviour
 // inventory rework (100%)
 // crafting system (100%)
 // shopping system (100%)
-// ally system (98%)
-// models (75%)  
-// game-other (86%)
+// ally system (99%)
+// models (80%)  
+// game-other (91%)
 
 //project TODO
 
 //CODE TODO
 //minimap-> 1 day
 //tutorial-> 1 day
+//sleep bar fatigue effects-> this week
 
 //MODELS TODO
-//map & item models - town 95%, farm 50%, airport 90%, military, graveyard, port 95%
+//map & item models - town 95%, farm 70%, airport 97%, military, graveyard, port 98%
 //resources - bag of sand, metal piece, glass, wood, plastic, cork, rubber, bed, chest
-//vfx & sfx & animations & ui (menu,.., achievements) (animations this week)
+//vfx & ui (achievements)
 
 //OTHER TODO
-//sleep bar fatigue effects
 //crafting recipes - after models
 
-//finished 86%
+//finished 88%

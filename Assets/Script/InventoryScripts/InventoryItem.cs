@@ -43,9 +43,17 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (isOutputItem)
+            return;
+
+        if (MenuManager.Instance.isPaused)
         {
+            transform.position = parentAfterDrag.position;
+            transform.SetParent(parentAfterDrag);
+            InventoryManager.Instance.isDragging = false;
+            image.raycastTarget = true;
             return;
         }
+
         image.raycastTarget = false;
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
@@ -55,21 +63,36 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnDrag(PointerEventData eventData)
     {
         if (isOutputItem)
+            return;
+
+        if (MenuManager.Instance.isPaused)
         {
+            transform.position = parentAfterDrag.position;
+            transform.SetParent(parentAfterDrag);
+            InventoryManager.Instance.isDragging = false;
+            image.raycastTarget = true;
             return;
         }
+
         transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         if (isOutputItem)
+            return;
+
+        if (MenuManager.Instance.isPaused)
         {
+            transform.position = parentAfterDrag.position;
+            transform.SetParent(parentAfterDrag);
+            InventoryManager.Instance.isDragging = false;
+            image.raycastTarget = true;
             return;
         }
+
         image.raycastTarget = true;
         InventoryManager.Instance.isDragging = false;
-
         CheckItemOutsideInventory();
         CraftingManager.Instance.CheckCraftingSlotsForRecipes();
     }
