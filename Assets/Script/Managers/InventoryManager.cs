@@ -317,6 +317,10 @@ public class InventoryManager : MonoBehaviour
             {
                 HandleFood(food);
             }
+            else if(currentItem is Bed bed)
+            {
+                HandleBed(bed);
+            }
         }
     }
 
@@ -370,6 +374,14 @@ public class InventoryManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             food.Eat();
+        }
+    }
+
+    private void HandleBed(Bed bed)
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            bed.Sleep();
         }
     }
     #endregion

@@ -184,11 +184,11 @@ public class Player : MonoBehaviour
             currentFatigue = fatigueTime;
     }
 
-    public void Sleep()
+    public void Sleep(int sleepAmount)
     {
-        currentFatigue = fatigueTime;
+        currentFatigue += sleepAmount;
         fatigueBar.value = currentFatigue;
-        //bed game object
+        RevertFatigue();
     }
 
     private void ApplyFatigue()
