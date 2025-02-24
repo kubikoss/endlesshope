@@ -9,7 +9,16 @@ public class Bed : Item
 
     public void Sleep()
     {
+        if(Player.Instance.currentFatigue <= 50)
+            StartCoroutine(SleepCoroutine());
+    }
+
+    private IEnumerator SleepCoroutine()
+    {
+        yield return SleepManager.Instance.FadeToBlack();
+        yield return new WaitForSeconds(SleepManager.Instance.fadeDuration);
+
         Player.Instance.Sleep(SleepAmount);
-        UpdateInventoryItemCountOnUse();
+        yield return SleepManager.Instance.FadeFromBlack();
     }
 }

@@ -6,12 +6,20 @@ using UnityEngine.Rendering;
 [ExecuteAlways]
 public class LightingManager : MonoBehaviour
 {
+    public static LightingManager Instance { get; private set; }
+
     [SerializeField]
     private Light DirectionalLight;
     [SerializeField]
     private LightingPreset Preset;
     [SerializeField, Range(0, 240)]
     private float TimeOfDay;
+
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
 
     private void Update()
     {
@@ -34,7 +42,7 @@ public class LightingManager : MonoBehaviour
         }
     }
 
-    private void UpdateLighting(float timePercent)
+    public void UpdateLighting(float timePercent)
     {
         RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
         RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
@@ -44,6 +52,12 @@ public class LightingManager : MonoBehaviour
             DirectionalLight.color = Preset.DirectionalLight.Evaluate(timePercent);
             DirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, -170f, 0));
         }
+    }
+
+    public void SetNight()
+    {
+        TimeOfDay = 30f;
+        UpdateLighting(TimeOfDay);
     }
 
     private void OnValidate()

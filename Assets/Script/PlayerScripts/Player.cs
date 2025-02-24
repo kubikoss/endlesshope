@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private float currentDamageInterval;
     [SerializeField]
     float fatigueTime = 100;
-    private float currentFatigue;
+    public float currentFatigue;
     private AudioSource healthAudioSource;
     [SerializeField]
     AudioClip heartBeat;
@@ -145,6 +145,9 @@ public class Player : MonoBehaviour
 
     private void UpdateHungerTimer()
     {
+        if (SleepManager.Instance.isSleeping)
+            return;
+
         if (currentHungerTime < 0)
             currentHungerTime = 0;
 
@@ -167,6 +170,9 @@ public class Player : MonoBehaviour
 
     private void UpdateFatigueTimer()
     {
+        if (SleepManager.Instance.isSleeping)
+            return;
+
         currentFatigue -= Time.deltaTime;
         fatigueBar.value = currentFatigue;
 
@@ -187,6 +193,8 @@ public class Player : MonoBehaviour
     public void Sleep(int sleepAmount)
     {
         currentFatigue += sleepAmount;
+        if (currentFatigue > fatigueTime)
+            currentFatigue = fatigueTime;
         fatigueBar.value = currentFatigue;
         RevertFatigue();
     }

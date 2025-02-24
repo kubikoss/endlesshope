@@ -56,15 +56,19 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, whatIsGround);
 
-        MovementControl();
-        SpeedControl();
-        PlayerMovementAnimation();
-        MoveCamera();
+        if(!SleepManager.Instance.isSleeping)
+        {
+            MovementControl();
+            SpeedControl();
+            PlayerMovementAnimation();
+            MoveCamera();
+        }
     }
 
     private void FixedUpdate()
     {
-        Move();
+        if(!SleepManager.Instance.isSleeping)
+            Move();
     }
 
     private void MovementControl()

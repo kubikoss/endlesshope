@@ -46,6 +46,9 @@ public class InventoryManager : MonoBehaviour
     {
         if(!MenuManager.Instance.isPaused)
         {
+            if (SleepManager.Instance.isSleeping)
+                return;
+
             SwitchItem();
             HandleCurrentItem();
             OpenInventory();
@@ -317,7 +320,7 @@ public class InventoryManager : MonoBehaviour
             {
                 HandleFood(food);
             }
-            else if(currentItem is Bed bed)
+            else if(currentItem is Bed bed && !SleepManager.Instance.isSleeping)
             {
                 HandleBed(bed);
             }
@@ -438,23 +441,25 @@ public class InventoryManager : MonoBehaviour
 // inventory rework (100%)
 // crafting system (100%)
 // shopping system (100%)
-// ally system (99%)
+// ally system (100%)
 // models (80%)  
-// game-other (91%)
+// game-other (95%)
 
 //project TODO
 
 //CODE TODO
 //minimap-> 1 day
 //tutorial-> 1 day
-//sleep bar fatigue effects-> this week
+//sleep - pause menu visibility, text add, time of day
 
 //MODELS TODO
-//map & item models - town 95%, farm 70%, airport 97%, military, graveyard, port 98%
+//map & item models - farm 80%, military, graveyard-> 50% this month
 //resources - bag of sand, metal piece, glass, wood, plastic, cork, rubber, bed, chest
-//vfx & ui (achievements)
 
 //OTHER TODO
 //crafting recipes - after models
+//achievements
+//colliders
+//shooting particles
 
-//finished 88%
+//finished 90%

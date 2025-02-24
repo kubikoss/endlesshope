@@ -42,7 +42,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (isOutputItem)
+        if (isOutputItem || SleepManager.Instance.isSleeping)
             return;
 
         if (MenuManager.Instance.isPaused)
@@ -62,7 +62,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (isOutputItem)
+        if (isOutputItem || SleepManager.Instance.isSleeping)
             return;
 
         if (MenuManager.Instance.isPaused)
@@ -79,7 +79,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (isOutputItem)
+        if (isOutputItem || SleepManager.Instance.isSleeping)
             return;
 
         if (MenuManager.Instance.isPaused)
