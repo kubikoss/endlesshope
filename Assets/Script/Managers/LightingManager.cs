@@ -54,10 +54,9 @@ public class LightingManager : MonoBehaviour
         }
     }
 
-    public void SetNight()
+    public void ChangeLight()
     {
-        TimeOfDay = 30f;
-        UpdateLighting(TimeOfDay);
+        UpdateLighting(TimeOfDay += 70f);
     }
 
     private void OnValidate()

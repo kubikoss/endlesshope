@@ -57,6 +57,8 @@ public class Player : MonoBehaviour
 
         healthAudioSource = gameObject.AddComponent<AudioSource>();
         healthAudioSource.loop = true;
+
+        InventoryManager.Instance.enabled = true;
     }
 
     void Update()

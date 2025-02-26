@@ -31,13 +31,12 @@ public class InventoryManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
-
-        playerCam = PlayerManager.Instance.mainCamera;
     }
 
     private void Start()
     {
         ChangeSelectedSlot(0);
+        playerCam = PlayerManager.Instance.mainCamera;
     }
 
     private void Update()
@@ -439,11 +438,6 @@ public class InventoryManager : MonoBehaviour
 //models (85%)  
 //game-other (95%)
 
-//CODE TODO
-//minimap-> 1 day
-//tutorial-> 1 day
-//sleep - pause menu visibility, time of day
-
 //MODELS TODO
 //military, graveyard
 //bag of sand, metal piece, glass, plastic, wood, lootbox
@@ -452,5 +446,7 @@ public class InventoryManager : MonoBehaviour
 //crafting recipes - after models
 //colliders
 //shooting particles
+//minimap-> 1 day
+//zombies & lootboxes spawn
 
-//finished 92%
+//finished 94%

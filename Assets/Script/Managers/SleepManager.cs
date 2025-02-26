@@ -24,7 +24,7 @@ public class SleepManager : MonoBehaviour
         panel.gameObject.SetActive(true);
         isSleeping = true;
         yield return Fade(1f);
-        LightingManager.Instance.SetNight();
+        LightingManager.Instance.ChangeLight();
     }
 
     public IEnumerator FadeFromBlack()
