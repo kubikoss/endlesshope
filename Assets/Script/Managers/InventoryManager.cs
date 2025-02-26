@@ -13,8 +13,8 @@ public class InventoryManager : MonoBehaviour
     public List<InventorySlot> inventorySlots;
     public GameObject inventoryItemPrefab;
     public GameObject fullInventory;
-    public bool isInventoryOpened = false;
-    public bool isDragging = false;
+    [HideInInspector] public bool isInventoryOpened = false;
+    [HideInInspector] public bool isDragging = false;
     [HideInInspector] public int selectedSlot = -1;
     [HideInInspector] public int hotbarCount = 0;
     [HideInInspector] public bool splitting = false;
@@ -22,13 +22,11 @@ public class InventoryManager : MonoBehaviour
     [Header("Item")]
     public Item currentItem;
     private float fireTimer = 0f;
+    public ParticleSystem particles;
 
     [Header("Camera")]
     public Camera playerCam;
 
-    public ParticleSystem particles;
-
-    public Transform transf;
     private void Awake()
     {
         if (Instance == null)
@@ -438,28 +436,21 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-// inventory rework (100%)
-// crafting system (100%)
-// shopping system (100%)
-// ally system (100%)
-// models (80%)  
-// game-other (95%)
-
-//project TODO
+//models (85%)  
+//game-other (95%)
 
 //CODE TODO
 //minimap-> 1 day
 //tutorial-> 1 day
-//sleep - pause menu visibility, text add, time of day
+//sleep - pause menu visibility, time of day
 
 //MODELS TODO
-//map & item models - farm 80%, military, graveyard-> 50% this month
-//resources - bag of sand, metal piece, glass, wood, plastic, cork, rubber, bed, chest
+//military, graveyard
+//bag of sand, metal piece, glass, plastic, wood, lootbox
 
 //OTHER TODO
 //crafting recipes - after models
-//achievements
 //colliders
 //shooting particles
 
-//finished 90%
+//finished 92%

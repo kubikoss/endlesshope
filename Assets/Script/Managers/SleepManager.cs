@@ -6,6 +6,7 @@ public class SleepManager : MonoBehaviour
 {
     public static SleepManager Instance { get; private set; }
 
+    [SerializeField] private GameObject panel;
     [SerializeField] private CanvasGroup fadeCanvasGroup;
     [SerializeField] public float fadeDuration = 3f;
     [HideInInspector] public bool isSleeping = false;
@@ -15,12 +16,12 @@ public class SleepManager : MonoBehaviour
         if (Instance == null)
             Instance = this;
 
-        fadeCanvasGroup.gameObject.SetActive(true);
         fadeCanvasGroup.alpha = 0f;
     }
 
     public IEnumerator FadeToBlack()
     {
+        panel.gameObject.SetActive(true);
         isSleeping = true;
         yield return Fade(1f);
         LightingManager.Instance.SetNight();
@@ -29,6 +30,7 @@ public class SleepManager : MonoBehaviour
     public IEnumerator FadeFromBlack()
     {
         yield return Fade(0f);
+        panel.gameObject.SetActive(false);
         isSleeping = false;
     }
 
