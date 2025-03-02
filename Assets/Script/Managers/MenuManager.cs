@@ -11,6 +11,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     GameObject pauseMenu;
     [HideInInspector] public bool isPaused = false;
+    [SerializeField]
+    GameObject gameUI;
     private void Awake()
     {
         if(Instance == null)
@@ -25,6 +27,17 @@ public class MenuManager : MonoBehaviour
     private void Update()
     {
         Pause();
+
+        if (pauseMenu.activeSelf)
+        {
+            gameUI.SetActive(false);
+            if (PlayerMovement.Instance.movementAudioSource.isPlaying)
+                PlayerMovement.Instance.movementAudioSource.Stop();
+        }
+        else
+        {
+            gameUI.SetActive(true);
+        }
     }
 
     public void Play()
@@ -46,7 +59,7 @@ public class MenuManager : MonoBehaviour
     }
 
     public void Pause()
-    {
+    {        
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu.SetActive(!pauseMenu.activeSelf);

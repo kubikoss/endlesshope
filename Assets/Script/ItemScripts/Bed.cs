@@ -15,6 +15,9 @@ public class Bed : Item
 
     private IEnumerator SleepCoroutine()
     {
+        if(PlayerMovement.Instance.movementAudioSource.isPlaying)
+            PlayerMovement.Instance.movementAudioSource.Stop();
+
         yield return SleepManager.Instance.FadeToBlack();
         yield return new WaitForSeconds(SleepManager.Instance.fadeDuration);
 

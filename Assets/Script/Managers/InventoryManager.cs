@@ -445,8 +445,7 @@ public class InventoryManager : MonoBehaviour
 //OTHER TODO
 //crafting recipes - after models
 //colliders
-//shooting particles
-//minimap-> 1 day
+//sfx & vfx fix
 //zombies & lootboxes spawn
 
 //finished 94%

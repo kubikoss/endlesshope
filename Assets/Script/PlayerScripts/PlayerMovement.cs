@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     float verticalInput;
     Vector3 moveDirection;
-    private AudioSource movementAudioSource;
+    public AudioSource movementAudioSource;
     [SerializeField]
     AudioClip movementSound;
 
