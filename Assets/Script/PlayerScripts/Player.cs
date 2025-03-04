@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
     private AudioSource healthAudioSource;
     [SerializeField]
     AudioClip heartBeat;
+    [SerializeField]
+    private GameObject deathPanel;
 
     private bool canReduce = true;
     private bool reduced = false;
@@ -58,6 +60,8 @@ public class Player : MonoBehaviour
         healthAudioSource = gameObject.AddComponent<AudioSource>();
         healthAudioSource.loop = true;
 
+        deathPanel.gameObject.SetActive(false);
+
         InventoryManager.Instance.enabled = true;
     }
 
@@ -85,10 +89,22 @@ public class Player : MonoBehaviour
         Scene activeScene = SceneManager.GetActiveScene();
         if (hp <= 0)
         {
+            //deathPanel.gameObject.SetActive(true);
             Weapon.ammoPools.Clear();
             Weapon.collectedWeapons.Clear();
             SceneManager.LoadScene(activeScene.name);
         }
+    }
+
+    public void RestartScene()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        /*Weapon.ammoPools.Clear();
+        Weapon.collectedWeapons.Clear();*/
+
+       /*Scene activeScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(activeScene.name);*/
     }
 
     public void TakeDamage(float amount)

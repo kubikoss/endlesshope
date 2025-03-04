@@ -13,6 +13,7 @@ public class MenuManager : MonoBehaviour
     [HideInInspector] public bool isPaused = false;
     [SerializeField]
     GameObject gameUI;
+
     private void Awake()
     {
         if(Instance == null)
@@ -31,7 +32,7 @@ public class MenuManager : MonoBehaviour
         if (pauseMenu.activeSelf)
         {
             gameUI.SetActive(false);
-            if (PlayerMovement.Instance.movementAudioSource.isPlaying)
+            if (PlayerMovement.Instance != null && PlayerMovement.Instance.movementAudioSource.isPlaying)
                 PlayerMovement.Instance.movementAudioSource.Stop();
         }
         else

@@ -16,7 +16,8 @@ public class ShopItem : MonoBehaviour
 
     private void Start()
     {
-        costText.gameObject.SetActive(false);
+        if(costText != null)
+            costText.gameObject.SetActive(false);
         canBuy = false;
     }
 
