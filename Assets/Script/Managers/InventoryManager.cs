@@ -317,7 +317,7 @@ public class InventoryManager : MonoBehaviour
             {
                 HandleFood(food);
             }
-            else if(currentItem is Bed bed && !SleepManager.Instance.isSleeping)
+            else if (currentItem is Bed bed && !SleepManager.Instance.isSleeping)
             {
                 HandleBed(bed);
             }
@@ -435,17 +435,17 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-//models (85%)  
-//game-other (95%)
+//models (90%)  
+//game-other (97%)
 
-//MODELS TODO
-//military, graveyard
-//bag of sand, metal piece, glass, plastic, wood, lootbox
+//bag of sand, metal piece, glass, plastic, wood, lootbox, graveyard
 
 //OTHER TODO
 //crafting recipes - after models
 //colliders
-//sfx & vfx fix
+//vfx fix
 //zombies & lootboxes spawn
 
-//finished 94%
+//MODELS -> 1/2 DAY, RECIPES -> 2H, VFX -> 3H, ZOMBIES&LOOTBOX -> 3H, COLLIDER -> 2H, WATER&SAND MAP -> 1H ------ 5 DAY MAX
+
+//finished 96%
