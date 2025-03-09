@@ -25,7 +25,6 @@ public class EnemySpawn : MonoBehaviour
     {
         currentTimeBetweenSpawn -= Time.deltaTime;
         distance = Vector3.Distance(this.transform.position, PlayerManager.Instance.player.transform.position);
-        Debug.Log(distance + " " + currentTimeBetweenSpawn);
         if (currentTimeBetweenSpawn <= 0 && distance <= 15f)
         {
             GameObject spawnedEnemy = Instantiate(enemy, this.transform.position, Quaternion.identity);

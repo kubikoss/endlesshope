@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8040d0b97d52d40bc213d25ed8b625, type: 3}
+  m_Name: dwda 2
+  m_EditorClassIdentifier: 
+  recipeName: dwddda
+  requiredItems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 3062796967788874699, guid: a8f184a9c4493074e8a8c7bc35a31bd1, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 4414125756241021043, guid: b35c3b7dea12cc4439c7064f1b09eb3e, type: 3}
+  - {fileID: 5470480911217911474, guid: 52c876333b09ef246ae4495e4cb55ba8, type: 3}
+  resultItem: {fileID: 4788405402727624856, guid: b461ebe9f00d81e459ce51c201f9f9e7, type: 3}

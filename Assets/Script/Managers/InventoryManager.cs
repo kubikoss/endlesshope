@@ -438,7 +438,7 @@ public class InventoryManager : MonoBehaviour
 //models (90%)  
 //game-other (97%)
 
-//glass, lootbox, graveyard, icons (wood, metal, sand(fix position))
+//lootbox, graveyard, fix position hand
 
 //OTHER TODO
 //crafting recipes - after models

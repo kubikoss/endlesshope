@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 2545747524173440764}
   - component: {fileID: 9096336262210090048}
   - component: {fileID: 6026690056423981538}
+  - component: {fileID: 4665159538149043197}
   - component: {fileID: 7767922027205194144}
+  - component: {fileID: 6289593497785866031}
   m_Layer: 9
   m_Name: Item_Metal
   m_TagString: Item
@@ -109,6 +111,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4954554257721388540, guid: 241a323ff55292a4eabfe8e6db2efc40, type: 3}
+--- !u!65 &4665159538149043197
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8070057380381358188}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0336214, y: 0.86614853, z: 1.3329945}
+  m_Center: {x: 0.022614196, y: 0.41864637, z: -0.06718305}
 --- !u!114 &7767922027205194144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,4 +144,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10692f06919c5304095f2a6ca7da9bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  item: {fileID: 6289593497785866031}
+--- !u!114 &6289593497785866031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8070057380381358188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f56fcf87d532a478be80ffffb54a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: a3722135e19d9b743bc5c53855a68c2b, type: 2}
