@@ -137,3 +137,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 041e92fcb209ea44398e22a91702c454, type: 2}
+  resourceItem: {fileID: 11400000, guid: 041e92fcb209ea44398e22a91702c454, type: 2}

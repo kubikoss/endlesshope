@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Venom Extractor
   m_EditorClassIdentifier: 
   itemName: VenomExtractor
-  ID: 31
+  ID: 34
   itemIcon: {fileID: 21300000, guid: 0242e3fe40442cf4fbd49eb5fe1657df, type: 3}
   isStackable: 0
   maxStackCount: 1
@@ -23,6 +23,6 @@ MonoBehaviour:
   rotZ: 4.98
   range: 3
   ammo: 1
-  canTakeVenom: 0
+  canTakeVenom: 1
   reloadTime: 1
   filledExtractor: {fileID: 475834276611930234, guid: ab8cc893567cf1a40b60921c5bdf4e40, type: 3}

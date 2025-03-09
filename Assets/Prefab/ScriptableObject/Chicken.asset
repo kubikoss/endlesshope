@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Chicken
   m_EditorClassIdentifier: 
   itemName: Chicken
-  ID: 8
+  ID: 9
   itemIcon: {fileID: 21300000, guid: 633e8de35a6b1ca4b9c8c85c7c884500, type: 3}
   isStackable: 1
   maxStackCount: 5
   itemWorld: {fileID: 7291568833434612590, guid: 7abe4a14589a77d4591422ed680227a9, type: 3}
+  rotX: 0
+  rotY: 0
+  rotZ: 0
   foodStat: 30
   isEatable: 1

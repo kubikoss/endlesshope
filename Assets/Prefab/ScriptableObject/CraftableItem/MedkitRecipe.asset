@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a8040d0b97d52d40bc213d25ed8b625, type: 3}
-  m_Name: GlassRecipe
+  m_Name: MedkitRecipe
   m_EditorClassIdentifier: 
-  recipeName: GlassRecipe
+  recipeName: MedkitRecipe
   requiredItems:
-  - {fileID: 4788405402727624856, guid: b461ebe9f00d81e459ce51c201f9f9e7, type: 3}
-  - {fileID: 0}
-  - {fileID: 4788405402727624856, guid: b461ebe9f00d81e459ce51c201f9f9e7, type: 3}
-  - {fileID: 0}
-  - {fileID: 4788405402727624856, guid: b461ebe9f00d81e459ce51c201f9f9e7, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  resultItem: {fileID: 3452571514631514757, guid: a9491190bb9335441a8936802babfdaf, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  resultItem: {fileID: 0}

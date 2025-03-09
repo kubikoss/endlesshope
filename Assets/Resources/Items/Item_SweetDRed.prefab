@@ -65,6 +65,10 @@ PrefabInstance:
       value: Item_SweetDRed
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f33a966a5aca0eb4f961c8f862a4f018, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f33a966a5aca0eb4f961c8f862a4f018, type: 3}
       propertyPath: m_TagString
       value: Item
       objectReference: {fileID: 0}

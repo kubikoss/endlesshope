@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Glass
   m_EditorClassIdentifier: 
   itemName: Glass
-  ID: 80
+  ID: 14
   itemIcon: {fileID: 21300000, guid: 2c8ddccde7c62a84da1e8734a7189415, type: 3}
   isStackable: 1
   maxStackCount: 15

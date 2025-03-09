@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Sand
   m_EditorClassIdentifier: 
   itemName: Sand
-  ID: 43
+  ID: 28
   itemIcon: {fileID: 21300000, guid: e30461ac8e2ca53458b9870a817cf898, type: 3}
   isStackable: 1
   maxStackCount: 15
-  itemWorld: {fileID: 919132149155446097, guid: 0af02da93edd3084d9212ac86e6cda29, type: 3}
+  itemWorld: {fileID: 5645811165704427994, guid: b461ebe9f00d81e459ce51c201f9f9e7, type: 3}
   rotX: 0
   rotY: 0
   rotZ: 0

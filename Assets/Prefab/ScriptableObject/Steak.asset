@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Steak
   m_EditorClassIdentifier: 
   itemName: Steak
-  ID: 22
+  ID: 30
   itemIcon: {fileID: 21300000, guid: 9f10b5f145153c04cb8177e6629948af, type: 3}
   isStackable: 1
   maxStackCount: 5

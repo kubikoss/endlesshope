@@ -69,6 +69,10 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b9e0dad62ffceaa44805c62ace0c49bf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b9e0dad62ffceaa44805c62ace0c49bf, type: 3}
       propertyPath: m_TagString
       value: Item
       objectReference: {fileID: 0}
@@ -138,3 +142,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: ea465729aaf138c43b06f66abb968670, type: 2}
+  resourceItem: {fileID: 11400000, guid: ea465729aaf138c43b06f66abb968670, type: 2}

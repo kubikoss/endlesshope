@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PizzaSlice
   m_EditorClassIdentifier: 
   itemName: PizzaSlice
-  ID: 18
+  ID: 24
   itemIcon: {fileID: 21300000, guid: 7d94f279412dd754aa80c8bd62bde320, type: 3}
   isStackable: 1
   maxStackCount: 4

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SweetDRe
   m_EditorClassIdentifier: 
   itemName: SweetDRe
-  ID: 27
+  ID: 32
   itemIcon: {fileID: 21300000, guid: 1c3bc9e848f06fc40bc01dc7bb7bdf0e, type: 3}
   isStackable: 1
   maxStackCount: 10

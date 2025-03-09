@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MilkR
   m_EditorClassIdentifier: 
   itemName: MilkR
-  ID: 16
+  ID: 20
   itemIcon: {fileID: 21300000, guid: beb9133764f3e2641a95ef70dd6ce054, type: 3}
   isStackable: 1
   maxStackCount: 10

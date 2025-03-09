@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Metal
   m_EditorClassIdentifier: 
   itemName: Metal
-  ID: 87
+  ID: 18
   itemIcon: {fileID: 21300000, guid: 21a5397b5cdfc324f890f6264ca5e847, type: 3}
   isStackable: 1
   maxStackCount: 15

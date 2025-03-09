@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Money
   m_EditorClassIdentifier: 
   itemName: Money
-  ID: 50
+  ID: 21
   itemIcon: {fileID: 21300000, guid: a1bfd010e545bae429a8b259c8600fad, type: 3}
   isStackable: 0
   maxStackCount: 0

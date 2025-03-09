@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RawPotato
   m_EditorClassIdentifier: 
   itemName: RawPotato
-  ID: 20
+  ID: 26
   itemIcon: {fileID: 21300000, guid: b3182f0b2b839bc4c8ce9a0d20f25ced, type: 3}
   isStackable: 1
   maxStackCount: 10
