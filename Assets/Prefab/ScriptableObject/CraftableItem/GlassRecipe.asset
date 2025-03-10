@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: GlassRecipe
   requiredItems:
-  - {fileID: 4788405402727624856, guid: b461ebe9f00d81e459ce51c201f9f9e7, type: 3}
+  - {fileID: 1793430271337533937, guid: 3f26036fd84ae8b44927f74f795da55e, type: 3}
   - {fileID: 0}
-  - {fileID: 4788405402727624856, guid: b461ebe9f00d81e459ce51c201f9f9e7, type: 3}
+  - {fileID: 1793430271337533937, guid: 3f26036fd84ae8b44927f74f795da55e, type: 3}
   - {fileID: 0}
-  - {fileID: 4788405402727624856, guid: b461ebe9f00d81e459ce51c201f9f9e7, type: 3}
+  - {fileID: 1793430271337533937, guid: 3f26036fd84ae8b44927f74f795da55e, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
