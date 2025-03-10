@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: AK47Recipe
   requiredItems:
+  - {fileID: 8166599607572636435, guid: b3e76053bdac8964db5984ff5f45e367, type: 3}
+  - {fileID: 8166599607572636435, guid: b3e76053bdac8964db5984ff5f45e367, type: 3}
+  - {fileID: 8166599607572636435, guid: b3e76053bdac8964db5984ff5f45e367, type: 3}
   - {fileID: 0}
+  - {fileID: 8166599607572636435, guid: b3e76053bdac8964db5984ff5f45e367, type: 3}
   - {fileID: 0}
+  - {fileID: -9197796061869618286, guid: 9f10a7effe6e4aa458891763ca25cdb8, type: 3}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  resultItem: {fileID: 0}
+  - {fileID: -9197796061869618286, guid: 9f10a7effe6e4aa458891763ca25cdb8, type: 3}
+  resultItem: {fileID: 8377067908021654310, guid: c2f7cffdeac232b4888d6c3a507a021d, type: 3}

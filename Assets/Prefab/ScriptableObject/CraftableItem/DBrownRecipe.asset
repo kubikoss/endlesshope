@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: DBrownRecipe
   requiredItems:
+  - {fileID: 2268786369767028122, guid: ee657654e805b9d4da7d85c5787d2722, type: 3}
+  - {fileID: 5532251704492805091, guid: 6a3188c6298d1fb4c8faaf41b310a939, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -21,6 +23,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  resultItem: {fileID: 0}
+  resultItem: {fileID: 1027617545687902360, guid: e0d1a05c3f3c48d41a53d00e2ee8fc57, type: 3}

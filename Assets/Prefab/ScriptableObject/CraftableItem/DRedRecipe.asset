@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: DRedRecipe
   requiredItems:
+  - {fileID: 5646276414093576381, guid: ab8cc893567cf1a40b60921c5bdf4e40, type: 3}
+  - {fileID: 3756959005009610600, guid: a77fa0199e71b6a4fb337a58a987766b, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -21,6 +23,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  resultItem: {fileID: 0}
+  resultItem: {fileID: 1140629888641933874, guid: d889513a70bc450449983898d31b3309, type: 3}

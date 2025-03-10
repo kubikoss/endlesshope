@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: DGreenRecipe
   requiredItems:
+  - {fileID: 5646276414093576381, guid: ab8cc893567cf1a40b60921c5bdf4e40, type: 3}
+  - {fileID: 92078616281021095, guid: e7edfecd1b9ed504792b5e5a23d1b55a, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -21,6 +23,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  resultItem: {fileID: 0}
+  resultItem: {fileID: 7068691203485394531, guid: ebe8c4babf833cd49a00baa5a95cdc93, type: 3}

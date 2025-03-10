@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: DPinkRecipe
   requiredItems:
+  - {fileID: 6016815324941518194, guid: 5ccb9bde53d554843a5e9f8bde45e14d, type: 3}
+  - {fileID: 5532251704492805091, guid: 6a3188c6298d1fb4c8faaf41b310a939, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -21,6 +23,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  resultItem: {fileID: 0}
+  resultItem: {fileID: 5470480911217911474, guid: 52c876333b09ef246ae4495e4cb55ba8, type: 3}

@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scene/Tutorial.unity
     guid: 32802d8ff35b98a4ab4849e2ae245044
   - enabled: 1
-    path: Assets/Scene/map.unity
+    path: Assets/Scene/Map.unity
     guid: c40e3f127403e3e4c9d45df932241397
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

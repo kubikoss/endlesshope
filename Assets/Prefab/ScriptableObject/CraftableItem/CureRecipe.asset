@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeName: CureRecipe
   requiredItems:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  resultItem: {fileID: 0}
+  - {fileID: 3452571514631514757, guid: a9491190bb9335441a8936802babfdaf, type: 3}
+  - {fileID: 1935640798753713527, guid: 4f37d9d7ecbb1ba41b14619f1c5725ca, type: 3}
+  - {fileID: 3452571514631514757, guid: a9491190bb9335441a8936802babfdaf, type: 3}
+  - {fileID: 9197508750458733365, guid: f2b8cf0339c92ab4390483a98978e245, type: 3}
+  - {fileID: -7711329370498610078, guid: 5601c23b31649f14ea4fec166d5a452c, type: 3}
+  - {fileID: 9197508750458733365, guid: f2b8cf0339c92ab4390483a98978e245, type: 3}
+  - {fileID: 3452571514631514757, guid: a9491190bb9335441a8936802babfdaf, type: 3}
+  - {fileID: 5646276414093576381, guid: ab8cc893567cf1a40b60921c5bdf4e40, type: 3}
+  - {fileID: 3452571514631514757, guid: a9491190bb9335441a8936802babfdaf, type: 3}
+  resultItem: {fileID: -8355369123138348588, guid: 006b68123bad8d043872b40d9559cf99, type: 3}
