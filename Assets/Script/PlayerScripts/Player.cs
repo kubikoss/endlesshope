@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
         healthAudioSource.loop = true;
 
         deathPanel.gameObject.SetActive(false);
+        Time.timeScale = 1f;
 
         InventoryManager.Instance.enabled = true;
     }
@@ -89,22 +90,19 @@ public class Player : MonoBehaviour
         Scene activeScene = SceneManager.GetActiveScene();
         if (hp <= 0)
         {
-            //deathPanel.gameObject.SetActive(true);
-            Weapon.ammoPools.Clear();
-            Weapon.collectedWeapons.Clear();
-            SceneManager.LoadScene(activeScene.name);
+            deathPanel.gameObject.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            Time.timeScale = 0f;
         }
     }
 
     public void RestartScene()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        /*Weapon.ammoPools.Clear();
-        Weapon.collectedWeapons.Clear();*/
+        Weapon.ammoPools.Clear();
+        Weapon.collectedWeapons.Clear();
 
-       /*Scene activeScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(activeScene.name);*/
+        SceneManager.LoadScene(2);
     }
 
     public void TakeDamage(float amount)

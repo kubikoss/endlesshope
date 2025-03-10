@@ -61,7 +61,7 @@ public class MenuManager : MonoBehaviour
 
     public void Pause()
     {        
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0)
         {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
             if(pauseMenu.activeSelf)

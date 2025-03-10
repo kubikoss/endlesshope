@@ -23,11 +23,11 @@ public class TutorialText : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) && currentIndex < textList.Count)
         {
             textList[currentIndex].gameObject.SetActive(false);
-
             currentIndex++;
+
             if (currentIndex < textList.Count)
             {
                 textList[currentIndex].gameObject.SetActive(true);
@@ -37,6 +37,11 @@ public class TutorialText : MonoBehaviour
             {
                 TutorialGameplay.Instance.canSpawn = true;
                 TutorialGameplay.Instance.SpawnEnemy();
+            }
+
+            if (currentIndex == textList.Count)
+            {
+                TutorialGameplay.Instance.tutorialCompleted = true;
             }
         }
     }

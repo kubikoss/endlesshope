@@ -435,17 +435,17 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-//models (90%)  
+//models (95%)  
 //game-other (97%)
 
-//lootbox, graveyard, fix position hand
+//lootbox, graveyard
 
 //OTHER TODO
-//crafting recipes - after models
+//crafting recipes (crafting manager object)
 //colliders
 //vfx fix
 //zombies & lootboxes spawn
 
-//MODELS -> 1/2 DAY, RECIPES -> 2H, VFX -> 3H, ZOMBIES&LOOTBOX -> 3H, COLLIDER -> 2H, WATER&SAND MAP -> 1H ------ 5 DAY MAX
+//MODELS -> 1 DAY, RECIPES -> 2H, VFX -> 3H, ZOMBIES&LOOTBOX -> 3H, COLLIDER -> 2H, WATER&SAND MAP -> 1H ------ 5 DAY MAX
 
-//finished 96%
+//finished 97%

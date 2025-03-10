@@ -118,6 +118,7 @@ public class EnemyMovement : MonoBehaviour
         bool isMoving = Vector3.Distance(transform.position, lastPosition) > 0f;
         lastPosition = transform.position;
 
+        if(animator != null)
         animator.SetBool("isMoving", isMoving);
 
         if (!isMoving)
