@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: c9d63891092390e428dbb02827c2fe13, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3796711
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c9d63891092390e428dbb02827c2fe13, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3796711
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c9d63891092390e428dbb02827c2fe13, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3796711
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: c9d63891092390e428dbb02827c2fe13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -137,4 +149,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f56fcf87d532a478be80ffffb54a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: ea465729aaf138c43b06f66abb968670, type: 2}
+  itemData: {fileID: 11400000, guid: 89d5ac750287e1f438938dc5afc548b6, type: 2}
+  resourceItem: {fileID: 11400000, guid: 89d5ac750287e1f438938dc5afc548b6, type: 2}

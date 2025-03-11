@@ -16,9 +16,18 @@ public class ParticleManager : MonoBehaviour
         }
     }
 
-    public ParticleSystem SpawnParticles(ParticleSystem particles, Vector3 position, float destroyTime)
+    public ParticleSystem SpawnParticles(ParticleSystem particles, Vector3 position, float destroyTime, bool shootP = false)
     {
         ParticleSystem currentParticles = Instantiate(particles, position, Quaternion.identity);
+        if(shootP)
+        {
+            currentParticles.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        }
+        else
+        {
+            currentParticles.transform.localScale = new Vector3(1, 1, 1);
+        }
+        
         StartCoroutine(DestroyParticles(destroyTime, currentParticles));
         return currentParticles;
     }

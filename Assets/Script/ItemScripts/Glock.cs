@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class Glock : Weapon
 {
@@ -9,7 +10,11 @@ public class Glock : Weapon
     public float maxSpread = 0.2f;
     public PlayerMovement playerMovement;
     [SerializeField]
+    ParticleSystem particles;
+    [SerializeField]
     AudioClip reloadSound;
+    public Transform GSP;
+
     private void Start()
     {
         CurrentAmmo = MagazineSize;
@@ -26,6 +31,12 @@ public class Glock : Weapon
         if (CurrentAmmo > 0 && CanShoot)
         {
             AudioManager.Instance.PlayAudio(ItemSound, 0.3f);
+            Transform GSP = GameObject.Find("GSP").transform;
+
+            ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, GSP.position, 0.3f, true);
+            pts.transform.SetParent(GSP);
+            pts.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+
             RaycastHit hit;
 
             float playerSpeed = new Vector3(playerMovement.rb.velocity.x, 0f, playerMovement.rb.velocity.z).magnitude;

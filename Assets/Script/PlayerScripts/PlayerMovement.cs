@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.1f, whatIsGround);
 
-        if(!SleepManager.Instance.isSleeping)
+        if(!SleepManager.Instance.isSleeping || Player.Instance.endPanel.activeSelf)
         {
             MovementControl();
             SpeedControl();

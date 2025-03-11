@@ -22,7 +22,6 @@ public class InventoryManager : MonoBehaviour
     [Header("Item")]
     public Item currentItem;
     private float fireTimer = 0f;
-    public ParticleSystem particles;
 
     [Header("Camera")]
     public Camera playerCam;
@@ -43,7 +42,7 @@ public class InventoryManager : MonoBehaviour
     {
         if(!MenuManager.Instance.isPaused)
         {
-            if (SleepManager.Instance.isSleeping)
+            if (SleepManager.Instance.isSleeping || Player.Instance.endPanel.activeSelf)
                 return;
 
             SwitchItem();
@@ -56,7 +55,7 @@ public class InventoryManager : MonoBehaviour
     #region add/remove from inventory
     public int AddItem(Item item)
     {
-        if(isDragging)
+        if(isDragging || Player.Instance.endPanel.activeSelf || SleepManager.Instance.isSleeping || MenuManager.Instance.isPaused)
         {
             return -1;
         }
@@ -334,10 +333,6 @@ public class InventoryManager : MonoBehaviour
             {
                 weapon.Shoot();
                 fireTimer = 0f;
-
-                /*ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, transf.position, 0.3f);
-                pts.transform.SetParent(transf);
-                pts.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);*/
             }
         }
         else if (weapon.FiringMode == FiringMode.SemiAutomatic)
@@ -345,10 +340,6 @@ public class InventoryManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 weapon.Shoot();
-                
-                /*ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, transf.position, 0.3f);
-                pts.transform.SetParent(transf);
-                pts.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);*/
             }
         }
 
@@ -436,15 +427,12 @@ public class InventoryManager : MonoBehaviour
     #endregion
 }
 //models (95%)  
-//game-other (97%)
+//game-other (98%)
 
-//lootbox, graveyard, sand
+//lootbox, graveyard, fix enemy + canvas (prob animator)
 
 //OTHER TODO
-//colliders (cargo, market, farm)
-//vfx fix
 //zombies & lootboxes spawn
-//better UI tutorial (ending panel)
-//cure
+//better UI tutorial
 
 //finished 97%

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEditor.Progress;
 
 public class Player : MonoBehaviour
 {
@@ -34,6 +35,11 @@ public class Player : MonoBehaviour
     public Slider hungerBar;
     public Slider fatigueBar;
 
+    [SerializeField]
+    private Transform endPosition;
+    [SerializeField]
+    public GameObject endPanel;
+
     private float originalBaseSpread;
     private float originalMovingSpread;
     private float originalSpeed;
@@ -61,6 +67,7 @@ public class Player : MonoBehaviour
         healthAudioSource.loop = true;
 
         deathPanel.gameObject.SetActive(false);
+        endPanel.gameObject.SetActive(false);
         Time.timeScale = 1f;
 
         InventoryManager.Instance.enabled = true;
@@ -68,6 +75,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        DidFinish();
         IsDead();
         CheckHealth();
         UpdateHungerTimer();
@@ -90,10 +98,19 @@ public class Player : MonoBehaviour
         Scene activeScene = SceneManager.GetActiveScene();
         if (hp <= 0)
         {
-            deathPanel.gameObject.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-            Time.timeScale = 0f;
+            if(activeScene.buildIndex == 1)
+            {
+                Weapon.ammoPools.Clear();
+                Weapon.collectedWeapons.Clear();
+                SceneManager.LoadScene(1);
+            }
+            else
+            {
+                deathPanel.gameObject.SetActive(true);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                Time.timeScale = 0f;
+            }
         }
     }
 
@@ -104,6 +121,27 @@ public class Player : MonoBehaviour
 
         SceneManager.LoadScene(2);
     }
+
+    private void DidFinish()
+    {
+        float distance = Vector2.Distance(transform.position, endPosition.position);
+        if (distance <= 5f)
+        {
+            foreach (InventorySlot slot in InventoryManager.Instance.inventorySlots)
+            {
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+                if (itemInSlot != null && itemInSlot.item != null && itemInSlot.item.ItemName == "Cure" && Input.GetKeyDown(KeyCode.Space))
+                {
+                    endPanel.gameObject.SetActive(true);
+                    Time.timeScale = 0f;
+                    break;
+                }
+            }
+        }
+    }
+
+
 
     public void TakeDamage(float amount)
     {

@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 using static UnityEngine.ParticleSystem;
 
 public class AK47 : Weapon
@@ -16,6 +17,8 @@ public class AK47 : Weapon
     ParticleSystem particles;
     [SerializeField]
     AudioClip reloadSound;
+    public Transform AKSP;
+
     private void Start()
     {
         CurrentAmmo = MagazineSize;
@@ -32,6 +35,12 @@ public class AK47 : Weapon
         if (CurrentAmmo > 0 && CanShoot)
         {
             AudioManager.Instance.PlayAudio(ItemSound, 0.3f);
+            Transform AKSP = GameObject.Find("AKSP").transform;
+
+            ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, AKSP.position, 0.3f, true);
+            pts.transform.SetParent(AKSP);
+            pts.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+
             RaycastHit hit;
 
             float playerSpeed = new Vector3(playerMovement.rb.velocity.x, 0f, playerMovement.rb.velocity.z).magnitude;

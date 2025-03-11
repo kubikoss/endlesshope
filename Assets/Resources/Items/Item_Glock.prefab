@@ -181,7 +181,9 @@ MonoBehaviour:
   movingSpread: 0.1
   maxSpread: 0.2
   playerMovement: {fileID: 0}
+  particles: {fileID: 717801258268495461, guid: d34fe9d53b5422a4697fc82a85fa2330, type: 3}
   reloadSound: {fileID: 8300000, guid: 1c2c9437869a1184195ecd5344e0eea0, type: 3}
+  GSP: {fileID: 0}
 --- !u!114 &-866377204410740026
 MonoBehaviour:
   m_ObjectHideFlags: 0
