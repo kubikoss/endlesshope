@@ -60,8 +60,11 @@ public class MenuManager : MonoBehaviour
     }
 
     public void Pause()
-    {        
-        if(Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0 && !Player.Instance.endPanel.activeSelf)
+    {
+        if (Player.Instance.endPanel.activeSelf || Player.Instance.deathPanel.activeSelf)
+            return;
+
+        if(Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0)
         {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
             if(pauseMenu.activeSelf)

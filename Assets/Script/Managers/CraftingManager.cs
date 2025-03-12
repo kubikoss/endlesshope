@@ -11,6 +11,8 @@ public class CraftingManager : MonoBehaviour
     public List<InventorySlot> craftingSlots;
     public List<CraftingRecipes> allRecipes;
     public GameObject inventoryItemPrefab;
+    public bool extractorPresent = false;
+    public bool hasCollectedVenom = false;
 
     [Header("Output")]
     public InventorySlot outputSlot;
@@ -40,8 +42,9 @@ public class CraftingManager : MonoBehaviour
 
     public void CheckCraftingSlotsForRecipes()
     {
-        // Item count check
-        int itemCount = 0;
+        extractorPresent = false;
+
+        // Check for Extractor and venom
         foreach (InventorySlot slot in craftingSlots)
         {
             if (slot != null)
@@ -49,33 +52,57 @@ public class CraftingManager : MonoBehaviour
                 InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
                 if (itemInSlot != null)
                 {
-                    itemCount = itemInSlot.count;
-                    if (itemCount > 1)
+                    Extractor extractor = itemInSlot.item.GetComponent<Extractor>();
+                    if (extractor != null)
                     {
-                        ClearOutputSlot();
-                        return;
+                        extractorPresent = true;
+                        if (extractor.collectedVenom)
+                        {
+                            hasCollectedVenom = true;
+                        }
+                        else
+                        {
+                            hasCollectedVenom = false;
+                        }
                     }
                 }
             }
         }
 
-        // Recipe pattern check
-        string recipeCheck = GetCraftingPattern(); // Gets item name in each crafting slot and returns string
-        if(!string.IsNullOrEmpty(recipeCheck))
+        if (extractorPresent && !hasCollectedVenom)
         {
-            foreach(CraftingRecipes craftingRecipe in allRecipes)
+            ClearOutputSlot();
+            return;
+        }
+
+        // Item count check
+        foreach (InventorySlot slot in craftingSlots)
+        {
+            if (slot != null)
             {
-                if(recipeCheck == GetPatternFromRecipes(craftingRecipe))
+                InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+                if (itemInSlot != null && itemInSlot.count > 1)
+                {
+                    ClearOutputSlot();
+                    return;
+                }
+            }
+        }
+
+        // Recipe pattern check
+        string recipeCheck = GetCraftingPattern();
+        if (!string.IsNullOrEmpty(recipeCheck))
+        {
+            foreach (CraftingRecipes craftingRecipe in allRecipes)
+            {
+                if (recipeCheck == GetPatternFromRecipes(craftingRecipe))
                 {
                     SpawnCraftingItem(craftingRecipe.resultItem);
                     return;
                 }
-                else
-                {
-                    ClearOutputSlot();
-                }
             }
         }
+        ClearOutputSlot();
     }
 
     private void SpawnCraftingItem(Item item)

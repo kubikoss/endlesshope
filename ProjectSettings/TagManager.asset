@@ -15,6 +15,7 @@ TagManager:
   - ParticlesPosition
   - Item
   - HealthBarEnemy
+  - Chest
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - PlayerUninter
   - Money
   - Minimap
-  - 
+  - Chest
   - 
   - 
   - 

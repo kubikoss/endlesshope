@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     AudioClip heartBeat;
     [SerializeField]
-    private GameObject deathPanel;
+    public GameObject deathPanel;
 
     private bool canReduce = true;
     private bool reduced = false;
@@ -110,6 +110,11 @@ public class Player : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Time.timeScale = 0f;
+
+                if (PlayerMovement.Instance != null && PlayerMovement.Instance.movementAudioSource.isPlaying)
+                    PlayerMovement.Instance.movementAudioSource.Stop();
+                if (healthAudioSource != null && healthAudioSource.isPlaying)
+                    healthAudioSource.Stop();
             }
         }
     }

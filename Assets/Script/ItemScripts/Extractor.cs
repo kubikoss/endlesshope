@@ -21,7 +21,7 @@ public class Extractor : Item
         get { return extractorItem.reloadTime; }
         set { extractorItem.reloadTime = value; }
     }
-    public GameObject FilledExtractor => extractorItem.filledExtractor;
+    public bool collectedVenom = false;
 
     private bool isDestroyed = false;
 
@@ -45,11 +45,9 @@ public class Extractor : Item
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    /*GameObject extractor = Instantiate(FilledExtractor, PlayerManager.Instance.transform.position, Quaternion.identity);
-                    extractor.GetComponent<ItemPickup>().Interact();*/
                     isDestroyed = true;
-                    Destroy(this.gameObject);
-                    Destroy(InventoryManager.Instance.GetInventoryItem(this).gameObject);
+                    /*pop-up text*/
+                    collectedVenom = true;
                 }  
             }
             CanTakeVenom = false;

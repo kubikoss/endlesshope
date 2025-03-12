@@ -9,5 +9,4 @@ public class ExtractorItem : BaseItem
     public int ammo;
     public bool canTakeVenom;
     public float reloadTime;
-    public GameObject filledExtractor;
 }

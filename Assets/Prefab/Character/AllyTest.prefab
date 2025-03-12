@@ -643,15 +643,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  enemyLookRadius: 15
+  enemyLookRadius: 30
   playerLookRadius: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  attackRadius: 8
+  attackRadius: 15
   attackCooldown: 0.7
-  damage: 25
-  hp: 1000
+  damage: 30
+  hp: 20000
   ally: {fileID: 1937821664867892210}
   clip: {fileID: 8300000, guid: fddf8807021560c4183cd415707731a0, type: 3}
 --- !u!195 &3532290062087666436

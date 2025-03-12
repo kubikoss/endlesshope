@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public static PlayerAttack Instance { get; private set; }
 
     public float defaultDamage = 15f;
+    public float defaultAttackRange = 2f;
 
     private Animator animator;
     private void Awake()
@@ -20,6 +21,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackEnemy(GameObject enemy, Item currentItem)
     {
+        if (Player.Instance.endPanel.activeSelf || Player.Instance.deathPanel.activeSelf)
+            return;
+
         Enemy enemyHealth = enemy.GetComponent<Enemy>();
 
         if (enemyHealth != null && !InventoryManager.Instance.isInventoryOpened)
@@ -41,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
         {
             animator.SetTrigger("Attack");
             RaycastHit hit;
-            if (Physics.Raycast(PlayerManager.Instance.mainCamera.transform.position, PlayerManager.Instance.mainCamera.transform.forward, out hit, 2f))
+            if (Physics.Raycast(PlayerManager.Instance.mainCamera.transform.position, PlayerManager.Instance.mainCamera.transform.forward, out hit, defaultAttackRange))
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {

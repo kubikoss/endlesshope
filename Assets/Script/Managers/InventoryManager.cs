@@ -426,10 +426,10 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-//models (95%)  
+//models (96%)
 //game-other (98%)
 
-//lootbox, graveyard, fix enemy + canvas (prob animator)
+//graveyard
 
 //OTHER TODO
 //zombies & lootboxes spawn

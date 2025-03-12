@@ -18,6 +18,9 @@ public class ParticleManager : MonoBehaviour
 
     public ParticleSystem SpawnParticles(ParticleSystem particles, Vector3 position, float destroyTime, bool shootP = false)
     {
+        if (Player.Instance.endPanel.activeSelf || Player.Instance.deathPanel.activeSelf)
+            return null;
+
         ParticleSystem currentParticles = Instantiate(particles, position, Quaternion.identity);
         if(shootP)
         {

@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,21 +7,21 @@ public class AllyController : MonoBehaviour
 {
     public static AllyController Instance { get; private set; }
     [Header("Movement")]
-    [SerializeField] 
+    [SerializeField]
     private float moveSpeed = 9f;
-    [SerializeField] 
+    [SerializeField]
     private float enemyLookRadius = 20f;
-    [SerializeField] 
+    [SerializeField]
     private float playerLookRadius = 7f;
-    [SerializeField] 
+    [SerializeField]
     private LayerMask enemyLayer;
 
     [Header("Attack")]
-    [SerializeField] 
+    [SerializeField]
     private float attackRadius = 3f;
-    [SerializeField] 
+    [SerializeField]
     private float attackCooldown = 2f;
-    [SerializeField] 
+    [SerializeField]
     private float damage = 30f;
 
     [SerializeField]
