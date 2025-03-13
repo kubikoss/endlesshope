@@ -426,13 +426,14 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-//models (96%)
 //game-other (98%)
-
-//graveyard
 
 //OTHER TODO
 //zombies & lootboxes spawn
 //better UI tutorial
+//settings/recipes
+//better stats (day, hunger, damage,..)
+//collider supermarket
+//end arrow (after crafted cure)
 
-//finished 97%
+//finished 98%
