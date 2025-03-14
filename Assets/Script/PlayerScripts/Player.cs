@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using static UnityEditor.Progress;
 
 public class Player : MonoBehaviour
 {
@@ -145,8 +144,6 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-
 
     public void TakeDamage(float amount)
     {

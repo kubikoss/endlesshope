@@ -15,11 +15,11 @@ MonoBehaviour:
   recipeName: PizzaRecipe
   requiredItems:
   - {fileID: 0}
-  - {fileID: 6248489575796973506, guid: 55d19c1b502a2864d80046538af914f2, type: 3}
+  - {fileID: 7098606721861100541, guid: 07d84a5981a6763448e9fbfd44d194e2, type: 3}
   - {fileID: 0}
   - {fileID: 6248489575796973506, guid: 55d19c1b502a2864d80046538af914f2, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6248489575796973506, guid: 55d19c1b502a2864d80046538af914f2, type: 3}
+  - {fileID: 6248489575796973506, guid: 55d19c1b502a2864d80046538af914f2, type: 3}
   - {fileID: 4241948732924707993, guid: 851f5d3fc85b079419ff52b3c42aa2d0, type: 3}
   - {fileID: 4241948732924707993, guid: 851f5d3fc85b079419ff52b3c42aa2d0, type: 3}
   - {fileID: 4241948732924707993, guid: 851f5d3fc85b079419ff52b3c42aa2d0, type: 3}

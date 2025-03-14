@@ -4,10 +4,6 @@ using Unity.Collections.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 
-using UnityEngine.EventSystems;
-using static UnityEditor.Progress;
-using static UnityEngine.ParticleSystem;
-
 public class AK47 : Weapon
 {
     public float baseSpread;

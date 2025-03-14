@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class ChestInteraction : MonoBehaviour, IInteractable
@@ -38,6 +39,7 @@ public class ChestInteraction : MonoBehaviour, IInteractable
             for (int i = 0; i < childCount; i++)
             {
                 Transform item = transform.GetChild(0);
+                item.name = Regex.Replace(item.name, @"\s*\(.*?\)", "").Trim();
                 item.position = transform.position;
                 item.SetParent(null);
                 item.gameObject.SetActive(true);

@@ -9,7 +9,7 @@ public class Bed : Item
 
     public void Sleep()
     {
-        if(Player.Instance.currentFatigue <= 50)
+        if(Player.Instance.currentFatigue <= 100)
             StartCoroutine(SleepCoroutine());
     }
 

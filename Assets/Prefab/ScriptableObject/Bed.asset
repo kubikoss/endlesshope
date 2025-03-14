@@ -21,4 +21,4 @@ MonoBehaviour:
   rotX: -55.9
   rotY: 161.9
   rotZ: -12.9
-  sleepAmount: 75
+  sleepAmount: 150

@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -41,12 +41,6 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void Play()
-    {
-        SceneManager.LoadScene(1);
-        Time.timeScale = 1f;
-    }
-
     public void Resume()
     {
         Time.timeScale = 1f;
@@ -61,10 +55,13 @@ public class MenuManager : MonoBehaviour
 
     public void Pause()
     {
-        if(Player.Instance.endPanel != null && Player.Instance.deathPanel != null)
+        if(Player.Instance != null)
         {
-            if (Player.Instance.endPanel.activeSelf || Player.Instance.deathPanel.activeSelf)
-                return;
+            if (Player.Instance.endPanel != null && Player.Instance.deathPanel != null)
+            {
+                if (Player.Instance.endPanel.activeSelf || Player.Instance.deathPanel.activeSelf)
+                    return;
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0)
@@ -95,17 +92,7 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void Settings()
-    {
-        Debug.Log("settings");
-    }
-
-    public void Recipes()
-    {
-        Debug.Log("recipes");
-    }
-
-    public void Exit()
+    public void Quit()
     {
         Application.Quit();
     }

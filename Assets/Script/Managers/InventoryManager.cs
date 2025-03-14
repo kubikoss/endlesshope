@@ -430,10 +430,7 @@ public class InventoryManager : MonoBehaviour
 
 //OTHER TODO
 //zombies & lootboxes spawn
-//better UI tutorial
-//settings/recipes
-//better stats (day, hunger, damage,..)
 //collider supermarket
-//end arrow (after crafted cure)
+//end arrow (after crafted cure), food stats
 
 //finished 98%

@@ -12,13 +12,15 @@ public class LightingManager : MonoBehaviour
     private Light DirectionalLight;
     [SerializeField]
     private LightingPreset Preset;
-    [SerializeField, Range(0, 240)]
+    [SerializeField, Range(0, 900)]
     private float TimeOfDay;
 
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
+
+        TimeOfDay = 550f;
     }
 
     private void Update()
@@ -31,14 +33,14 @@ public class LightingManager : MonoBehaviour
         if(Application.isPlaying)
         {
             TimeOfDay += Time.deltaTime;
-            TimeOfDay %= 240;
-            UpdateLighting(TimeOfDay / 240f);
+            TimeOfDay %= 900;
+            UpdateLighting(TimeOfDay / 900f);
         }
         else
         {
             TimeOfDay += Time.deltaTime;
-            TimeOfDay %= 240;
-            UpdateLighting(TimeOfDay / 240f);
+            TimeOfDay %= 900;
+            UpdateLighting(TimeOfDay / 900f);
         }
     }
 
@@ -56,7 +58,7 @@ public class LightingManager : MonoBehaviour
 
     public void ChangeLight()
     {
-        UpdateLighting(TimeOfDay += 70f);
+        UpdateLighting(TimeOfDay += 280f);
     }
 
     private void OnValidate()
