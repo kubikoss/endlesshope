@@ -46,7 +46,7 @@ public class ShopItem : MonoBehaviour
         {
             EnableText();
             canBuy = true;
-            costText.text = $"Press F to buy {item.ItemName} for: " + itemCost.ToString() + " money.";
+            costText.text = $"Press F to buy {item.ItemName}\nfor {itemCost} money.";
         }
     }
 

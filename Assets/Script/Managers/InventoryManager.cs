@@ -452,10 +452,9 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-//game-other (99.3%)
+//game-other (99.7%)
 
 //OTHER TODO
 //zombies spawn
-//collider supermarket
 
-//finished 98.5%
+//finished 99%
