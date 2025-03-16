@@ -121,5 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47436df747648224bb653ef7e94d0afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxItemsCount: 5
+  maxItemsCount: 6
   range: 2

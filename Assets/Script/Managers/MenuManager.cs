@@ -13,6 +13,18 @@ public class MenuManager : MonoBehaviour
     [HideInInspector] public bool isPaused = false;
     [SerializeField]
     GameObject gameUI;
+    [SerializeField]
+    private Button resumeButton;
+    [SerializeField]
+    private Button menuButton;
+    [SerializeField]
+    private Button quitButton;
+    [SerializeField]
+    private Button recipesButton;
+    [SerializeField]
+    private Button backButton;
+    [SerializeField]
+    private GameObject recipesCanvas;
 
     private void Awake()
     {
@@ -55,6 +67,11 @@ public class MenuManager : MonoBehaviour
 
     public void Pause()
     {
+        if(InventoryManager.Instance.isDragging)
+        { 
+            return;
+        }
+
         if(Player.Instance != null)
         {
             if (Player.Instance.endPanel != null && Player.Instance.deathPanel != null)
@@ -64,14 +81,16 @@ public class MenuManager : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0)
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0 && !recipesCanvas.gameObject.activeSelf)
         {
             pauseMenu.SetActive(!pauseMenu.activeSelf);
-            if(pauseMenu.activeSelf)
+            if (pauseMenu.activeSelf)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Time.timeScale = 0f;
                 isPaused = true;
+                recipesCanvas.gameObject.SetActive(false);
+                backButton.gameObject.SetActive(false);
             }
             else
             {
@@ -84,6 +103,34 @@ public class MenuManager : MonoBehaviour
                 isPaused = false;
             }
         }
+    }
+
+    public void Recipes()
+    {
+        recipesCanvas.gameObject.SetActive(true);
+    }
+
+    public void BackButton()
+    {
+        recipesCanvas.gameObject.SetActive(false);
+    }
+
+    public void DisableButtons()
+    {
+        resumeButton.gameObject.SetActive(false);
+        recipesButton.gameObject.SetActive(false);
+        menuButton.gameObject.SetActive(false);
+        quitButton.gameObject.SetActive(false);
+        backButton.gameObject.SetActive(true);
+    }
+
+    public void EnableButtons()
+    {
+        resumeButton.gameObject.SetActive(true);
+        recipesButton.gameObject.SetActive(true);
+        menuButton.gameObject.SetActive(true);
+        quitButton.gameObject.SetActive(true);
+        backButton.gameObject.SetActive(false);
     }
 
     public void Menu()

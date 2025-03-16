@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float hp = 100;
     [SerializeField]
-    float hungerTime;
+    private float hungerTime;
+    [SerializeField]
     private float currentHungerTime;
     [SerializeField]
     float hungerDamageInterval;

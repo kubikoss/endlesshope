@@ -15,7 +15,7 @@ MonoBehaviour:
   recipeName: PizzaRecipe
   requiredItems:
   - {fileID: 0}
-  - {fileID: 7098606721861100541, guid: 07d84a5981a6763448e9fbfd44d194e2, type: 3}
+  - {fileID: 6438564246419889441, guid: 8806d2aa5255a484db5a12d28d0b4890, type: 3}
   - {fileID: 0}
   - {fileID: 6248489575796973506, guid: 55d19c1b502a2864d80046538af914f2, type: 3}
   - {fileID: 6248489575796973506, guid: 55d19c1b502a2864d80046538af914f2, type: 3}

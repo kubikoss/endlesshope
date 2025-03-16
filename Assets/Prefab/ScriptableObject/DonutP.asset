@@ -21,5 +21,5 @@ MonoBehaviour:
   rotX: -28.03
   rotY: 185.45
   rotZ: 0
-  foodStat: 25
+  foodStat: 120
   isEatable: 1

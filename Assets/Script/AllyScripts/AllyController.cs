@@ -121,7 +121,6 @@ public class AllyController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Debug.Log(hp);
     }
 
     private void Patrol()

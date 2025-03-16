@@ -55,6 +55,7 @@ public class Grenade : Weapon
         {
             Enemy enemy = explosionCollider.GetComponent<Enemy>();
             Player player = explosionCollider.GetComponent<Player>();
+            AllyController ally = explosionCollider.GetComponent<AllyController>();
             if (enemy != null)
             {
                 enemy.TakeDamage(Damage);
@@ -62,6 +63,10 @@ public class Grenade : Weapon
             else if (player != null)
             {
                 player.TakeDamage(Damage / Random.Range(3,5));
+            }
+            else if(ally != null)
+            {
+                ally.AllyTakeDamage(Damage / Random.Range(3, 5));
             }
         }
         Destroy(gameObject);

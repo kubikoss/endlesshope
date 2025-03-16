@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -7,7 +7,9 @@ public class Enemy : MonoBehaviour
     public GameObject moneyObject;
     [SerializeField]
     public ParticleSystem particles;
-    
+
+    private NavMeshAgent agent;
+
     private void Update()
     {
         IsDead();
@@ -26,7 +28,6 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
         hp -= amount;
-        //ParticleManager.Instance.SpawnParticles(particles, transform, 0.5f);
 
         if (hp <= 0f)
         {
@@ -41,5 +42,4 @@ public class Enemy : MonoBehaviour
         moneyScript.moneyData.amount = moneyScript.AmountProbability();
         PlayerCurrency.Instance.AddCurrency(moneyScript.moneyData.amount);
     }
-
 }

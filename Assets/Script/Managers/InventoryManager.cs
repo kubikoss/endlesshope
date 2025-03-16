@@ -4,6 +4,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class InventoryManager : MonoBehaviour
     [HideInInspector] public int selectedSlot = -1;
     [HideInInspector] public int hotbarCount = 0;
     [HideInInspector] public bool splitting = false;
+    [SerializeField]
+    private GameObject endArrow;
 
     [Header("Item")]
     public Item currentItem;
@@ -36,6 +39,7 @@ public class InventoryManager : MonoBehaviour
     {
         ChangeSelectedSlot(0);
         playerCam = PlayerManager.Instance.mainCamera;
+        endArrow.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -50,6 +54,8 @@ public class InventoryManager : MonoBehaviour
             OpenInventory();
             DropItem(currentItem);
         }
+
+        CheckForCure();
     }
 
     #region add/remove from inventory
@@ -411,6 +417,26 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    private void CheckForCure()
+    {
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+            if (itemInSlot != null && itemInSlot.item != null)
+            {
+                if (itemInSlot.item.ItemName == "Cure")
+                {
+                    endArrow.gameObject.SetActive(true);
+                    return;
+                }
+            }
+        }
+        endArrow.gameObject.SetActive(false);
+    }
+
+
     public InventoryItem GetInventoryItem(Item item)
     {
         for (int i = 0; i < inventorySlots.Count; i++)
@@ -426,11 +452,10 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-//game-other (98%)
+//game-other (99.3%)
 
 //OTHER TODO
-//zombies & lootboxes spawn
+//zombies spawn
 //collider supermarket
-//end arrow (after crafted cure), food stats
 
-//finished 98%
+//finished 98.5%
