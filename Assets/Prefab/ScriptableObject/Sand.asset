@@ -17,7 +17,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: e30461ac8e2ca53458b9870a817cf898, type: 3}
   isStackable: 1
   maxStackCount: 15
-  itemWorld: {fileID: 5645811165704427994, guid: b461ebe9f00d81e459ce51c201f9f9e7, type: 3}
+  itemWorld: {fileID: 4111426202490616480, guid: 3f26036fd84ae8b44927f74f795da55e, type: 3}
   rotX: 0
   rotY: 0
   rotZ: 0

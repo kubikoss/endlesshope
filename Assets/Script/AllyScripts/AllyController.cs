@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -35,10 +36,12 @@ public class AllyController : MonoBehaviour
 
     public GameObject ally;
     public AudioClip clip;
+    private Animator animator;
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -55,6 +58,7 @@ public class AllyController : MonoBehaviour
             currentCooldown -= Time.deltaTime;
 
         AllyActions();
+        AllyMovementAnimation();
     }
 
     private void AllyActions()
@@ -155,5 +159,21 @@ public class AllyController : MonoBehaviour
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    private void AllyMovementAnimation()
+    {
+        bool isMoving = Mathf.Abs(agent.velocity.magnitude) > 0.1f;
+
+        animator.SetBool("isMoving", isMoving);
+
+        if (!isMoving)
+        {
+            animator.SetBool("isIdle", true);
+        }
+        else
+        {
+            animator.SetBool("isIdle", false);
+        }
     }
 }

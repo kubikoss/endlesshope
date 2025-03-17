@@ -184,15 +184,15 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    Heal(foodItem.foodStat);
-                    currentHungerTime += foodItem.foodStat / 4 * 3;
+                    Heal(foodItem.foodStat/3);
+                    currentHungerTime += foodItem.foodStat;
                     hungerBar.value = currentHungerTime;
                 }
             }
             else
             {
-                TakeDamage(foodItem.foodStat);
-                currentHungerTime += foodItem.foodStat/2;
+                TakeDamage(foodItem.foodStat/2);
+                currentHungerTime += foodItem.foodStat/3;
                 hungerBar.value = currentHungerTime;
             }
             if (currentHungerTime > hungerTime)

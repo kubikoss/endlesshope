@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using TMPro;
 using UnityEngine;
 
 public class ChestInteraction : MonoBehaviour, IInteractable
@@ -10,6 +11,8 @@ public class ChestInteraction : MonoBehaviour, IInteractable
     private bool isOpened = false;
     [SerializeField]
     private float range = 3f;
+    [SerializeField]
+    private TextMeshProUGUI text;
 
     private List<GameObject> items;
 
@@ -19,11 +22,13 @@ public class ChestInteraction : MonoBehaviour, IInteractable
 
         int itemCount = rndNumber.Next(1, maxItemsCount + 1);
         AddToChest(itemCount);
+        text.gameObject.SetActive(false);
     }
 
     private void Update()
     {
         Interact();
+        IsClose();
     }
 
     public void Interact()
@@ -44,7 +49,7 @@ public class ChestInteraction : MonoBehaviour, IInteractable
                 item.SetParent(null);
                 item.gameObject.SetActive(true);
             }
-
+            Destroy(text.gameObject);
             Destroy(gameObject);
         }
     }
@@ -66,6 +71,19 @@ public class ChestInteraction : MonoBehaviour, IInteractable
             GameObject itemInstance = Instantiate(randomItem, transform.position, Quaternion.identity);
             itemInstance.transform.SetParent(transform);
             itemInstance.gameObject.SetActive(false);
+        }
+    }
+
+    private void IsClose()
+    {
+        float distance = Vector3.Distance(transform.position, PlayerManager.Instance.player.transform.position);
+        if (distance <= range)
+        {
+            text.gameObject.SetActive(true);
+        }
+        else
+        {
+            text.gameObject.SetActive(false);
         }
     }
 }
