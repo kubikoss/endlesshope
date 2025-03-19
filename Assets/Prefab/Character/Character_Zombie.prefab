@@ -256,7 +256,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.36
+  m_Radius: 0.37
   m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.17, z: 0}
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c13770ce367c644a1fb3d619b114e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookRadius: 25
+  lookRadius: 27
   attackRadius: 2
 --- !u!95 &7374538637012195615
 Animator:

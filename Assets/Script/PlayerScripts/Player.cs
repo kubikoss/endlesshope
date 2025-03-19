@@ -133,7 +133,7 @@ public class Player : MonoBehaviour
     private void DidFinish()
     {
         float distance = Vector2.Distance(transform.position, endPosition.position);
-        if (distance <= 10f)
+        if (distance <= 13f)
         {
             foreach (InventorySlot slot in InventoryManager.Instance.inventorySlots)
             {
@@ -289,5 +289,11 @@ public class Player : MonoBehaviour
         PlayerMovement.Instance.moveSpeed = originalSpeed;
         PlayerAttack.Instance.defaultDamage = originalDefaultDamage;
         reduced = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(endPosition.position, 13f);
     }
 }
