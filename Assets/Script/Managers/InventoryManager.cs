@@ -268,7 +268,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void ChangeSelectedSlot(int newSlot)
+    public void ChangeSelectedSlot(int newSlot)
     {
         int hotbarSlots = 9;
 

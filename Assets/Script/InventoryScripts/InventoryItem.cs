@@ -158,7 +158,17 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             AudioManager.Instance.DropItemAudio();
             RemoveItemFromInventory();
             InventoryManager.Instance.hotbarCount--;
-            InventoryManager.Instance.EquipHands();
+            
+            for(int i = 0; i < InventoryManager.Instance.hotbarCount; i++)
+            {
+                InventoryItem itemInSlot = InventoryManager.Instance.inventorySlots[i].GetComponentInChildren<InventoryItem>();
+                if (itemInSlot != null)
+                {
+                    InventoryManager.Instance.EquipItem(itemInSlot.item);
+                    InventoryManager.Instance.ChangeSelectedSlot(i);
+                    break;
+                }
+            }
         }
         // Inventory item put in slot
         else
