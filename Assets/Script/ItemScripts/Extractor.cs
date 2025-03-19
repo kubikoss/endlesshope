@@ -46,7 +46,6 @@ public class Extractor : Item
                 if (hit.collider.CompareTag("Enemy"))
                 {
                     isDestroyed = true;
-                    /*pop-up text*/
                     collectedVenom = true;
                 }  
             }
@@ -59,7 +58,11 @@ public class Extractor : Item
 
     private IEnumerator Reload(float timer)
     {
+        InventoryManager.Instance.canInteract = false;
+
         yield return new WaitForSeconds(timer);
+
+        InventoryManager.Instance.canInteract = true;
         CanTakeVenom = true;
     }
 }

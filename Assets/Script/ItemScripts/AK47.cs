@@ -33,9 +33,12 @@ public class AK47 : Weapon
             AudioManager.Instance.PlayAudio(ItemSound, 0.3f);
             Transform AKSP = GameObject.Find("AKSP").transform;
 
-            ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, AKSP.position, 0.3f, true);
-            pts.transform.SetParent(AKSP);
-            pts.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+            if(AKSP.gameObject != null)
+            {
+                ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, AKSP.position, 0.3f, true);
+                pts.transform.SetParent(AKSP);
+                pts.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+            }
 
             RaycastHit hit;
 
@@ -68,6 +71,8 @@ public class AK47 : Weapon
 
     private IEnumerator ReloadCoroutine()
     {
+        InventoryManager.Instance.canInteract = false;
+
         int neededAmmo = MagazineSize - CurrentAmmo;
         FiringMode firingMode = weaponData.firingMode;
 
@@ -82,6 +87,8 @@ public class AK47 : Weapon
         AudioManager.Instance.PlayAudio(reloadSound, 0.4f);
 
         yield return new WaitForSeconds(ReloadSpeed);
+
+        InventoryManager.Instance.canInteract = true;
 
         if (Weapon.ammoPools[firingMode] >= neededAmmo)
         {

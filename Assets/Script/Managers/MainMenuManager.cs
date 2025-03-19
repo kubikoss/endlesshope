@@ -28,6 +28,8 @@ public class MainMenuManager : MonoBehaviour
     {
         if (Instance == null)
             Instance = this;
+
+        Time.timeScale = 1f;
     }
 
     private void Start()

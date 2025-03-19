@@ -136,7 +136,6 @@ public class MenuManager : MonoBehaviour
     public void Menu()
     {
         SceneManager.LoadScene(0);
-        Time.timeScale = 1f;
     }
 
     public void Quit()

@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 0
-  m_FogColor: {r: 0.6684501, g: 0.6922232, b: 0.6161486, a: 1}
+  m_FogColor: {r: 0.64382106, g: 0.66472924, b: 0.59396356, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -6331,7 +6331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DirectionalLight: {fileID: 1579528012}
   Preset: {fileID: 11400000, guid: 5b5e53563250fa147a7f97943cb1b515, type: 2}
-  TimeOfDay: 550
+  TimeOfDay: 550.2688
 --- !u!114 &587489476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6390,6 +6390,8 @@ MonoBehaviour:
   splitting: 0
   endArrow: {fileID: 1092885141}
   currentItem: {fileID: 0}
+  canInteract: 1
+  glock: {fileID: 1846005714}
   playerCam: {fileID: 1658996235}
 --- !u!114 &587489477
 MonoBehaviour:
@@ -16074,7 +16076,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.9715493, g: 0.9715493, b: 0.9715493, a: 1}
+  m_Color: {r: 0.7796896, g: 0.7796896, b: 0.7796896, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -16133,7 +16135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1579528011}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.04944996, y: -0.82032657, z: 0.5652153, w: 0.07176932}
+  m_LocalRotation: {x: 0.07902451, y: -0.42016274, z: 0.9032537, w: 0.036759503}
   m_LocalPosition: {x: 0, y: -17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20814,6 +20816,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e76053bdac8964db5984ff5f45e367, type: 3}
+--- !u!114 &1846005714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8166599607572636435, guid: b3e76053bdac8964db5984ff5f45e367, type: 3}
+  m_PrefabInstance: {fileID: 1846005713}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0339a55441e0cb479ffc0a3c072d166, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1847933598
 GameObject:
   m_ObjectHideFlags: 0

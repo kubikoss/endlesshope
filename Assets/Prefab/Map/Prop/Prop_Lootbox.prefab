@@ -370,3 +370,4 @@ MonoBehaviour:
   maxItemsCount: 6
   range: 2
   text: {fileID: 3852480175818707596}
+  itemCanvas: {fileID: 8120052163948589179}

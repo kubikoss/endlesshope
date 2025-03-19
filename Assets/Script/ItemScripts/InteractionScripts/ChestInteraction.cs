@@ -13,6 +13,8 @@ public class ChestInteraction : MonoBehaviour, IInteractable
     private float range = 3f;
     [SerializeField]
     private TextMeshProUGUI text;
+    [SerializeField]
+    private GameObject itemCanvas;
 
     private List<GameObject> items;
 
@@ -49,7 +51,7 @@ public class ChestInteraction : MonoBehaviour, IInteractable
                 item.SetParent(null);
                 item.gameObject.SetActive(true);
             }
-            Destroy(text.gameObject);
+            Destroy(itemCanvas);
             Destroy(gameObject);
         }
     }

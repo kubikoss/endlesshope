@@ -21,8 +21,7 @@ MonoBehaviour:
   rotX: -94.46
   rotY: -4.99
   rotZ: 4.98
-  range: 3
+  range: 4
   ammo: 1
-  canTakeVenom: 1
+  canTakeVenom: 0
   reloadTime: 1
-  filledExtractor: {fileID: 475834276611930234, guid: ab8cc893567cf1a40b60921c5bdf4e40, type: 3}

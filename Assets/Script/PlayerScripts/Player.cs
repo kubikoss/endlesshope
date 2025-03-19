@@ -124,13 +124,16 @@ public class Player : MonoBehaviour
         Weapon.ammoPools.Clear();
         Weapon.collectedWeapons.Clear();
 
+        Weapon.ammoPools[FiringMode.Automatic] = 0;
+        Weapon.ammoPools[FiringMode.SemiAutomatic] = 0;
+
         SceneManager.LoadScene(2);
     }
 
     private void DidFinish()
     {
         float distance = Vector2.Distance(transform.position, endPosition.position);
-        if (distance <= 5f)
+        if (distance <= 10f)
         {
             foreach (InventorySlot slot in InventoryManager.Instance.inventorySlots)
             {
@@ -140,6 +143,8 @@ public class Player : MonoBehaviour
                 {
                     endPanel.gameObject.SetActive(true);
                     Time.timeScale = 0f;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
                     break;
                 }
             }

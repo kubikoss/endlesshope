@@ -33,9 +33,12 @@ public class Glock : Weapon
             AudioManager.Instance.PlayAudio(ItemSound, 0.3f);
             Transform GSP = GameObject.Find("GSP").transform;
 
-            ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, GSP.position, 0.3f, true);
-            pts.transform.SetParent(GSP);
-            pts.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+            if (GSP.gameObject != null)
+            {
+                ParticleSystem pts = ParticleManager.Instance.SpawnParticles(particles, GSP.position, 0.3f, true);
+                pts.transform.SetParent(GSP);
+                pts.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+            }
 
             RaycastHit hit;
 
@@ -67,6 +70,8 @@ public class Glock : Weapon
 
     private IEnumerator ReloadCoroutine()
     {
+        InventoryManager.Instance.canInteract = false;
+
         int neededAmmo = MagazineSize - CurrentAmmo;
         FiringMode firingMode = weaponData.firingMode;
 
@@ -81,6 +86,8 @@ public class Glock : Weapon
         AudioManager.Instance.PlayAudio(reloadSound, 0.2f);
 
         yield return new WaitForSeconds(ReloadSpeed);
+
+        InventoryManager.Instance.canInteract = true;
 
         if (Weapon.ammoPools[firingMode] >= neededAmmo)
         {

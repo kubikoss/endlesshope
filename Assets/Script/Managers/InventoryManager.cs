@@ -4,7 +4,6 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -25,6 +24,9 @@ public class InventoryManager : MonoBehaviour
     [Header("Item")]
     public Item currentItem;
     private float fireTimer = 0f;
+    public bool canInteract = true;
+    [SerializeField]
+    private Item glock;
 
     [Header("Camera")]
     public Camera playerCam;
@@ -40,6 +42,7 @@ public class InventoryManager : MonoBehaviour
         ChangeSelectedSlot(0);
         playerCam = PlayerManager.Instance.mainCamera;
         endArrow.gameObject.SetActive(false);
+        glock.GetComponent<ItemPickup>().Interact();
     }
 
     private void Update()
@@ -61,7 +64,7 @@ public class InventoryManager : MonoBehaviour
     #region add/remove from inventory
     public int AddItem(Item item)
     {
-        if(isDragging || Player.Instance.endPanel.activeSelf || SleepManager.Instance.isSleeping || MenuManager.Instance.isPaused)
+        if(isDragging || Player.Instance.endPanel.activeSelf || SleepManager.Instance.isSleeping || MenuManager.Instance.isPaused || !canInteract)
         {
             return -1;
         }
@@ -123,7 +126,7 @@ public class InventoryManager : MonoBehaviour
 
     private void DropItem(Item itemToDrop)
     {
-        if(Input.GetKeyDown(KeyCode.G))
+        if(Input.GetKeyDown(KeyCode.G) && canInteract)
         {
             if (!(itemToDrop is Hands) && itemToDrop != null)
             {
@@ -227,7 +230,7 @@ public class InventoryManager : MonoBehaviour
 
     private void SwitchItem()
     {
-        if(isDragging || currentItem is Weapon weapon && weapon.IsReloading)
+        if(isDragging || currentItem is Weapon weapon && weapon.IsReloading || !canInteract)
         {
             return;
         }
@@ -399,7 +402,13 @@ public class InventoryManager : MonoBehaviour
 
     private void OpenInventory()
     {
-        if(Input.GetKeyDown(KeyCode.Tab) && !isDragging)
+        if (currentItem is Weapon weapon && weapon.IsReloading)
+            return;
+
+        if (currentItem is Extractor extractor && !extractor.CanTakeVenom)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Tab) && !isDragging)
         {
             isInventoryOpened = !isInventoryOpened;
             fullInventory.SetActive(isInventoryOpened);
@@ -452,9 +461,3 @@ public class InventoryManager : MonoBehaviour
     }
     #endregion
 }
-//game-other (99.7%)
-
-//OTHER TODO
-//zombies spawn
-
-//finished 99%

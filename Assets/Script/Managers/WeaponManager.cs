@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -13,7 +12,6 @@ public class WeaponManager : MonoBehaviour
     private TextMeshProUGUI ammoText;
     [SerializeField]
     private TextMeshProUGUI fullAmmoText;
-
 
     private void Awake()
     {
@@ -34,16 +32,16 @@ public class WeaponManager : MonoBehaviour
 
     private void UpdateAmmoText()
     {
-        if (currentItem is Weapon weapon && !(currentItem is Grenade))
+        if (currentItem is Weapon weapon && !(currentItem is Grenade) && weapon != null)
         {
             ammoText.gameObject.SetActive(true);
-            if(weapon is AK47)
+            if (weapon.TryGetComponent<AK47>(out var ak47))
             {
-                ammoText.text = $"{weapon.CurrentAmmo}/{Weapon.ammoPools[weapon.GetComponent<AK47>().weaponData.firingMode]}";
+                ammoText.text = $"{weapon.CurrentAmmo}/{Weapon.ammoPools[ak47.weaponData.firingMode]}";
             }
-            else if(weapon is Glock)
+            else if (weapon.TryGetComponent<Glock>(out var glock))
             {
-                ammoText.text = $"{weapon.CurrentAmmo}/{Weapon.ammoPools[weapon.GetComponent<Glock>().weaponData.firingMode]}";
+                ammoText.text = $"{weapon.CurrentAmmo}/{Weapon.ammoPools[glock.weaponData.firingMode]}";
             }
         }
         else
@@ -54,7 +52,7 @@ public class WeaponManager : MonoBehaviour
 
     private void ShowAmmo()
     {
-        if(InventoryManager.Instance.isInventoryOpened)
+        if (InventoryManager.Instance.isInventoryOpened)
         {
             int ak47ammo = Weapon.ammoPools.ContainsKey(FiringMode.Automatic) ? Weapon.ammoPools[FiringMode.Automatic] : 0;
             int glockAmmo = Weapon.ammoPools.ContainsKey(FiringMode.SemiAutomatic) ? Weapon.ammoPools[FiringMode.SemiAutomatic] : 0;
